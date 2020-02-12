@@ -14,6 +14,8 @@
 // Given an array, move the non-zero elements to the beginning of the array.
 // Given a string, return back all permutations.
 // Implement a method that shifts an array to the left by n times.
+// Loop through an array backwards using an index.
+// Given a list of heights behind each other, return back the indexes in order of the buildings that can see the ocean: [] ~~~~
 
 
 // Algorithms to Implement:
@@ -281,3 +283,42 @@ func leftShiftArray(_ list: [Int], by shift: Int) -> [Int] {
     return shiftedList
 }
 
+
+// MARK: -
+// Loop through an array backwards using an index.
+func backwardLoop(_ list: [Int]) {
+    for i in (0..<list.count).reversed() {
+        print(list[i])
+    }
+    
+    // Using stride(from: a, through: b, by: -1)
+    for i in stride(from: list.count - 1, through: 0, by: -1) {
+        print(list[i])
+    }
+}
+
+
+// MARK: -
+// Given a list of heights behind each other, return back the indexes in order of the buildings that can see the ocean
+// Example: [2, 2, 1, 3, 2, 1] ~~~~ ; should return [3, 4, 5]
+func indexOfOceanViews(from heights: [Int]) -> [Int] {
+    guard !heights.isEmpty else { return [] }
+    
+    // We only need to loop until the index of the highest element is reached.
+    let highestHeight: Int = heights.max() ?? 0
+    let lowerIndex: Int = heights.lastIndex(of: highestHeight) ?? 0
+    
+    var highestFound: Int = heights[heights.count - 1]
+    var indexes: [Int] = []
+    
+    // Add the last element since it's in front of the ocean.
+    indexes.append(heights.count - 1)
+    for i in (lowerIndex...heights.count - 2).reversed() {
+        if heights[i] > highestFound {
+            indexes.append(i)
+            highestFound = heights[i]
+        }
+    }
+    
+    return indexes.reversed()
+}
