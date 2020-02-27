@@ -18,6 +18,7 @@ import Foundation
  Implement depth-first search.
  Verify that a binary search tree is indeed a binary search tree.
  Write a method to compare if two binary trees are identical.
+ Deep copy a tree.
  */
 
 
@@ -365,6 +366,30 @@ private func areTreesIdenticalSearch(_ tree1: BinaryNode<Int>?, tree2: BinaryNod
         return false
     }
 }
+
+// MARK: -
+// Create a method that copies a tree.
+// LISTEN; EXAMPLE; BRUTE FORCE; OPTIMIZE (BOTTLENECKS? UNNECESSARY WORK? DUPLICATE WORK?); WALKTHROUGH; IMPLEMENT; TEST
+// Time O(log n); Space O(n)
+extension BinaryNode {
+    func copy() -> BinaryNode {
+        let copyHead = BinaryNode(value: self.val)
+        copyHead.left = copyChild(self.left)
+        copyHead.right = copyChild(self.right)
+        return copyHead
+    }
+    
+    private func copyChild(_ node: BinaryNode?) -> BinaryNode? {
+        if let val = node?.val {
+            let copy = BinaryNode(value: val)
+            copy.left = copyChild(node?.left)
+            copy.right = copyChild(node?.right)
+            return copy
+        }
+        return nil
+    }
+}
+
 
 // EXAMPLE:             1
 //              2               3
