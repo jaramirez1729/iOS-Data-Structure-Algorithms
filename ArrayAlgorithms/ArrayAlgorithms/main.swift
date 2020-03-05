@@ -16,6 +16,7 @@
 // Implement a method that shifts an array to the left by n times.
 // Loop through an array backwards using an index.
 // Given a list of heights behind each other, return back the indexes in order of the buildings that can see the ocean: [] ~~~~
+// Given an array that can contain integers/arrays, calculate the array depth.
 
 
 // Algorithms to Implement:
@@ -83,20 +84,20 @@ func findSecondMinimumElementLinear(in nums: [Int]) -> Int? {
 func findNonRepeatingIntegers(in list: [Int]) -> [Int] {
     // The key is the number and value is the number of times it repeats.
     var dict: [Int: Int] = [:]
-    
     // Add to the dictionary each unique value where the default count is 0.
     list.forEach({ dict[$0, default: 0] += 1 }) // O(n) where n is the size of the list.
-    
     // Remove all keys that have a value greater than 1.
-    dict.forEach({ // O(u) where u is the size of the dictionary.
-        if $0.value != 1 {
-            dict.removeValue(forKey: $0.key)
-        }
-    })
+    return dict.filter({ $0.value == 1 }).map({ $0.key })
     
-    return dict.map({ $0.key }) // O(k) where k is the number of values left from the previous step.
+//    dict.forEach({ // O(u) where u is the size of the dictionary.
+//        if $0.value != 1 {
+//            dict.removeValue(forKey: $0.key)
+//        }
+//    })
+//    return dict.map({ $0.key }) // O(k) where k is the number of values left from the previous step.
 }
 
+print(findNonRepeatingIntegers(in: [1, 2, 3, 4, 3, 2, 1, 2, 12, 3, 2, 5, 7, 8]))
 
 // MARK: -
 // Find the non-repeating integers in an array.
@@ -108,6 +109,7 @@ func findNonRepeatingIntegersFilter(in list: [Int]) -> [Int] {
 
 
 // MARK: -
+// Merge 2 sorted arrays.
 // O(n^2) if both arrays are the same size, otherwise it's O(a*b).
 func mergeSortedArraysBrute(firstNums: [Int], secondNums: [Int]) -> [Int] {
     var sortedMerged: [Int] = []
@@ -322,3 +324,21 @@ func indexOfOceanViews(from heights: [Int]) -> [Int] {
     
     return indexes.reversed()
 }
+
+// Given an array that can contain integers/arrays, calculate the array depth.
+// LISTEN; EXAMPLE [1, 2, [3, 4], 5] = (1+2) + 2(3+4) + 5 = 22
+func getDepth(from list: [Any], multiplier: Int = 1) -> Int {
+    guard !list.isEmpty else { return 0 }
+    var total: Int = 0
+    for item in list {
+        if let num = item as? Int {
+            total += num
+        } else if let nums = item as? [Any] {
+            total += getDepth(from: nums, multiplier: multiplier + 1)
+        }
+    }
+    return total * multiplier
+}
+
+// (1+2)+2(3+3(4+4))+5 = 3+2(3+3(8))+5 = 3+2(3+24)+5 = 3+2(27)+5 = 3+54+5 = 62
+print(getDepth(from: [1, 2, [3, [4, 4]], 5]))

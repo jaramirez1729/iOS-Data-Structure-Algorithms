@@ -368,9 +368,9 @@ private func areTreesIdenticalSearch(_ tree1: BinaryNode<Int>?, tree2: BinaryNod
 }
 
 // MARK: -
-// Create a method that copies a tree.
+// Create a method that copies a tree/subtree.
 // LISTEN; EXAMPLE; BRUTE FORCE; OPTIMIZE (BOTTLENECKS? UNNECESSARY WORK? DUPLICATE WORK?); WALKTHROUGH; IMPLEMENT; TEST
-// Time O(log n); Space O(n)
+// Time O(); Space O(n)
 extension BinaryNode {
     func copy() -> BinaryNode {
         let copyHead = BinaryNode(value: self.val)
@@ -389,7 +389,6 @@ extension BinaryNode {
         return nil
     }
 }
-
 
 // EXAMPLE:             1
 //              2               3

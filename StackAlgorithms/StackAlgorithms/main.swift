@@ -68,16 +68,13 @@ func evaluatePostfix(_ postfix: String) {
 // Space O(1): Size remains the same as list size.
 func sortStack(_ stack: Stack<Int>) -> Stack<Int> {
     let tempStack: Stack<Int> = Stack<Int>()
-    var calls: Int = 0
     // Loop the original stack until there are no more values.
     while !stack.isEmpty {
-        calls += 1
         // Pop and compare it against the head of the temp stack.
         if let temp = stack.pop() {
             // If the top of the temp stack keeps being greater than the popped value, then keep popping
             // from the temp stack until the smaller value is put on top.
             while !tempStack.isEmpty && (tempStack.peek() ?? 0) > temp {
-                calls += 1
                 if let tempValue = tempStack.pop() {
                     stack.push(tempValue)
                 }
