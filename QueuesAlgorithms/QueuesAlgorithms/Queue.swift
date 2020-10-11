@@ -9,7 +9,7 @@
 import Foundation
 
 /// The Qeueue uses a linked link for optimization purposes.
-class Queue<Element> {
+struct Queue<Element> {
     fileprivate var list: SingleLinkedList<Element> = SingleLinkedList<Element>()
     
     var isEmpty: Bool {
@@ -23,6 +23,13 @@ class Queue<Element> {
     /// Appends a new element at the end of the list.
     func enqueue(_ val: Element) {
         list.append(value: val)
+    }
+    
+    /// Appends new elements at the end of the list.
+    func enqueue(_ values: [Element]) {
+        for val in values {
+            list.append(value: val)
+        }
     }
     
     /// Removes the first element from the list.

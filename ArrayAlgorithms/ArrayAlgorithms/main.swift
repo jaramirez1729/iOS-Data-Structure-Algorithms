@@ -88,16 +88,9 @@ func findNonRepeatingIntegers(in list: [Int]) -> [Int] {
     list.forEach({ dict[$0, default: 0] += 1 }) // O(n) where n is the size of the list.
     // Remove all keys that have a value greater than 1.
     return dict.filter({ $0.value == 1 }).map({ $0.key })
-    
-//    dict.forEach({ // O(u) where u is the size of the dictionary.
-//        if $0.value != 1 {
-//            dict.removeValue(forKey: $0.key)
-//        }
-//    })
-//    return dict.map({ $0.key }) // O(k) where k is the number of values left from the previous step.
 }
 
-print(findNonRepeatingIntegers(in: [1, 2, 3, 4, 3, 2, 1, 2, 12, 3, 2, 5, 7, 8]))
+//print(findNonRepeatingIntegers(in: [1, 2, 3, 4, 3, 2, 1, 2, 12, 3, 2, 5, 7, 8]))
 
 // MARK: -
 // Find the non-repeating integers in an array.
@@ -341,4 +334,17 @@ func getDepth(from list: [Any], multiplier: Int = 1) -> Int {
 }
 
 // (1+2)+2(3+3(4+4))+5 = 3+2(3+3(8))+5 = 3+2(3+24)+5 = 3+2(27)+5 = 3+54+5 = 62
-print(getDepth(from: [1, 2, [3, [4, 4]], 5]))
+//print(getDepth(from: [1, 2, [3, [4, 4]], 5]))
+
+// Given an array of integers, return true or false if 2 numbers exist such that they equal the target number.
+func findDifference(ofTarget target: Int, in list: [Int]) -> Bool {
+    for num in list {
+        let diff = num - target
+        if list.contains(diff) {
+            return true
+        }
+    }
+    return false
+}
+
+print(findDifference(ofTarget: 9, in: [10, 7, 1]))

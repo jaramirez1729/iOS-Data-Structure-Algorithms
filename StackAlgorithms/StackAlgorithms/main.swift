@@ -26,7 +26,7 @@ import Foundation
 // and we also use 1 or 2 variables per loop depending on postfix expression.
 func evaluatePostfix(_ postfix: String) {
     let elements: [String] = postfix.map({String($0)})
-    let stack: Stack<Int> = Stack()
+    var stack: Stack<Int> = Stack()
     
     for element in elements {
         if let num = Int(element) {
@@ -67,16 +67,17 @@ func evaluatePostfix(_ postfix: String) {
 // Time O(n^2): at most where n is the size of the stack (if in reverse order). This number is smaller depending on the size.
 // Space O(1): Size remains the same as list size.
 func sortStack(_ stack: Stack<Int>) -> Stack<Int> {
-    let tempStack: Stack<Int> = Stack<Int>()
+    var mStack = stack
+    var tempStack: Stack<Int> = Stack<Int>()
     // Loop the original stack until there are no more values.
     while !stack.isEmpty {
         // Pop and compare it against the head of the temp stack.
-        if let temp = stack.pop() {
+        if let temp = mStack.pop() {
             // If the top of the temp stack keeps being greater than the popped value, then keep popping
             // from the temp stack until the smaller value is put on top.
             while !tempStack.isEmpty && (tempStack.peek() ?? 0) > temp {
                 if let tempValue = tempStack.pop() {
-                    stack.push(tempValue)
+                    mStack.push(tempValue)
                 }
             }
             tempStack.push(temp)
@@ -89,8 +90,9 @@ func sortStack(_ stack: Stack<Int>) -> Stack<Int> {
 // MARK: -
 // Sort values in a stack.
 func sortStackRecursion(_ stack: Stack<Int>) {
+    var mStack = stack
     if !stack.isEmpty {
-        let temp = stack.pop() ?? 0
+        let temp = mStack.pop() ?? 0
         // Keep popping elements recursively to keep a reference of each element.
         sortStackRecursion(stack)
         // Once they have all been popped, start sorting them.
@@ -99,14 +101,15 @@ func sortStackRecursion(_ stack: Stack<Int>) {
 }
 
 private func sortStackRecursionInsert(_ stack: Stack<Int>, element: Int) {
+    var mStack = stack
     if stack.isEmpty || element > stack.peek() ?? 0 {
-        stack.push(element)
+        mStack.push(element)
     } else {
-        let temp = stack.pop() ?? 0
+        let temp = mStack.pop() ?? 0
         // Keep sorting the elements from the bottom as needed. When they are sorted,
         // continue to the next recursive call.
         sortStackRecursionInsert(stack, element: element)
-        stack.push(temp)
+        mStack.push(temp)
     }
 }
 

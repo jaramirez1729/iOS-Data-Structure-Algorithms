@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Stack<Element> {
+struct Stack<Element> {
     fileprivate var elements: [Element] = []
     
     var isEmpty: Bool {
@@ -20,12 +20,12 @@ class Stack<Element> {
     }
     
     /// Adds a new element on top of the stack.
-    func push(_ element: Element) {
+    mutating func push(_ element: Element) {
         elements.append(element)
     }
     
     /// Returns back and removes the top most element from the stack.
-    func pop() -> Element? {
+    mutating func pop() -> Element? {
         return elements.popLast()
     }
     

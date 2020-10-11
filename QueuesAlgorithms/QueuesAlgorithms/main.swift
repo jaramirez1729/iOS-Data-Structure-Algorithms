@@ -30,7 +30,7 @@ struct Time {
 // Implement a stack using a queue.
 // Listen: A queue is FIFO, and a stack is LIFO.
 // Example using 2 queues: tempList -> []; list -> []
-class Stack<T> {
+struct Stack<T> {
     private var tempList: Queue<T> = Queue<T>()
     private var list: Queue<T> = Queue<T>()
     
@@ -40,7 +40,7 @@ class Stack<T> {
         return list.isEmpty
     }
     
-    func push(_ val: T) {
+    mutating func push(_ val: T) {
         // Move all the elements from the list to the temporary one.
         while !list.isEmpty {
             if let element = list.dequeue() {
@@ -60,7 +60,7 @@ class Stack<T> {
         }
     }
     
-    func pop() -> T? {
+    mutating func pop() -> T? {
         count -= 1
         return list.dequeue()
     }
@@ -85,8 +85,8 @@ extension Stack: CustomStringConvertible {
 // IMPLEMENT; TEST
 // Time O(k + n): where k is the number of elements to reverse and n is the size of the list.
 // Space O(n): Size grows in relation to the size of the list.
-func reverseElements(upTo k: Int, from queue: Queue<Int>) {
-    let tempStack = Stack<Int>()
+func reverseElements(upTo k: Int, from queue: inout Queue<Int>) {
+    var tempStack = Stack<Int>()
     
     // Move up to k into the stack; they are reversed automatically when popping.
     for _ in 1...k { // O(k) times.
@@ -111,6 +111,10 @@ func reverseElements(upTo k: Int, from queue: Queue<Int>) {
     }
 }
 
+//var queue: Queue = Queue<Int>()
+//queue.enqueue([1, 2, 3, 4, 5])
+//reverseElements(upTo: 3, from: &queue)
+//print(queue)
 
 // MARK: -
 // Generate binary numbers from 1 to n using a queue.
