@@ -45,7 +45,7 @@ extension TrieNode: CustomStringConvertible {
     }
 }
 
-class Trie {
+struct Trie {
     typealias Node = TrieNode<Character>
     private(set) var root: TrieNode<Character>
     

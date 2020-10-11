@@ -45,6 +45,17 @@ private func traverseNode<T>(_ node: TrieNode<T>, count: inout Int) {
     }
 }
 
+let trie = Trie()
+trie.insert(word: "cool")
+trie.insert(word: "am")
+trie.insert(word: "so")
+trie.insert(word: "cute")
+trie.insert(word: "hello")
+trie.insert(word: "world")
+trie.insert(word: "hell")
+trie.insert(word: "cut")
+trie.insert(word: "hella")
+//print(countWords(in: trie))
 
 // MARK: -
 // Print all words stored.
@@ -76,6 +87,8 @@ private func traverseNode<T>(_ node: TrieNode<T>, word: inout String) {
     // Pop the last letter because it's going back up where the recursion came from.
     _ = word.popLast()
 }
+
+printWords(in: trie)
 
 
 // MARK: -
