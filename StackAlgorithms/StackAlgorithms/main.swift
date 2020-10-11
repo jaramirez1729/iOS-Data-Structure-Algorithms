@@ -55,6 +55,8 @@ func evaluatePostfix(_ postfix: String) {
     }
 }
 
+evaluatePostfix("57+62-*")
+
 
 // MARK: -
 // Sort values in a stack.
@@ -128,7 +130,7 @@ func checkParenthesis(in expression: String) -> Bool {
     })
     guard !chars.isEmpty else { return false }
     
-    let stack: Stack<String> = Stack<String>()
+    var stack: Stack<String> = Stack<String>()
     
     // O(c) for how many elements in chars.
     for char in chars {
@@ -146,7 +148,7 @@ func checkParenthesis(in expression: String) -> Bool {
 // MARK: -
 // Time O(n): Where n is the number of characters in the string.
 func reverseString(_ str: String) -> String {
-    let stack: Stack<String> = Stack<String>()
+    var stack: Stack<String> = Stack<String>()
     var rStr: String = ""
     str.forEach({stack.push(String($0))})
     while !stack.isEmpty {
@@ -164,7 +166,7 @@ func reverseString(_ str: String) -> String {
 // Stack: AB+CD-;
 // Postfix:
 func convertPrefixToPostfix(_ str: String) {
-    let stack = Stack<String>()
+    var stack = Stack<String>()
     
     for char in str.reversed() {
         if isOperator(String(char)) {
