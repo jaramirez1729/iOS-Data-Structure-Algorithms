@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Queue<Element> {
+struct Queue<Element> {
     fileprivate var list: SingleLinkedList<Element> = SingleLinkedList<Element>()
     
     var isEmpty: Bool {
@@ -20,12 +20,12 @@ class Queue<Element> {
     }
     
     /// Appends a new element at the end of the list.
-    func enqueue(_ val: Element) {
+    mutating func enqueue(_ val: Element) {
         list.append(value: val)
     }
     
     /// Removes the first element from the list.
-    func dequeue() -> Element? {
+    mutating func dequeue() -> Element? {
         guard !list.isEmpty, let val = list.first else { return nil }
         list.removeNodeAt(index: 0)
         return val.value

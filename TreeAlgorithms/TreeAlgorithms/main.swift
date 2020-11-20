@@ -211,7 +211,7 @@ private func printLevel(for node: BinaryNode<Int>?, level: Int) {
 // Time O(n): Traversing visits every node once.
 // Space O(n): Size grows in relation to the tree side.
 func breadthFirstSearchQueue(node: BinaryNode<Int>?) {
-    let queue = Queue<BinaryNode<Int>?>()
+    var queue = Queue<BinaryNode<Int>?>()
     var temp: BinaryNode<Int>? = node
     queue.enqueue(temp)
     while !queue.isEmpty {
