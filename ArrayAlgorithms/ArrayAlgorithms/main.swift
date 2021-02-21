@@ -6,7 +6,7 @@
 //  Copyright © 2020 AdaloveSoftware. All rights reserved.
 //
 
-
+// MARK: - 2020 Questions
 // Find the 2nd minimum element of an array.
 // Find the first non-repeating integers in an array.
 // Merge two sorted arrays.
@@ -18,7 +18,6 @@
 // Given a list of heights behind each other, return back the indexes in order of the buildings that can see the ocean: [] ~~~~
 // Given an array that can contain integers/arrays, calculate the array depth.
 
-
 // Algorithms to Implement:
 // Merge Sort: A divide-and-conquer algorithm. Divides the array into 2 halves, and then calls itself for the 2 halves
 // and then merges the two sorted halves. It keeps splitting up in half until only a single element are left in each array
@@ -28,8 +27,10 @@
 // on the pivot. Then apply the same steps to the sub arrays before and after the pivot. The first part involves partitioning.
 // Compare with the first element until you switch enough for that element to end in the middle as the pivot.
 
-
-import Foundation
+// MARK: - 2021 Questions
+// Reverse an array.
+// Given a list with n - 1 integers from 1 to n with no duplicates, find the missing number from the list.
+// Find the minimum number of jumps needed to reach the end of a list from the start.
 
 // MARK: -
 // Find the 2nd minimum element of an array.
@@ -347,4 +348,101 @@ func findDifference(ofTarget target: Int, in list: [Int]) -> Bool {
     return false
 }
 
-print(findDifference(ofTarget: 9, in: [10, 7, 1]))
+// MARK: -
+// LISTEN, EXAMPLE, BRUTE (BCR), OPTIMIZE, IMPLEMENT, TEST
+// [2, 3, 4, 1, 5, 3, 7, 4, 9, 124, -4]; [1, 2]
+// O(n)
+// Reverse an array.
+func reverseArray(_ array: [Int]) -> [Int] {
+    guard array.count > 1 else { return array }
+    
+    var reversedArray: [Int] = array
+    var startIndex: Int = 0
+    var lastIndex: Int = reversedArray.count - 1
+    
+    while startIndex < lastIndex {
+        reversedArray.swapAt(startIndex, lastIndex)
+        startIndex += 1
+        lastIndex -= 1
+    }
+    
+    return reversedArray
+}
+
+// MARK: -
+// LISTEN, EXAMPLE, BRUTE (BCR), OPTIMIZE, IMPLEMENT, TEST
+// [8, 5, 3, 2, 4, 12, 10, 1, 6, 9, 13, 11]
+// 1. Sort the array, and then find the missing number. O(n*Log(n))
+// 2. Create a new array from 1 to n with a conv. init. Compare the lists and see what's missing. O(n) + O(n)
+// 3. OPTIMIZE: [3, 2, 1, 5]. The total must be 1+...+n, but we only know part of the total.
+// Given a list with n - 1 integers from 1 to n with no duplicates, find the missing number from the list.
+func findMissingNumber(in list: [Int]) -> Int {
+    let listTotal: Int = list.reduce(0, +)  // O(n)
+    // While this gives the total, it's not very efficient.
+    // let correctTotal: Int = Array(1...list.count + 1).reduce(0, +)  // O(n)
+    
+    // OPTIMIZE: The supposed total can be found using the formula: [n * (n + 1)]/ 2
+    let n: Int = list.count + 1
+    let correctTotal: Int = (n * (n + 1)) / 2
+    return correctTotal - listTotal
+}
+
+// MARK: -
+// LISTEN: The jump does not have to specifically end exactly at the last element, it can go past it.
+//         You can choose what to jump to if the steps allow you to.
+// EXAMPLE: [1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]; 3 steps (1 -> 3 -> 8/9) since 8/9 will go past the list.
+//          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 10 steps.
+// BRUTE: Get the choices given. Always choose the last number that is allowed by the step.
+// OPTIMIZE: Get the choices given. Always choose the largest number that is allowed by the step.
+// IMPLEMENT,
+// Find the minimum number of jumps needed to reach the end of a list from the start.
+/* Given an array of integers where each element represents the max number of steps that can be made forward from that element.
+ Write a function to return the minimum number of jumps to reach the end of the array (starting from the first element).
+ If an element is 0, they cannot move through that element. If the end isn’t reachable, return -1. */
+func minimumStepsToReachEnd(of list: [Int]) -> Int {
+    guard list.count > 0 else { return 0 }
+    
+    var steps: Int = 0
+    // We will keep checking from this the more we advance.
+    let jumpsUntilEnd: Int = list.count - 1
+    // To know how many steps we took already to check against the end.
+    var jumpsTaken: Int = 0
+    // To track where we are in the list.
+    var jumpIndex: Int = 0
+    // The first jump size we can do is based on the first element, where we start.
+    var jumpSize: Int = list[jumpIndex]
+    
+    // If the difference between how far we've gone and how many steps have been taken is greater than 0, we are not done yet.
+    while (jumpsUntilEnd - jumpsTaken) > 0 {
+        // We have to check first if (jumpIndex + jumpSize) will exceed the list or not. If it does, that is another step.
+        // This also prevents the next line from going out of bounds.
+        if !list.indices.contains(jumpIndex + jumpSize) {
+            return steps + 1
+        }
+        
+        let possibleJumps: [Int] = Array(list[(jumpIndex + 1)...(jumpIndex + jumpSize)])
+        let possibleIndexes: [Int] = Array((jumpIndex + 1)...(jumpIndex + jumpSize))
+        // Create a dictionary with the index being the key so we know what the position is when we chose a jump.
+        var possibleChoices: [Int: Int] = [:]
+        for i in 0..<possibleJumps.count {
+            possibleChoices[possibleIndexes[i]] = possibleJumps[i]
+        }
+        // Get the largest value from the possible jumps.
+        jumpSize = possibleJumps.max() ?? 0
+        
+        if jumpSize == 0 {
+            // If the only possible value is 0, that means we cannot proceed further.
+            return -1
+        } else {
+            // Get all the values from the dictionary that match the new jumpSize, and pick the one with the biggest index.
+            // We pick the one with the biggest index so we advance farther on the list faster.
+            let indexes: [Int] = possibleChoices.filter { $1 == jumpSize }.map { $0.0 }
+            let jumpSizeIndex = indexes.max() ?? 0
+            jumpsTaken += jumpSizeIndex - jumpIndex
+            jumpIndex = jumpSizeIndex
+            steps += 1
+        }
+    }
+    
+    return steps
+}
