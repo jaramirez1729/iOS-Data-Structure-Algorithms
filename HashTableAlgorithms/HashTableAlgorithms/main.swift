@@ -168,7 +168,7 @@ func findSubarraysWithZeroTotalBrute(in list: [Int]) {
 
 // EXAMPLE: [6, 3, -1, -3, 4, -2, 2], 2-4, 2-6, 5-6.
 // IMPLEMENT: Keep a running total as keys in a dictionary. If the sum does not exist, then add the sum as a
-//            key and the index as the value. If the sum does exist, that means that the next value after that position
+//            key and the current index as the value. If the sum does exist, that means that the next value after that position
 //            to the current position would sum up to 0 (since it subtracts the same amount previously added),
 //            so that indicates a subarray equaling 0.
 func findSubarraysWithZeroTotal(in list: [Int]) {
@@ -195,3 +195,5 @@ func findSubarraysWithZeroTotal(in list: [Int]) {
         print("Found a subarray from index 0 to \(list.count - 1).")
     }
 }
+
+findSubarraysWithZeroTotal(in: [6, 3, -1, -3, 4, -2, 2, 4, 6, -12, -7])
