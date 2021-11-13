@@ -1,4 +1,6 @@
-# DataStructureAlgorithms
-Various data structures and some coding questions associated with them. All of these were created from January to February
-to help prepare me for an important interview. I found some of the coding questions online and just tried to solve them
-myself first.
+# Data Structure Algorithms
+## By Jose Adan Ramirez
+
+This is a collection of various coding challenges depending organized by data structures. This has been separated into 2 folders. The MainApp folder contains the Xcode projects that only use a single file where all of the code is found.
+
+The UnitTest folder is new. It contains projects where there are unit test targets to make testing the algorithms easier. I hade 2 folders since I didn't want to change the existing ones.
