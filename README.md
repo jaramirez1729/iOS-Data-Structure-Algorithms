@@ -1,5 +1,4 @@
 # Data Structure Algorithms
-## By Jose Adan Ramirez
 
 This is a collection of various coding challenges depending organized by data structures. This has been separated into 2 folders. The MainApp folder contains the Xcode projects that only use a single file where all of the code is found.
 
