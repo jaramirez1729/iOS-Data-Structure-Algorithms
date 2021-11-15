@@ -107,8 +107,8 @@ class ArrayAlgorithmsTests: XCTestCase {
         result = binarySearch(val: 6, on: list)
         XCTAssertEqual(result, 5)
         
-        result = binarySearch(val: 8, on: list)
-        XCTAssertEqual(result, 7)
+        let result = binarySearch(val: 9, on: list)
+        XCTAssertEqual(result, 8)
         
         result = binarySearch(val: 12, on: list)
         XCTAssertEqual(result, -1)

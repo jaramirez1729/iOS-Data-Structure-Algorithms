@@ -103,7 +103,7 @@ func binarySearch(val: Int, on list: [Int]) -> Int {
 
 func binarySearchList(val: Int, start: Int, end: Int, list: [Int]) -> Int {
     let middle = (end + start) / 2
-    if val == list[middle] { 
+    if val == list[middle] {
         return middle
     } else if val < list[middle] {
         return binarySearchList(val: val, start: start, end: middle - 1, list: list)
