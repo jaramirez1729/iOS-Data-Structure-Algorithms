@@ -65,3 +65,49 @@ func findMaximumIndex(in a: [Int]) -> Int {
     }
     return indexDiff
 }
+
+// MARK: - Two Numbers That Sum to a Given Value
+// Find 2 numbers that sum up to a given value from the list, if any.
+// Listen; Example: 18, [4, 3, 32, 1, 5, 8, 15, 0]
+// Brute: Loop through the list and add each one with each other and check if it
+//         is equal to the sum and return those numbers.
+// Optimize(BUD): Making several comparisons is slow. Can we use memoization?
+// We can loop through the list and get the difference from the sum and that value.
+// Save the difference in a dictionary and put the given value for that key.
+// We have to check if the difference already exists, and if it does, then that means
+// there is already a number stored that makes that and return those values.
+// Walkthrough: num = 4, 3, 32, 1, 5, 8, 15, 
+//                diff = 14, 15, -14, 17, 13, 10, 3
+//                dict = [14: 4, 15: 3, -14: 32, 17: 1, 13; 5, 10: 8, ]
+// Implement, Test
+// Time: O(n), Space: O(n)
+func findNumbersThatSum(to sum: Int, from list: [Int]) -> [Int] {
+    var dict: [Int: Int] = [:]
+    for num in list {
+        let diff = sum - num
+        if let value = dict[num] {
+            return [value, num]
+        } else {
+            dict[diff] = num
+        }
+    }
+    return []
+}
+
+// MARK: - Implement the Binary Search Algorithm
+// Listen, Example: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], Find 4
+func binarySearch(val: Int, on list: [Int]) -> Int {
+    guard !list.isEmpty else { return -1 }
+    return binarySearchList(val: val, start: 0, end: list.count - 1, list: list)
+}
+
+func binarySearchList(val: Int, start: Int, end: Int, list: [Int]) -> Int {
+    let middle = (end + start) / 2
+    if val == list[middle] { 
+        return middle
+    } else if val < list[middle] {
+        return binarySearchList(val: val, start: start, end: middle - 1, list: list)
+    } else {
+        return binarySearchList(val: val, start: middle + 1, end: end, list: list)
+    }
+}

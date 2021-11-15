@@ -71,4 +71,58 @@ class ArrayAlgorithmsTests: XCTestCase {
         result = findMaximumIndex(in: a)
         XCTAssertEqual(result, 6)
     }
+    
+    // MARK: - Two Numbers That Sum to a Given Value
+    func testFindNumbersThatSum() {
+        var list = [4, 3, 32, 1, 5, 1, 5, 8, 15, 0]
+        var result = findNumbersThatSum(to: 18, from: list)
+        XCTAssertEqual(result, [3, 15])
+        
+        result = findNumbersThatSum(to: 8, from: list)
+        XCTAssertEqual(result, [3, 5])
+        
+        list = [ 5, -8, 10]
+        result = findNumbersThatSum(to: -3, from: list)
+        XCTAssertEqual(result, [5, -8])
+        
+        list = [-5, -8, -20, -30, -50, -10]
+        result = findNumbersThatSum(to: -18, from: list)
+        XCTAssertEqual(result, [-8, -10])
+        
+        list = [9, 9]
+        result = findNumbersThatSum(to: 10, from: list)
+        XCTAssertEqual(result, [])
+        
+        list = [3, 5, 9, 10, 20, 9]
+        result = findNumbersThatSum(to: 18, from: list)
+        XCTAssertEqual(result, [9, 9])
+    }
+    
+    // MARK: - Implement the Binary Search Algorithm
+    func testBinarySearch() {
+        let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        var result = binarySearch(val: 4, on: list)
+        XCTAssertEqual(result, 3)
+        
+        result = binarySearch(val: 6, on: list)
+        XCTAssertEqual(result, 5)
+        
+        result = binarySearch(val: 8, on: list)
+        XCTAssertEqual(result, 7)
+        
+        result = binarySearch(val: 12, on: list)
+        XCTAssertEqual(result, -1)
+        
+        result = binarySearch(val: 1, on: list)
+        XCTAssertEqual(result, 0)
+        
+        result = binarySearch(val: 10, on: list)
+        XCTAssertEqual(result, 9)
+        
+        result = binarySearch(val: 4, on: [5])
+        XCTAssertEqual(result, -1)
+        
+        result = binarySearch(val: 4, on: [])
+        XCTAssertEqual(result, -1)
+    }
 }
