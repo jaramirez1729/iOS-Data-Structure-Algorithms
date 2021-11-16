@@ -157,10 +157,12 @@ func insertionSort(_ list: [Int]) -> [Int] {
     
     var mList = list
     for a in 1..<mList.count {
-        var b = a
-        while b > 0 && mList[b] < mList[b - 1] {
-            mList.swapAt(b, b - 1)
-            b -= 1
+        for b in (1...a).reversed() {
+            if mList[b] < mList[b - 1] {
+                mList.swapAt(b, b - 1)
+            } else {
+                break
+            }
         }
     }
     return mList
