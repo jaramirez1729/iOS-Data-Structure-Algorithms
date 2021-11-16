@@ -107,7 +107,7 @@ class ArrayAlgorithmsTests: XCTestCase {
         result = binarySearch(val: 6, on: list)
         XCTAssertEqual(result, 5)
         
-        let result = binarySearch(val: 9, on: list)
+        result = binarySearch(val: 9, on: list)
         XCTAssertEqual(result, 8)
         
         result = binarySearch(val: 12, on: list)
@@ -124,5 +124,75 @@ class ArrayAlgorithmsTests: XCTestCase {
         
         result = binarySearch(val: 4, on: [])
         XCTAssertEqual(result, -1)
+    }
+    
+    
+    // MARK: - Implement the Bubble Sort Algorithm
+    func testBubbleSort() {
+        var list = [4, 5, 1, 10, 2, 21, 6, 9, 7]
+        var result = bubbleSort(list)
+        XCTAssertEqual(result, [1, 2, 4, 5, 6, 7, 9, 10, 21])
+        
+        list = [5, 4, 3, 2, 1]
+        result = bubbleSort(list)
+        XCTAssertEqual(result, [1, 2, 3, 4, 5])
+        
+        list = [3, 1]
+        result = bubbleSort(list)
+        XCTAssertEqual(result, [1, 3])
+        
+        list = [1]
+        result = bubbleSort(list)
+        XCTAssertEqual(result, [1])
+        
+        list = []
+        result = bubbleSort(list)
+        XCTAssertEqual(result, [])
+    }
+    
+    // MARK: - Implement the Selection Sort Algorithm
+    func testSelectionSort() {
+        var list = [4, 5, 1, 10, 2, 21, 6, 9, 7]
+        var result = selectionSort(list)
+        XCTAssertEqual(result, [1, 2, 4, 5, 6, 7, 9, 10, 21])
+        
+        list = [5, 4, 3, 2, 1]
+        result = selectionSort(list)
+        XCTAssertEqual(result, [1, 2, 3, 4, 5])
+        
+        list = [3, 1]
+        result = selectionSort(list)
+        XCTAssertEqual(result, [1, 3])
+        
+        list = [1]
+        result = selectionSort(list)
+        XCTAssertEqual(result, [1])
+        
+        list = []
+        result = selectionSort(list)
+        XCTAssertEqual(result, [])
+    }
+    
+    // MARK: - Implement the Insertion Sort Algorithm
+    func testInsertionSort() {
+        var list = [4, 5, 1, 10, 2, 21, 6, 9, 7]
+        var result = insertionSort(list)
+        XCTAssertEqual(result, [1, 2, 4, 5, 6, 7, 9, 10, 21])
+        
+        list = [5, 4, 3, 2, 1]
+        result = insertionSort(list)
+        XCTAssertEqual(result, [1, 2, 3, 4, 5])
+        
+        list = [3, 1]
+        result = insertionSort(list)
+        XCTAssertEqual(result, [1, 3])
+        
+        list = [1]
+        result = insertionSort(list)
+        XCTAssertEqual(result, [1])
+        
+        list = []
+        result = insertionSort(list)
+        XCTAssertEqual(result, [])
     }
 }

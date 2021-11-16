@@ -95,7 +95,6 @@ func findNumbersThatSum(to sum: Int, from list: [Int]) -> [Int] {
 }
 
 // MARK: - Implement the Binary Search Algorithm
-// Listen, Example: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], Find 4
 func binarySearch(val: Int, on list: [Int]) -> Int {
     guard !list.isEmpty else { return -1 }
     return binarySearchList(val: val, start: 0, end: list.count - 1, list: list)
@@ -105,9 +104,64 @@ func binarySearchList(val: Int, start: Int, end: Int, list: [Int]) -> Int {
     let middle = (end + start) / 2
     if val == list[middle] {
         return middle
+    } else if start == end {
+        return -1
     } else if val < list[middle] {
         return binarySearchList(val: val, start: start, end: middle - 1, list: list)
     } else {
         return binarySearchList(val: val, start: middle + 1, end: end, list: list)
     }
+}
+
+// MARK: - Implement the Bubble Sort Algorithm
+// A bubble sort "bubbles" large values to the end of the list. It makes adjacent comparisons
+// until there is nothing more to be compared.
+// Listen, Example: [4, 5, 1, 10, 2, 21, 6, 9, 7]
+// Brute, Optimize (BUD), Walkthrough, Implement, Test
+func bubbleSort(_ list: [Int]) -> [Int] {
+    guard list.count > 1 else { return list }
+    
+    var mList = list
+    for end in (1..<list.count).reversed() {
+        for i in 0..<end {
+            if mList[i] > mList[i + 1] {
+                mList.swapAt(i, i + 1)
+            }
+        }
+    }
+    return mList
+}
+
+// MARK: - Implement the Selection Sort Algorithm
+func selectionSort(_ list: [Int]) -> [Int] {
+    guard list.count > 1 else { return list }
+    
+    var mList = list
+    for a in 0..<mList.count {
+        var smallest = mList[a]
+        var smallestIndex = a
+        for b in (a + 1)..<mList.count {
+            if mList[b] < smallest {
+                smallest = mList[b]
+                smallestIndex = b
+            }
+        }
+        mList.swapAt(a, smallestIndex)
+    }
+    return mList
+}
+
+// MARK: - Implement the Insertion Sort Algorithm
+func insertionSort(_ list: [Int]) -> [Int] {
+    guard list.count > 1 else { return list }
+    
+    var mList = list
+    for a in 1..<mList.count {
+        var b = a
+        while b > 0 && mList[b] < mList[b - 1] {
+            mList.swapAt(b, b - 1)
+            b -= 1
+        }
+    }
+    return mList
 }
