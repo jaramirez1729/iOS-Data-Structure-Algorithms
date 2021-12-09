@@ -27,8 +27,7 @@ func removeDuplicates(_ nums: inout [Int]) -> Int {
     // We start at 1 to since the first value is already unique.
     var k = 1, j = 1
     while j < nums.endIndex {
-        // If the traversed value does not equal to the previous one in the list,
-        // we just set the new unique value in the place of k.
+        // If the traversed value does not equal to the previous one in the list, we just set the new unique value in the place of k.
         if nums[j] != nums[k - 1] {
             nums[k] = nums[j]
             k += 1

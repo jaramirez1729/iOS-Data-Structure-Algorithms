@@ -54,7 +54,7 @@ class LeetCodeDeleteNodeTests: XCTestCase {
 }
 
 //  MARK: - Remove Nth Node From End of List
-class LeetCodeRemoventhFromEndTests: XCTestCase {
+class LeetCodeRemoveNthFromEndTests: XCTestCase {
     func test1() {
         let node1 = ListNode(1)
         let node2 = ListNode(2)
@@ -103,5 +103,15 @@ class LeetCodeRemoventhFromEndTests: XCTestCase {
         node1.next = node2
         let head = removeNthFromEnd(node1, 1)
         XCTAssertEqual(head?.description, "1")
+    }
+    
+    func test6() {
+        let node1 = ListNode(1)
+        let node2 = ListNode(2)
+        let node3 = ListNode(3)
+        node1.next = node2
+        node2.next  = node3
+        let head = removeNthFromEnd(node1, 2)
+        XCTAssertEqual(head?.description, "1 -> 3")
     }
 }
