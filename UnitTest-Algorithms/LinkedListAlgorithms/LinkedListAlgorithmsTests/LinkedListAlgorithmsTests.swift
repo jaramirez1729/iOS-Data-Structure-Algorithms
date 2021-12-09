@@ -115,3 +115,124 @@ class LeetCodeRemoveNthFromEndTests: XCTestCase {
         XCTAssertEqual(head?.description, "1 -> 3")
     }
 }
+
+// MARK: - Reverse Linked List
+class LeetCodeReverseLinkedListTests: XCTestCase {
+    func test1() {
+        let node1 = ListNode(1)
+        let node2 = ListNode(2)
+        let node3 = ListNode(3)
+        let node4 = ListNode(4)
+        let node5 = ListNode(5)
+        node1.next = node2
+        node2.next = node3
+        node3.next = node4
+        node4.next = node5
+        let head = reverseList(node1)
+        XCTAssertEqual(head?.description, "5 -> 4 -> 3 -> 2 -> 1")
+    }
+    
+    func test2() {
+        let node1 = ListNode(1)
+        let node2 = ListNode(2)
+        let node3 = ListNode(3)
+        node1.next = node2
+        node2.next = node3
+        let head = reverseList(node1)
+        XCTAssertEqual(head?.description, "3 -> 2 -> 1")
+    }
+    
+    func test3() {
+        let node1 = ListNode(1)
+        let node2 = ListNode(2)
+        node1.next = node2
+        let head = reverseList(node1)
+        XCTAssertEqual(head?.description, "2 -> 1")
+    }
+    
+    func test4() {
+        let node1 = ListNode(1)
+        let head = reverseList(node1)
+        XCTAssertEqual(head?.description, "1")
+    }
+    
+    func test5() {
+        let head = reverseList(nil)
+        XCTAssertEqual(head?.description, nil)
+    }
+}
+
+// MARK: - Merge Two Sorted Lists
+class LeetCodeMergeTwoListsTests: XCTestCase {
+    func test1() {
+        let list1 = ListNode(1, ListNode(2, ListNode(4)))
+        let list2 = ListNode(1, ListNode(3, ListNode(4)))
+        let sortedList = mergeTwoLists(list1, list2)
+        XCTAssertEqual(sortedList?.description, "1 -> 1 -> 2 -> 3 -> 4 -> 4")
+    }
+    
+    func test2() {
+        let list1 = ListNode(1)
+        let list2 = ListNode(1)
+        let sortedList = mergeTwoLists(list1, list2)
+        XCTAssertEqual(sortedList?.description, "1 -> 1")
+    }
+    
+    func test3() {
+        let list1 = ListNode(1, ListNode(2, ListNode(4)))
+        let list2 = ListNode(1)
+        let sortedList = mergeTwoLists(list1, list2)
+        XCTAssertEqual(sortedList?.description, "1 -> 1 -> 2 -> 4")
+    }
+    
+    func test4() {
+        let list1 = ListNode(1)
+        let list2 = ListNode(1, ListNode(2, ListNode(4)))
+        let sortedList = mergeTwoLists(list1, list2)
+        XCTAssertEqual(sortedList?.description, "1 -> 1 -> 2 -> 4")
+    }
+    
+    func test5() {
+        let sortedList = mergeTwoLists(nil, nil)
+        XCTAssertEqual(sortedList?.description, nil)
+    }
+}
+
+// MARK: - Palindrome Linked List
+class LeetCodeIsPalindromeTests: XCTestCase {
+    func test1() {
+        let head = ListNode(1, ListNode(2, ListNode(2, ListNode(1))))
+        let result = isPalindrome(head)
+        XCTAssertTrue(result)
+    }
+    
+    func test2() {
+        let head = ListNode(1, ListNode(2, ListNode(2, ListNode(3))))
+        let result = isPalindrome(head)
+        XCTAssertFalse(result)
+    }
+    
+    func test3() {
+        let head = ListNode(1, ListNode(2))
+        let result = isPalindrome(head)
+        XCTAssertFalse(result)
+    }
+    
+    func test4() {
+        let head = ListNode(1, ListNode(1))
+        let result = isPalindrome(head)
+        XCTAssertTrue(result)
+    }
+    
+    func test5() {
+        let head = ListNode(1, ListNode(3, ListNode(3, ListNode(3, ListNode(1)))))
+        let result = isPalindrome(head)
+        XCTAssertTrue(result)
+    }
+    
+    func test6() {
+        let head = ListNode(1, ListNode(0, ListNode(0)))
+        let result = isPalindrome(head)
+        XCTAssertFalse(result)
+    }
+}
