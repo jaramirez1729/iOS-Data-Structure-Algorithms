@@ -6,7 +6,7 @@
 //  Copyright © 2020 AdaloveSoftware. All rights reserved.
 //
 
-class SingleLinkedList<T> {
+class SingleLinkedList<T: Comparable> {
     
     var head: SingleNode<T>?
     var tail: SingleNode<T>?
