@@ -362,4 +362,9 @@ class StringRotationTests: XCTestCase {
         let result = isStringRotation("helloworldisthefirst", rotation: "orldisthefirsthellow")
         XCTAssertTrue(result)
     }
+    
+    func test6() {
+        let result = isStringRotation("helloworld", rotation: "worldhella")
+        XCTAssertFalse(result)
+    }
 }

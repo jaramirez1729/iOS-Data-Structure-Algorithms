@@ -54,6 +54,8 @@ func checkPermutation(_ permutation: String, in string: String) -> Bool {
 }
 
 // Book Solution #1: Sort both strings and check if they are equal to each other.
+// Don't be afraid to use built-in functions since they are compiled and improve the speed.
+// Although this is slower.
 // Time O(n log n), Space O(n)
 func checkPermutationSolution(_ permutation: String, in string: String) -> Bool {
     let sortedPermutation = permutation.sorted().map { String($0) } // O(n log n)
@@ -165,8 +167,12 @@ func isEditedStringAwayFromString(_ str: String, editedStr: String) -> Bool {
     var diffs = charsDiff * -1
     // Then, check if there was a replacement by looping the string that has the most characters 
     // and count their differences in characters.
-    let (maxStr, minStr) = (max(str.count, editedStr.count) == str.count) ? (str, editedStr) : (editedStr, str)
+    let highestStrCount = max(str.count, editedStr.count)
+    let (maxStr, minStr) = (highestStrCount == str.count) ? (str, editedStr) : (editedStr, str)
+    
+    // Will loop through the large string and compare each character to find if there are any differences.
     for (index, char) in maxStr.enumerated() {
+        // A string index can be used to access a string at a specific position.
         let charIndex = minStr.index(minStr.startIndex, offsetBy: index)
         if minStr.indices.contains(charIndex), minStr[charIndex] != char {
             diffs += 1
@@ -255,8 +261,8 @@ func rotateMatrix(_ matrix: inout [[Int]]) {
 /*
  Write an algorithm such that if an element in an MxN matrix is 0, its entire row and column are set to 0.
  */
-// Time O(MN(N+M))
-// Space O(MN)
+// Approach #1: Loop through the matrix and if we find a 0, set its column and rows to 0. This is not efficient because a loop occurs inside the outer loop, and thus has worst runtime.
+// Time O(MN(N+M)), Space O(MN)
 func zeroMatrix1(_ matrix: [[Int]]) -> [[Int]] {
     var mMatrix = matrix
     
@@ -275,7 +281,8 @@ func zeroMatrix1(_ matrix: [[Int]]) -> [[Int]] {
     return mMatrix
 }
 
-// We can make the changes after the loops to improve the runtime. Time O(MN + Z(MN))
+// Approach #2: We can keep a dictionary to store the positions that have a 0 so we can change them later instead of the inner-most loop.
+// We can make the changes after the loops to improve the runtime. Time O(MN + Z(MN)) = Time O(n+zn)
 func zeroMatrix(_ matrix: inout [[Int]]) -> [[Int]] {
     // Store the indexes with zeros to change after.
     var indexes: [(row: Int, column: Int)] = []
@@ -304,6 +311,7 @@ func zeroMatrix(_ matrix: inout [[Int]]) -> [[Int]] {
  Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring (e.g.,"waterbottle" is a rotation of"erbottlewat").
  */
 // Approach #1: Rotate the main string by a character to the right and then check if it equals the rotated string, if not rotate it again. Stop until it has rotated the same number of times as it has characters.
+
 // Approach #2: Get the index in the rotated string of each character that matches the starting letter of the main string. Only rotate by those times where the indexes are found. After rotation, check if the string is equal to the rotation, and if it does, return true - else return false.
 // Time O(M + NT); Space O(N)
 func isStringRotation1(_ str: String, rotation: String) -> Bool {
@@ -347,5 +355,6 @@ func rotateString(_ str: inout String, times: Int) {
 // Time O(N)/O(1)? Space O(N)
 func isStringRotation(_ str: String, rotation: String) -> Bool {
     guard str.count == rotation.count else { return false }
-    return (str + str).contains(rotation)
+//    return (str + str).contains(rotation)
+    return (str + str).range(of: rotation) != nil
 }
