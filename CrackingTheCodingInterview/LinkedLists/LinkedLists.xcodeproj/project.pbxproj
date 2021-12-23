@@ -14,7 +14,6 @@
 		E094671E275C7878004E6584 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E094671D275C7878004E6584 /* Assets.xcassets */; };
 		E0946721275C7878004E6584 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E094671F275C7878004E6584 /* LaunchScreen.storyboard */; };
 		E094674C275C79D8004E6584 /* LinkedListsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094674B275C79D8004E6584 /* LinkedListsTests.swift */; };
-		E094674E275C7C21004E6584 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E094674D275C7C21004E6584 /* LinkedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +37,6 @@
 		E0946722275C7878004E6584 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0946727275C7878004E6584 /* LinkedListsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedListsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E094674B275C79D8004E6584 /* LinkedListsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListsTests.swift; sourceTree = "<group>"; };
-		E094674D275C7C21004E6584 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = "../../../UnitTest-Algorithms/LinkedListAlgorithms/LinkedListAlgorithms/LinkedList.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +78,6 @@
 		E0946713275C7875004E6584 /* LinkedLists */ = {
 			isa = PBXGroup;
 			children = (
-				E094674D275C7C21004E6584 /* LinkedList.swift */,
 				E0946744275C787D004E6584 /* Supporting */,
 				E0946722275C7878004E6584 /* Info.plist */,
 			);
@@ -212,7 +209,6 @@
 			files = (
 				E0946719275C7875004E6584 /* ViewController.swift in Sources */,
 				E0946715275C7875004E6584 /* AppDelegate.swift in Sources */,
-				E094674E275C7C21004E6584 /* LinkedList.swift in Sources */,
 				E0946717275C7875004E6584 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
