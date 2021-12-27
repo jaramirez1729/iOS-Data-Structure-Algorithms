@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E006C8362779710500AEAAFE /* Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006C8352779710500AEAAFE /* Algorithms.swift */; };
+		E006C8382779734A00AEAAFE /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006C8372779734A00AEAAFE /* Data.swift */; };
 		E054372C277893460042B0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E054372B277893460042B0F3 /* AppDelegate.swift */; };
 		E054372E277893460042B0F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E054372D277893460042B0F3 /* SceneDelegate.swift */; };
 		E0543730277893460042B0F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E054372F277893460042B0F3 /* ViewController.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E006C8352779710500AEAAFE /* Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; };
+		E006C8372779734A00AEAAFE /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E0543728277893460042B0F3 /* TreesAndGraphs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreesAndGraphs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E054372B277893460042B0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E054372D277893460042B0F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 		E054372A277893460042B0F3 /* TreesAndGraphs */ = {
 			isa = PBXGroup;
 			children = (
+				E006C8352779710500AEAAFE /* Algorithms.swift */,
+				E006C8372779734A00AEAAFE /* Data.swift */,
 				E05437662778959A0042B0F3 /* DataStructures */,
 				E054375B2778936B0042B0F3 /* Supporting */,
 				E0543739277893490042B0F3 /* Info.plist */,
@@ -230,10 +236,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0543730277893460042B0F3 /* ViewController.swift in Sources */,
+				E006C8382779734A00AEAAFE /* Data.swift in Sources */,
 				E054372C277893460042B0F3 /* AppDelegate.swift in Sources */,
 				E0543763277894F70042B0F3 /* Graph.swift in Sources */,
 				E0543762277894F70042B0F3 /* Edge.swift in Sources */,
 				E054375D2778942E0042B0F3 /* TreeNode.swift in Sources */,
+				E006C8362779710500AEAAFE /* Algorithms.swift in Sources */,
 				E0543765277895050042B0F3 /* Vertex.swift in Sources */,
 				E054375F2778948D0042B0F3 /* AdjacencyList.swift in Sources */,
 				E054372E277893460042B0F3 /* SceneDelegate.swift in Sources */,

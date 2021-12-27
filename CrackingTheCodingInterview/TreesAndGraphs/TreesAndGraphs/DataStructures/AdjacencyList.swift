@@ -25,6 +25,11 @@ public class AdjacencyList<T: Hashable>: Graph {
     public func weight(from source: Vertex<T>, to destination: Vertex<T>) -> Double? {
         edges(from: source).first { $0.destination == destination }?.weight
     }
+    
+    /// Returns the vertex with the specifed value.
+    public func getVertex(_ value: T) -> Vertex<T>? {
+        return adjacencies.first { $0.key.data == value }?.key
+    }
 }
 
 extension AdjacencyList: CustomStringConvertible {
