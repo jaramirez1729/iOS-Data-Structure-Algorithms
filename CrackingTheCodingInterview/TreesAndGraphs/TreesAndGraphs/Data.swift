@@ -71,4 +71,27 @@ struct Data {
         
         return graph
     }
+    
+    ///         F
+    ///      A     B
+    ///         D
+    ///         C
+    static func buildOrderGraph() -> AdjacencyList<String> {
+        let graph = AdjacencyList<String>()
+        
+        let a = graph.createVertex(data: "A")
+        let b = graph.createVertex(data: "B")
+        let c = graph.createVertex(data: "C")
+        let d = graph.createVertex(data: "D")
+        _ = graph.createVertex(data: "E")
+        let f = graph.createVertex(data: "F")
+        
+        graph.addDirectedEdge(from: f, to: a, weight: 0)
+        graph.addDirectedEdge(from: f, to: b, weight: 0)
+        graph.addDirectedEdge(from: a, to: d, weight: 0)
+        graph.addDirectedEdge(from: b, to: d, weight: 0)
+        graph.addDirectedEdge(from: d, to: c, weight: 0)
+        
+        return graph
+    }
 }

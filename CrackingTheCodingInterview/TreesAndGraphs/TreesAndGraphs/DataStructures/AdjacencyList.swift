@@ -1,6 +1,8 @@
 // Copyright (c) 2021 Razeware LLC
 // For full license & permission details, see LICENSE.markdown.
 
+import UIKit
+
 public class AdjacencyList<T: Hashable>: Graph {
     
     private var adjacencies: [Vertex<T>: [Edge<T>]] = [:]
