@@ -164,3 +164,74 @@ class MultiplyTests: XCTestCase {
         XCTAssertEqual(result, 50)
     }
 }
+
+// MARK: - Create Subsets
+class CreateSubsets: XCTestCase {
+    func test1() {
+        let set = [Int]()
+        let subsets = createSubsets(of: set, index: 0)
+        XCTAssertEqual(subsets.count, 1)
+    }
+    
+    func test2() {
+        let set = [1]
+        let subsets = createSubsets(of: set, index: 0)
+        XCTAssertEqual(subsets.count, 2)
+    }
+    
+    func test3() {
+        let set = [1, 2]
+        let subsets = createSubsets(of: set, index: 0)
+        XCTAssertEqual(subsets.count, 4)
+    }
+    
+    func test4() {
+        let set = [1, 2, 3]
+        let subsets = createSubsets(of: set, index: 0)
+        XCTAssertEqual(subsets.count, 8)
+    }
+    
+    func test5() {
+        let set = [1, 2, 3, 4]
+        let subsets = createSubsets(of: set, index: 0)
+        XCTAssertEqual(subsets.count, 16)
+    }
+}
+
+// MARK: - Permutations without Dups
+class GetPermutationsTests: XCTestCase {
+    func test1() {
+        let word = "ab"
+        let results = getPermutations(of: word)
+        print(results)
+        XCTAssertEqual(results.count, 2)        
+    }
+    
+    func test2() {
+        let word = "abc"
+        let results = getPermutations(of: word)
+        print(results)
+        XCTAssertEqual(results.count, 6)        
+    }
+}
+
+// MARK: - Parens
+class printAllParenthesisTests: XCTestCase {
+    func test1() {
+        let results = printAllParenthesis(for: 2)
+        print(results)
+        XCTAssertEqual(results.count, 2)
+    }
+    
+    func test2() {
+        let results = printAllParenthesis(for: 3)
+        print(results)
+        XCTAssertEqual(results.count, 5)
+    }
+    
+    func test3() {
+        let results = printAllParenthesis(for: 4)
+        print(results)
+        XCTAssertEqual(results.count, 14)
+    }
+}

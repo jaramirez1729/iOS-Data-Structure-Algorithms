@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreImage
 
 // MARK: - Triple Steps
 /*
@@ -213,6 +214,39 @@ func findMagicIndex(in list: [Int]) -> Int {
 
 // The book solution uses recursion. It starts by identifying the middle element and comparing it against the middle index. Then, it decides to look left or right recursively in the same way binary search works.
 
+// MARK: - Power Set
+/*
+ Write a method to return all subsets of a set.
+ */
+// LEBOWITS
+// The empty set must also be taken into account.
+// The total number of subsets is 2^n where n is the size of the set.
+// Example: {1} -> {1}, {}
+// Example: {1, 2} -> {1, 2}, {1}, {2}, {}
+// Example: {1, 2, 3} -> {1, 2, 3}, {1, 2}, {1}, {1, 3}, {3}, {2, 3}, {2}, {}
+// We can see that the subsets of N will also include the subsets of (N-1).
+// Brute Approach: Use a property to determine what element position to ignore as we are recurisively creating the subsets.
+// Attempted but solution did not work in 45 minutes. Should not have coded without a solution.
+// Book Solution: The book takes a bottom-up approach. It builds up first from the empty set, and as more sets are added, it takes the next element of the list and appends it to all the previously created subsets.
+// O(n2^n), O(n2^n)
+func createSubsets(of set: [Int], index: Int) -> [[Int]] {
+    var allSubsets = [[Int]]()
+    
+    if set.count == index {
+        // The base case, add the empty set.
+        allSubsets.append([])
+    } else {
+        // Keep going. This will build up subsets starting from the last elements first.
+        allSubsets = createSubsets(of: set, index: index + 1)
+        // The next element in the set which will be added to the new set.
+        let item = set[index]
+        // For every set already in it, add the next element and then add that subset to itself.
+        allSubsets.forEach { allSubsets.append($0 + [item]) }
+    }
+    
+    return allSubsets
+}
+
 // MARK: - Recursive Multiply
 /*
  Write a recursive function to multiply two positive integers without using the * operator (or / operator). You can use addition, subtraction, and bit shifting, but you should minimize the number of those operations.
@@ -231,29 +265,92 @@ func multiply(_ a: Int, by b: Int) -> Int {
     return multiply(a, by: b - 1) + a
 }
 
-// Optimize: Not very efficient because there is duplicate work being done. If we consider 2x6 which is (2+2)+(2+2)+(2+2) we have 2 groups of 2's that are being added. Which eventually become (4+4)+4 which we then see we have a group of 4. Can we cache the calculation?
-// 2x6 = (2+2)+(2+2)+(2+2)+(0+0)
-// 2x6 =         (4+4)+(4+0)
-// 2x6 =            (8)+(4)
-//                                  g(2, 3)
-//                    f(2, 3)8                +        f(2, 3) 8
-//          f(2, 2)4     +     4
-//           2 + 2                           
-// [1: 2, 2: 4, 3: 8]
-//func multiply(_ a: Int, by b: Int) -> Int {
-//    var cache = [1: a]
-//    let result = multiplyCache(a, b: b / 2, cache: &cache)
-//    return result 
-//}
-//
-//func multiplyCache(_ a: Int, b: Int, cache: inout [Int: Int]) -> Int {
-//    if let calculation = cache[b] {
-//        return calculation
-//    } else {
-//        cache[b] = multiplyCache(a, b: b - 1, cache: &cache) + 
-//                     multiplyCache(a, b: b - 1, cache: &cache)
-//        return cache[b]!
-//    }
-//}
-
 // Book Solution: Visualizes a grid and realize that only addition up until the half can be calculated and then added to itself. It also uses a cache to save what has previously been added.
+
+// MARK: - Permutations without Dups
+/*
+ Write a method to compute all permutations of a string of unique characters.
+ */
+// LEBOWITS
+// A string S can be represented by characters a1a2 ... an.
+// P(a1) = a1
+// P(a1a2) = a1a2, a2a1
+// P(a1a2a3) = a1a2a3, a1a3a2, a2a1a3, a2a3a1, a3a1a2, a3a2a1
+// How can we generate P(a1a2a3a4) from P(a1a2a3)?
+// Every arrangement is the same order as the previous string without a4 in it. It would essentially just be a4 in every position.
+// 
+// Book Solution: Keep removing the first character and pass the remaining string recursively to the function.
+// After the permutations are obtained, it will loop through every word and insert the first character at various positions
+// for those words. Every new word will be added to the array and then eventually returned.
+func getPermutations(of str: String) -> [String] {
+    var permutations = [String]()
+    
+    // The base case to build from.
+    if str.count == 0 {
+        permutations.append("")
+        return permutations
+    }
+    
+    // Get the first character of the string. This will be used to keep track of which character we will be adding at each position after getting all the permutations of the remaining string without the character.
+    if let firstChar = str.first {
+        // We will create all permutations for the remaining string.
+        let remainder = String(str[str.index(str.startIndex, offsetBy: 1)..<str.endIndex])
+        let words = getPermutations(of: remainder)
+        
+        // For every word in the permutation, we will add the first character at each location.
+        for word in words {
+            for i in  0..<str.count {
+                var newWord = word
+                newWord.insert(firstChar, at: word.index(word.startIndex, offsetBy: i))
+                permutations.append(newWord)
+            }
+        }
+    }
+    return permutations
+}
+
+// MARK: - Parens
+/*
+ Implement an algorithm to print all valid (e.g., properly opened and closed) combinations of n pairs of parentheses.
+ */
+// Approach: We will use a bottom-up approach. We will start with the base case. From that base case, we will build up each permutation by adding "()" at every position for every pair. Since we are builidng on top of f(n-1), we will eventually fill in each position for every pair available.
+// 
+func printAllParenthesis(for numOfPairs: Int) -> [String] {
+    var newPairs = [String]()
+    // The base case - this is a bottom-up approach.
+    if numOfPairs == 1 {
+        newPairs.append("()")
+    } else {
+        // We will get a list of all pairs for that number of pairs.
+        let pairs = printAllParenthesis(for: numOfPairs - 1)
+        //Go through every pair from the f(n-1) case.
+        for pair in pairs {
+            // Go through every character from start to after the end.
+            for i in 0...pair.count {
+                var newPair = pair
+                // ! This is unnecessary work if the string already exists in the array.
+                newPair.insert(contentsOf: "()", at: pair.index(pair.startIndex, offsetBy: i))
+                guard !newPairs.contains(newPair) else { continue }
+                newPairs.append(newPair)
+            }
+        }
+    }
+    return newPairs
+}
+
+// MARK: - Coins
+/*
+ Given an infinite number of quarters (25 cents), dimes (1O cents), nickels (5 cents), and pennies (1 cent), write code to calculate the number of ways of representing n cents.
+ */
+// Consider the relation hip that n has compared to its subproblems.
+// Start with the biggest denominations and check what is left to compute after subtracting it from n.
+// With the next smaller denomination, it will have to apply for every permutation of the previous computation.
+// Makes several recursive cals with a loop that computes a previous total and remainder.
+
+// MARK: - Eight Queens
+/*
+ Write an algorithm to print all ways of arranging eight queens on an 8x8 chess board so that none of them share the same row, column, or diagonal. In this case, "diagonal" means all diagonals, not just the two that bisect the board.
+ */
+// Consider that there are 8 possibilities each queen can be on for each column.
+// Consider the cases when the queen is at column X at position Y. Write down the cases. Is there a pattern?
+// The algorithm loops through the entire grid checking if a valid queen can be placed at a column or row for the i'th column. The check ensures that no queen i on the same row, column, or hitting each other diagonally. If placed correctly, it will make a recursive call again to the next row and clumns.
