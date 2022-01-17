@@ -305,3 +305,36 @@ class LeetCodeRotateImageTests: XCTestCase {
         XCTAssertEqual(matrix, [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]])
     }
 }
+
+// MARK: - Merge Sorted Arrays
+class LeetCodeMergeTests: XCTestCase {
+    func test1() {
+        var nums1 = [1,2,3,0,0,0]
+        let m = 3
+        let nums2 = [2,5,6]
+        let n = 3
+        merge(&nums1, m, nums2, n)
+        XCTAssertEqual(nums1, [1, 2, 2, 3, 5, 6])
+    }
+    
+    func test2() {
+        var nums1 = [1]
+        let m = 1, nums2: [Int] = [], n = 0
+        merge(&nums1, m, nums2, n)
+        XCTAssertEqual(nums1, [1])
+    }
+    
+    func test3() {
+        var nums1 = [0]
+        let m = 0, nums2 = [1], n = 1
+        merge(&nums1, m, nums2, n)
+        XCTAssertEqual(nums1, [1])
+    }
+    
+    func test4() {
+        var nums1 = [1, 0]
+        let m = 1, nums2 = [2], n = 1
+        merge(&nums1, m, nums2, n)
+        XCTAssertEqual(nums1, [1, 2])
+    }
+}

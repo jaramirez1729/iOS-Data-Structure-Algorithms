@@ -311,3 +311,43 @@ func rotate(_ matrix: inout [[Int]]) {
         }
     }
 }
+
+// MARK: - Merge Sorted Arrays
+/*
+ You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+
+ Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+
+ The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
+ 
+ Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+ Output: [1,2,2,3,5,6]
+ */
+// Brute: Create a single loop for nums1 that only goes up to m (to ignore the n zeroes). Put a pointer in nums1 and also a pointer in nums2. We go down nums2 and check if p1 < p2, if it's true, then keep going. When p1 > p2, then we store the p2 value right before that position. keep going until the loop is done or nums2 has ended. This would make 2 loops. The first loop loops m times and the second loop loops n times, so O(m*n).
+//
+// LeetCode Naive Answer: O(n + n log n), O(n)
+// Simply replace all 0s in nums1 with those values in nums2, and then sort them.
+func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
+    for nIndex in 0..<n {
+        nums1[m + nIndex] = nums2[nIndex]
+    }
+    nums1 = nums1.sorted()
+}
+
+// LeetCode Optimal Answer: O(m + n)
+// Use 2 pointers to start at the end of the arrays. Create a single loop that adds the values of nums2 to the end of nums1. 
+//func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
+//    var p1 = m - 1
+//    var p2 = n - 1
+//    
+//    for p in stride(from: m + n - 1, to: 0, by: -1) {
+//        if p2 < 0 { break }
+//        if p1 > 0 && nums1[p1] > nums2[p2] {
+//            p1 -= 1
+//            nums1[p] = nums1[p1]
+//        } else {
+//            p2 -= 1
+//            nums1[p] = nums2[p2]
+//        }
+//    }
+//}
