@@ -10,8 +10,7 @@ import Foundation
 // MARK: - Find the Union of 2 Sorted Arrays
 // Listen: The union should only have 1 element of every occurence. 
 // Example: A = [2, 4, 6, 8, 12] and B = [3, 5, 4, 43, 100, 8]
-// Brute: Loop through A and check if that value exists in B. If it does, then add it to the
-//         new list only if that list does not already contain it. Return that list.
+// Brute: Loop through A and check if that value exists in B. If it does, then add it to the new list only if that list does not already contain it. Return that list.
 // Optimize (BUD), Walkthrough, Implement, Test
 // Time: O(a * b + u) Space: O(u)
 func findUnionOfArrays(a: [Int], b: [Int]) -> [Int]  {

@@ -368,3 +368,26 @@ class StringRotationTests: XCTestCase {
         XCTAssertFalse(result)
     }
 }
+
+// MARK: - Minimum Swaps for String A to String B
+//class MinimumSwapsTests: XCTestCase {
+//    func test1() {
+//        let a = "holel"
+//        let b = "hello"
+//        // helol
+//        // hello
+//        let result = minimumSwaps(for: a, to: b)
+//        XCTAssertEqual(result, 2)
+//    }
+//    
+//    func test2() {
+//        let a = "eohll"
+//        // 4 characters at wrong position.
+//        // hoell
+//        // heoll
+//        // hello
+//        let b = "hello"
+//        let result = minimumSwaps(for: a, to: b)
+//        XCTAssertEqual(result, 3)
+//    }
+//}

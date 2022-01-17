@@ -10,7 +10,7 @@
  Given a directed graph, design an algorithm to find out whether there is a route between two nodes.
  */
 // LEBOWITS
-// Approach #1: Get the edges of the starting node. Check those edges if they connect to the end vertex. If yes, return true. If no, queue those children into a soon-to-visit queue and queue the starting node in the visited queue. As we pop from the soon-to-visit queue, we check that those children are not in the visited queue otherwise don't add those children to the queue. Keep exploring until we find the ending vertex.
+// Approach #1: Get the edges of the starting node. Check those edges if they connect to the end vertex. If yes, return true. If no, queue those children into a soon-to-visit queue and dequeue the starting node in the visited queue. As we pop from the soon-to-visit queue, we check that those children are not in the visited queue otherwise don't add those children to the queue. Keep exploring until we find the ending vertex.
 // 
 func isRouteBetweenNodes(graph: AdjacencyList<String>, start: Vertex<String>, end: Vertex<String>) -> Bool {
     

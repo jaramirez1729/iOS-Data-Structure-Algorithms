@@ -201,3 +201,73 @@ func strStr(_ haystack: String, _ needle: String) -> Int {
     }
     return -1
 }
+
+// MARK: - Longest Common Prefix
+/*
+ Write a function to find the longest common prefix string amongst an array of strings.
+ If there is no common prefix, return an empty string "".
+ 
+ Input: strs = ["flower", "flow", "flight"]
+ Output: "fl"
+ */
+
+// Brute: Loop through the list of words. The first time, record the first letter from the first word as the prefix (var), and then as we loop through the list, we compare if that prefix is also present in the next word. If it's not, break out and return the last completed prefix. But if it is, we then continue again from the start but moving on to the next character each time and continue checking this prefix.
+// We only record it as a valid prefix if it's found in ALL words in the list, so we only update the final prefix after a loop around the list has occurred.
+// Optimize(BUD): Looping each time is time consuming, especially with looping several times until we finish and return back the prefix. We don't need to loop too much, we only need to loop as many times as the size of the smallest word, so we can get the size of the smallest word and loop that many times for the outer loop.
+// 
+// Walkthrough: Temp Prefix: flo; CharPosition: 2; Final Prefix: fl
+// ["flower", "flow", "flight"] => Return fl
+// minWordSize: 4
+// tempPrefix: "fli"
+// finalPrefix: "fl"
+// charPosition: 3
+// 1: flower, flow, flight
+// 2: flower, flow, flight
+// 3: flower, 
+// O(S*N)
+func longestCommonPrefix(_ strs: [String]) -> String {
+    if strs.isEmpty { return "" }
+    
+    // Get the size of the smallest word. The max prefix can only be as long as the smallest word.
+    let minWordSize = strs.min()?.count ?? 0
+    var tempPrefix: String = ""
+    var finalPrefix: String = ""
+    var charPosition: Int = 0
+    
+    outerLoop: for _ in 0..<minWordSize {
+        for (index, word) in strs.enumerated() {
+            if word.prefix(charPosition) == tempPrefix {
+                if index == 0 {
+                    charPosition += 1
+                    tempPrefix = String(word.prefix(charPosition))
+                }
+            } else {
+                break outerLoop
+            }
+        }
+        finalPrefix = tempPrefix
+    }
+    
+    return finalPrefix
+}
+
+// LeetCode submitted answer. It works by first sorting the strings. This guarantees that if there are any matching prefixes, they are sorted in that manner. The function works by only checking the first and final string. There is no need to check each string in between since by sorting, we guaranteee their prefix sorting.
+class Solution {
+   func longestCommonPrefix(_ strs: [String]) -> String {
+        if strs.isEmpty { return "" }
+        if strs.count == 1 { return strs[0] }
+
+        let strs = strs.sorted()    // O(n log n)
+        var output = ""
+        for (char1, char2) in zip(strs.first!, strs.last!) {    // O(L)
+            if char1 == char2 {
+                output += String(char1)
+            } else {
+                break
+            }
+        }
+        return output
+    }
+}
+
+// MARK: - 

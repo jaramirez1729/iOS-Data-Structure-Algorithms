@@ -5,6 +5,8 @@
 //  Created by J.A. Ramirez on 11/27/21.
 //
 
+import Foundation
+
 // MARK: - Is Unique
 /*
  Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?
@@ -358,3 +360,81 @@ func isStringRotation(_ str: String, rotation: String) -> Bool {
 //    return (str + str).contains(rotation)
     return (str + str).range(of: rotation) != nil
 }
+
+// MARK: - Minimum Swaps for String A to String B
+/*
+ Given string A and string B, return back the minimum amount of swaps required to turn string A into string B.
+ */
+// LEBOWITS
+// Listen: They will always have the same size.
+//          Assume that it's always possible to make string A to string B.
+//
+// Example: A: acb; B: abc - a[c][b] => abc; 1 swap
+// Example: A: holel, hello - h[o]l[e]l => hel[o][l] => hello; 2 swaps
+// 
+// Special Case Example: A: eohll ,hello - [e]o[h]ll => h[o][e]ll => he[o]ll ? Do you swap to first l or last l?
+// Before swapping, we can check if both letters will end up in correct positions. If not, then continue checking the word for the
+// next letter we're looking for, and then see if that swap will be optimal. If it is, swap it. If not, then swap with first one.
+// 
+// Brute: Create a single loop that checks the position of string A and string B. Compare a[i] with b[j] and if a[i] does not match, then
+// we know we need to swap it. Have another loop that goes thorugh string A to find the character we are looking for (which matches b[j]) and record that position. We can check that if we swap if both will end up in their final positions. If not, keep going down A and check again the swap if we find another b[j] character. If none, then just swap with the first b[j] found. 
+// 
+// Optimize (BUD): We don't need to loop through every character. If we determine ahead of time what positions do not match, we can optimize the loop so ahead of time it will only check the positions that are incorrect. 
+// 
+// Consider: This does not necessarily guarantee the minimum swaps, but it's a heuristic approach for fastest way to make A to B. If we want accuracy, we can check every possibility and return back the smallest swap amount after recording each one.
+// 
+// Walkthrough: A = holel; B= hello; 
+// 
+//func minimumSwaps(for startStr: String, to endStr: String) -> Int {
+//    // Special Case: What if startStr is just endStr backwards? O(1)
+//    
+//    // Determine which positions of the startStr don't match with the endStr.
+//    var targetIndexes: [Int] = []
+//    for (index, char) in startStr.enumerated() { // O(A)
+//        // Check if the current character in startStr matches the one in the same position as endStr.
+//        if char != endStr[endStr.index(endStr.startIndex, offsetBy: index)] {
+//            targetIndexes.append(index)   
+//        }
+//    }
+//    
+//    var swaps: Int = 0
+//    var mStartStr = Array(startStr)
+//    print(String(mStartStr))
+//    // Check only the positions that have mismatching characters.
+//    for targetIndex in targetIndexes { // O(a), worst case O(A)
+//        
+//        // Get the character we want to look for to know what to swap with.
+//        let targetEndChar = endStr[endStr.index(endStr.startIndex, offsetBy: targetIndex)]
+//        if mStartStr[targetIndex] == targetEndChar { continue }
+//        
+//        var possibleSwapIndex: Int = 0
+//        // Loop through the rest of startStr to find the target character, starting from the current invalid position.
+//        for currentIndex in (targetIndex + 1)..<startStr.count {
+//            if mStartStr[currentIndex] == targetEndChar {
+//                possibleSwapIndex = currentIndex
+//                break
+//            }
+//            // Check if it's optimal which means a swap puts both characters in their final position. Look into later.
+//            
+//        }
+//        print("Swapping \(mStartStr[targetIndex]) with \(mStartStr[possibleSwapIndex]).")
+//        mStartStr.swapAt(targetIndex, possibleSwapIndex)
+//        print(String(mStartStr))
+//        swaps += 1
+//        // If it's equal after the swap, no need to keep looping.
+//        if String(mStartStr) == endStr { break }
+//    }
+//    
+//    return swaps
+//}
+
+// Count the number of characters that are in the wrong position and divide by 2. This is because the best swap possible will result in 2 characters put in their final position. We don't actually care to know how the swaps happen, just that how many there are.
+//func minimumSwaps(for startStr: String, to endStr: String) -> Int {
+//    var swaps: Int = 0
+//    for (index, char) in startStr.enumerated() {
+//        if char != endStr[endStr.index(endStr.startIndex, offsetBy: index)] {
+//            swaps += 1
+//        }
+//    }
+//    return swaps / 2
+//}

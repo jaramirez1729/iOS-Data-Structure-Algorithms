@@ -254,3 +254,42 @@ class LeetCodeStrStrTests: XCTestCase {
         XCTAssertEqual(result, 584)
     }
 }
+
+// MARK: - Longest Common Prefix
+class LeetCodeLongestCommonPrefix: XCTestCase {
+    func test1() {
+        let list = ["flower", "flow", "flight"]
+        let result = longestCommonPrefix(list)
+        XCTAssertEqual(result, "fl")
+    }
+    
+    func test2() {
+        let list = ["dog", "racecar", "car"]
+        let result = longestCommonPrefix(list)
+        XCTAssertEqual(result, "")
+    }
+    
+    func test3() {
+        let list = ["flowerflowerasdfasdf", "flowerflower", "flowerflower"]
+        let result = longestCommonPrefix(list)
+        XCTAssertEqual(result, "flowerflower")
+    }
+    
+    func test4() {
+        let list: [String] = []
+        let result = longestCommonPrefix(list)
+        XCTAssertEqual(result, "")
+    }
+    
+    func test5() {
+        let list: [String] = [""]
+        let result = longestCommonPrefix(list)
+        XCTAssertEqual(result, "")
+    }
+    
+    func test6() {
+        let list: [String] = ["a", "a", "aabc", "aa", "acc"]
+        let result = Solution().longestCommonPrefix(list)
+        XCTAssertEqual(result, "a")
+    }
+}

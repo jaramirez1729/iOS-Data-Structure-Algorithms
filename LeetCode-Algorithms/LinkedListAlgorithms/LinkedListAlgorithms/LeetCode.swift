@@ -13,6 +13,7 @@ import Foundation
 
  It is guaranteed that the node to be deleted is not a tail node in the list.
  */
+// Put the next element's value into the current node, and then change the pointer to the next.next's node. Then delete the next node.
 func deleteNode(_ node: SingleListNode?) {
     guard let node = node else { return }
     node.val = node.next?.val ?? 0

@@ -47,9 +47,7 @@ func removeDuplicates(_ nums: inout [Int]) -> Int {
  
  Find and return the maximum profit you can achieve.
  */
-// Listen: The question is worded confusingly, but it's essentially asking to find the greatest
-// amount of differences between values. You don't need to compare each value with every other
-// one since you can just determine the greatest difference between 2 values.
+// Listen: The question is worded confusingly, but it's essentially asking to find the greatest amount of differences between values and add them up. You don't need to compare each value with every other one since you can just determine the greatest difference between 2 values.
 // Example: [7,1,5,3,6,4]
 func maxProfit(_ prices: [Int]) -> Int {
     var profit = 0
@@ -114,8 +112,8 @@ func singleNumber(_ nums: [Int]) -> Int {
  Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
  */
 // Example: Input: nums1 = [1,2,2,1], nums2 = [2,2]; Output: [2,2]
-// Brute: Make 2 dictionaries. If they both have the same keys,
-// then that means they both have those values. dict1[1: 2, 2: 2], dict2[2: 2]
+// Brute: Make 2 dictionaries. If they both have the same keys, then that means they both have those values. 
+// dict1[1: 2, 2: 2], dict2[2: 2]
 func first_intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
     var dict1 = [Int: Int]()
     nums1.forEach { dict1[$0, default: 0] += 1 }    // O(n)

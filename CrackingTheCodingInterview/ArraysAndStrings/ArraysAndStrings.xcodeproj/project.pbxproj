@@ -37,7 +37,7 @@
 		E0661EA627520F040016F0E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0661EA827520F040016F0E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0661EAD27520F040016F0E5 /* ArraysAndStringsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArraysAndStringsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0661ECB27520F450016F0E5 /* Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; };
+		E0661ECB27520F450016F0E5 /* Algorithms.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Algorithms.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		E0661ECD27520F8B0016F0E5 /* AlgorithmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
