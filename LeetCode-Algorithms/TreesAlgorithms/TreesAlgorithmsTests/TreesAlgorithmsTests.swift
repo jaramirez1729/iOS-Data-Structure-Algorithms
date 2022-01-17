@@ -194,4 +194,22 @@ class LeetCodeSortedArrayToBST: XCTestCase {
         let node = sortedArrayToBST(list)
         XCTAssertEqual(node!.print(), [-10, -3, 0, 5, 9])
     }
+    
+    func test3() {
+        let list = [5, 9]
+        let node = sortedArrayToBST(list)
+        XCTAssertEqual(node!.print(), [5, 9])
+    }
+    
+    func test4() {
+        let list = [9]
+        let node = sortedArrayToBST(list)
+        XCTAssertEqual(node!.print(), [9])
+    }
+    
+    func test5() {
+        let list: [Int] = []
+        let node = sortedArrayToBST(list)
+        XCTAssertNil(node)
+    }
 }
