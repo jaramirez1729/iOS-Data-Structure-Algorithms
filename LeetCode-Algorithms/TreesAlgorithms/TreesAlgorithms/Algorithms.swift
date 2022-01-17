@@ -187,3 +187,42 @@ func levelOrder(_ root: TreeNode?) -> [[Int]] {
     
     return levels
 }
+
+// MARK: - Convert Sorted Array to Binary Search Tree
+/*
+ Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.
+ A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+ */
+// Input: nums = [-10, -3, 0, 5, 9]
+// Output: [0, -3, 9, -10, null, 5]
+//            0 
+//      -3       9
+//  -10       5
+//
+// Input: nums = [-5, -3, -2, 1, 2, 3, 5]
+// [-5, -3, -2]- 1 -[2, 3, 5]
+// [-5] -3 [-2]-  1 -[2] 3 [5]
+//                      1
+//                -3        3 
+//            -5     -2  2    5
+// Choose the center value to be the root of the tree. Then, split the array to the values left of the root and values to the right of the root. Then, set those center values as the left child and right child of that root node. Repeat recursively.
+// [-5, -3, -2, 1, 2, 3, 5]: 1
+//      LEFT [-5, -3, -2]: -3
+//              LEFT [-5]: -5
+//              RIGHT [-2]: -2
+//      RIGHT [2, 3, 5]: 3
+//              LEFT [2]
+//              RIGHT [5]
+//                  1 
+//          -3           3
+//     -5      -2    2      5
+func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
+    guard !nums.isEmpty else { return nil }
+    
+    let centerIndex = nums.count / 2
+    let parentNode = TreeNode(nums[centerIndex])
+    parentNode.left = sortedArrayToBST(Array(nums[0..<centerIndex]))
+    parentNode.right = sortedArrayToBST(Array(nums[(centerIndex + 1)..<nums.endIndex]))
+    
+    return parentNode
+}

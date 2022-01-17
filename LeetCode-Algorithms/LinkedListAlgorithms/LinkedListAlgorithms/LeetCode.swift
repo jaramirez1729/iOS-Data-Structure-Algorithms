@@ -178,18 +178,6 @@ func isPalindrome(_ head: SingleListNode?) -> Bool {
 }
 
 // Optimized(BUD): To get the middle of the linked list, we just need 2 pointers where the 2nd pointer is moving twice as fast. Then, we reverse the 2nd half of the linked list and use 2 pointers again to compare each value and see if they are equal to each other.
-//func isPalindrome(_ head: ListNode?) -> Bool {
-//    var slow = head
-//    var fast = head?.next?.next
-//    while fast?.next != nil {
-//        slow = slow?.next
-//        fast = fast?.next
-//    }
-//    
-//    
-//    
-//    return false
-//}
 
 // MARK: - Linked List Cycle
 /*

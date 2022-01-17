@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class TreeNode {
     
@@ -19,5 +20,21 @@ public class TreeNode {
         self.val = val
         self.left = left
         self.right = right
+    }
+    
+    public func print() -> [Int?] { 
+        let strList = description.trimmingCharacters(in: .whitespaces)
+        let list = strList.components(separatedBy: " ")
+        let nums = list.map { Int($0) ?? nil }
+        return nums
+    }
+}
+
+extension TreeNode: CustomStringConvertible {
+    public var description: String {
+        let left = self.left?.description ?? ""
+        let str = "\(self.val) "
+        let right = self.right?.description ?? ""
+        return left + str + right
     }
 }

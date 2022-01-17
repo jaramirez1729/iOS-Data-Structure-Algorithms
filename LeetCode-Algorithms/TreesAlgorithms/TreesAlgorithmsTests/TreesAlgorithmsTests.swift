@@ -180,3 +180,18 @@ class levelOrderTests: XCTestCase {
         XCTAssertEqual(result, [])
     }
 }
+
+// MARK: - Convert Sorted Array to Binary Search Tree
+class LeetCodeSortedArrayToBST: XCTestCase {
+    func test1() {
+        let list = [-5, -3, -2, 1, 2, 3, 5]
+        let node = sortedArrayToBST(list)
+        XCTAssertEqual(node!.print(), [-5, -3, -2, 1, 2, 3, 5])
+    }
+    
+    func test2() {
+        let list = [-10, -3, 0, 5, 9]
+        let node = sortedArrayToBST(list)
+        XCTAssertEqual(node!.print(), [-10, -3, 0, 5, 9])
+    }
+}
