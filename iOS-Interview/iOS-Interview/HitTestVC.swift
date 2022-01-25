@@ -66,12 +66,19 @@ class HitTestVC: UIViewController {
  */
 extension UIView {
     func testHitPoint(_ point: CGPoint) -> UIView? {
+        // The official hitTest method ignores any views that don't satisfy the conditions and continues.
+        // it's important to know that the official hitTest method does NOT eventually return nil if a view does not
+        // satisfy the conditions. This can fail inside the loop and return the correct view later.
         if isValidHit() && self.point(inside: point, with: nil) {
             for subview in subviews.reversed() {
+                // If a subview has subviews, then the coordinate space is very different than the superview
+                // where the touch originally occurred. If we don't convert, it can lead to invalid hits.
                 if let hitView = subview.testHitPoint(subview.convert(point, from: self)) {
                     return hitView
                 }
             }
+            // If it has no subviews or it didn't find a hit in the subviews, then return itself
+            // in order to continue through its other childrens instead of the subview's subviews.
             return self
         }
         return nil
