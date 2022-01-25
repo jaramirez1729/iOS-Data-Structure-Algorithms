@@ -77,8 +77,8 @@ extension UIView {
                     return hitView
                 }
             }
-            // If it has no subviews or it didn't find a hit in the subviews, then return itself
-            // in order to continue through its other childrens instead of the subview's subviews.
+            // If it has no subviews or it didn't find a hit in the subviews, then return itself since the
+            // condition was already met in line.
             return self
         }
         return nil
