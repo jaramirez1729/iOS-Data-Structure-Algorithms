@@ -78,7 +78,7 @@ extension UIView {
                 }
             }
             // If it has no subviews or it didn't find a hit in the subviews, then return itself since the
-            // condition was already met in line.
+            // condition was already met.
             return self
         }
         return nil
