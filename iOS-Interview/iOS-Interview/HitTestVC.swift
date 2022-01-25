@@ -36,7 +36,7 @@ class HitTestVC: UIViewController {
         
         let point = sender.location(in: parentView)
         if let hitView = parentView.testHitPoint(point) {
-            print("Rectangle: \(hitView.tag)")
+            print("Tapped on Rectangle with Tag: \(hitView.tag)")
         } else {
             print("View was not in the hierachy.")
         }
