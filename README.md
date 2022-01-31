@@ -17,5 +17,5 @@ This project contains iOS specific interview questions such as:
 - How would you implement the hitTest function?
 - Given 2 CGRects, create a function that returns true if they intersect, otherwise false.
 
-## Swift Coding Challenges 🐥
-Based on the book from Hacking with Swift called Swift Coding Challenges.
+## Swift Coding Challenges Folder 🐥
+Based on the book from Hacking with Swift called Swift Coding Challenges. It contains my own work and answers from the book on questions I got stuck.
