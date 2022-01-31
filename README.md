@@ -18,4 +18,4 @@ This project contains iOS specific interview questions such as:
 - Given 2 CGRects, create a function that returns true if they intersect, otherwise false.
 
 ## Swift Coding Challenges Folder 🐥
-Based on the book from Hacking with Swift called Swift Coding Challenges. It contains my own work and answers from the book on questions I got stuck.
+Based on the book from Hacking with Swift called Swift Coding Challenges. Each chapter is its own Swift file.
