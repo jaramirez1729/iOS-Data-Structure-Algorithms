@@ -1,4 +1,4 @@
-# Data Structure Algorithms
+# iOS Data Structure and Algorithms
 
 This repo contains a large collection of coding challenges.
 
