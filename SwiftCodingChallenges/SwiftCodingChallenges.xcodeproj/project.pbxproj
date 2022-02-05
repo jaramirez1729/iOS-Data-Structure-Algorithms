@@ -103,7 +103,7 @@
 		AE631FFD23EDF961004664E9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = AdaloveSoftware;
 				TargetAttributes = {

@@ -14,14 +14,11 @@ import Foundation
 // divisble by 3 and 5. Print the number for all other cases.
 func fizzBuzz() {
     for i in 1...100 {
-        if i % 3 == 0 && i % 5 == 0 {
-            print("Fizz Buzz")
-        } else if i % 3 == 0 {
-            print("Fizz")
-        } else if i % 5 == 0 {
-            print("Buzz")
-        } else {
-            print(i)
+        switch (i % 3, i % 5) {
+        case (0, 0): print("Fizz Buzz")
+        case (0, _): print("Fizz")
+        case (_, 0): print("Buzz")
+        case (_, _): print(i)
         }
     }
 }
@@ -82,8 +79,8 @@ func isPrime(_ num: Int) -> Bool {
 
 
 // MARK: - Problem #21
-// Create a method that accepts a positive integer and returns back the next higheset and lowest
-// nmber that has the same number of 1s as its binary representation.
+// Create a method that accepts a positive integer and returns back the next highest and lowest
+// number that has the same number of 1s as its binary representation.
 // Time O(n), Space O(1)
 func getMaxMinInBinary(from num: Int) -> (max: Int?, min: Int?) {
     var answer: (max: Int?, min: Int?)

@@ -12,11 +12,9 @@ import Foundation
 // Check if a string contains duplicates.
 // Time O(n); Space O(1)
 func isStringUnique(_ str: String) -> Bool {
-    // Sets remove duplicate values since they can't have them. Just check
-    // that after duplicate removal, if they have the same count.
+    // Sets remove duplicate values since they can't have them. Just check that after duplicate removal, if they have the same count.
     return str.count == Set(str).count
 }
-
 
 // MARK: - Problem #2
 // Check if a string is a palindrome.
@@ -26,7 +24,6 @@ func isPalindrome(_ str: String) -> Bool {
     return lowercase == String(lowercase.reversed())
 }
 
-// helleh 0, 6
 func isPalindromeNoReverse(_ str: String) -> Bool {
     guard str.count > 0 else { return false }
     let string = str.lowercased()
@@ -84,6 +81,7 @@ func countInstancesOfCharacter(_ char: Character, in str: String) -> Int {
 
 // MARK: - Problem #6
 // Print the input string with duplicates removed except the first instance of it.
+// If the key is NOT in the dictionary, it will update it and then return nil. So for every first occurence of that character (key), it will assign it true and return nil. Since it's a filter, the next time it encounters a duplicate character, it will just ignore it because updateValue won't return nil.
 func removeDuplicateLetters(from str: String) -> String {
     var dict: [Character: Bool] = [:]
     let result = str.filter { dict.updateValue(true, forKey: $0) == nil }

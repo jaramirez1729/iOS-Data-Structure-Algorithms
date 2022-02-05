@@ -16,8 +16,4 @@ struct Time {
     }
 }
 
-let arr: [Int?] = [1, 2, 3, 4, 5, nil, 6, 7, nil]
-//print(arr.map { $0 })
-//print(arr.compactMap { $0 })
-print(arr.compactMap { $0 }.filter { $0 > 4 })
-print(arr.compactMap{ $0 }.reduce(0, +))
+printPermutations(of: "OK")
