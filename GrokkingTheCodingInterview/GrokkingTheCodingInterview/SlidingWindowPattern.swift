@@ -66,21 +66,64 @@ func findMinSumSubArray(in list: [Int], target s: Int) -> Int {
 /*
  Given a string, find the length of the longest substring in it with no more than K distinct characters.
  */
+// Time O(N), Space O(N)
 func FindLongestSubstring(in str: String, withDistinct k: Int) -> Int {
-    var chars = str.map { String($0) }
-    var charFrequency = [String: String]()
-    var windowStartIndex = 0
-    var maxLenght = 0
-    
-    for windowEndIndex in 0..<chars.endIndex {
+    var windowStart = 0
+    var maxLength = 0
+    var charFrequency = [String: Int]()
+    let chars = str.map { String($0) }
+
+    for windowEnd in 0..<chars.endIndex {
+        let rightChar = chars[windowEnd]
+        charFrequency[rightChar, default: 0] += 1 // Add a counter for the next character.
         
+        // Shrink the sliding window until we have k distinct characters.
+        while charFrequency.count > k {
+            let leftChar = chars[windowStart] // Get the first character in the window.
+            charFrequency[leftChar]? -= 1 // Remove a counter for that character.
+            if charFrequency[leftChar] == 0 {
+                charFrequency.removeValue(forKey: leftChar)
+            }
+            windowStart += 1 // Shrink the window from the left.
+        }
+        // After shrinking, update the maximum length so far.
+        maxLength = max(maxLength, windowEnd - windowStart + 1)
     }
-    
-    return maxLenght
+    return maxLength
 }
 
-struct MyJson: Codable {
-    var a: Int
-}
+// MARK: - Fruits into Baskets (Medium)
+/*
+ Given an array of characters where each character represents a fruit tree, you are given two baskets, and your goal is to put maximum number of fruits in each basket. The only restriction is that each basket can have only one type of fruit.
 
-let a = MyJson(a: <#T##Int#>)
+ You can start with any tree, but you can’t skip a tree once you have started. You will pick one fruit from each tree until you cannot, i.e., you will stop when you have to pick from a third fruit type.
+
+ Write a function to return the maximum number of fruits in both baskets.
+ */
+// Sounds confusing, but it's essentially asking for the longest substring with 2 distinct characters.
+// This is the same algorithm as the parent question, just worded differently. 
+// Time O(N), Space O(1)
+func fruitsIntoBaskets(_ fruits: [String]) -> Int {
+    var windowStart = 0
+    var maxLength = 0
+    var charFrequency = [String: Int]()
+    let chars = fruits.map { String($0) }
+
+    for windowEnd in 0..<chars.endIndex {
+        let rightChar = chars[windowEnd]
+        charFrequency[rightChar, default: 0] += 1 // Add a counter for the next character.
+        
+        // Shrink the sliding window until we have 2 distinct characters.
+        while charFrequency.count > 2 {
+            let leftChar = chars[windowStart] // Get the first character in the window.
+            charFrequency[leftChar]? -= 1 // Remove a counter for that character.
+            if charFrequency[leftChar] == 0 {
+                charFrequency.removeValue(forKey: leftChar)
+            }
+            windowStart += 1 // Shrink the window from the left.
+        }
+        // After shrinking, update the maximum length so far.
+        maxLength = max(maxLength, windowEnd - windowStart + 1)
+    }
+    return maxLength
+}

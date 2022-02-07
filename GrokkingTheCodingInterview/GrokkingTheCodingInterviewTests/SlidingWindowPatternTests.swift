@@ -64,3 +64,16 @@ class FindLongestSubstringWithDistinctTests: XCTestCase {
         XCTAssertEqual(FindLongestSubstring(in: str, withDistinct: k), 5)
     }
 }
+
+// MARK: - Fruits into Baskets (Medium)
+class FruitsIntoBasketsTests: XCTestCase {
+    func test1() {
+        let fruits = ["A", "B", "C", "A", "C"]
+        XCTAssertEqual(fruitsIntoBaskets(fruits), 3)
+    }
+    
+    func test2() {
+        let fruits = ["A", "B", "C", "B", "B", "C"]
+        XCTAssertEqual(fruitsIntoBaskets(fruits), 5)
+    }
+}
