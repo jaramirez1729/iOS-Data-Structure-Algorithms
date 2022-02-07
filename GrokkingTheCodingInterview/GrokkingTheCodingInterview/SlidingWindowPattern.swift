@@ -127,3 +127,28 @@ func fruitsIntoBaskets(_ fruits: [String]) -> Int {
     }
     return maxLength
 }
+
+// MARK: - Longest Substring with Distinct Characters (Hard)
+/*
+ Given a string, find the length of the longest substring, which has all distinct characters.
+ */
+// Time O(N), Space O(K)
+func FindLongestDistinctSubstring(in str: String) -> Int {
+    var windowStart = 0
+    var maxLength = 0
+    var charIndexes = [String: Int]()
+    let chars = str.map { String($0) }
+    
+    for windowEnd in 0..<chars.endIndex {
+        let rightChar = chars[windowEnd]
+        // If the dictionary already contains the character, shrink the window so that we have only one occurrence.
+        if let index = charIndexes[rightChar] {
+            // Since a duplicate was found, we know the current substring is invalid, so we will start the window at the next character from the stored index of the duplicate.
+            windowStart = max(windowStart, index + 1)
+        }
+        charIndexes[rightChar] = windowEnd // Mark the index position of the current character.
+        maxLength = max(maxLength, windowEnd - windowStart + 1)
+    }
+    
+    return maxLength
+}

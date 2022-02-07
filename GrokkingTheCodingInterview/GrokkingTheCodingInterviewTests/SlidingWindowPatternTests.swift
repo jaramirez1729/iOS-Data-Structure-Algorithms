@@ -77,3 +77,26 @@ class FruitsIntoBasketsTests: XCTestCase {
         XCTAssertEqual(fruitsIntoBaskets(fruits), 5)
     }
 }
+
+// MARK: - Longest Substring with Distinct Characters (Hard)
+class FindLongestDistinctSubstringTests: XCTestCase {
+    func test1() {
+        let input = "aabccbb"
+        XCTAssertEqual(FindLongestDistinctSubstring(in: input), 3)
+    }
+    
+    func test2() {
+        let input = "abbbb"
+        XCTAssertEqual(FindLongestDistinctSubstring(in: input), 2)
+    }
+    
+    func test3() {
+        let input = "abccde"
+        XCTAssertEqual(FindLongestDistinctSubstring(in: input), 3)
+    }
+    
+    func test4() {
+        let input = "abcdcfeghijk"
+        XCTAssertEqual(FindLongestDistinctSubstring(in: input), 9)
+    }
+}
