@@ -159,23 +159,22 @@ func FindLongestDistinctSubstring(in str: String) -> Int {
  Given a string with lowercase letters only, if you are allowed to replace no more than ‘k’ letters with any letter, find the length of the longest substring having the same letters after replacement.
  */
 // Uses a dynamic sliding window. Keep track of the number of times characters appear. We will also record the character that repeats the most as we traverse the string. We only shrink the window if there are more tha k letters in the window because we cannot replace more than k characters.
-// Space O(N), Time O(1)
+// Time O(N), Space O(1) assumming  26 character set, which means at most it would be O(26) ~= O(1).
 func findLongestReplacementSubstring(in str: String, replacements k: Int) -> Int {
     var windowStartIndex = 0
     var maxLength = 0
     var maxRepeatLetterCount = 0
-    var frequencyDict = [String: Int]()
-    let chars = str.map { String($0) }
+    var frequencyDict = [Character: Int]()
     
-    for windowEndIndex in 0..<chars.endIndex {
-        let rightChar = chars[windowEndIndex]
+    for windowEndIndex in 0..<str.count {
+        let rightChar = str[str.index(str.startIndex, offsetBy: windowEndIndex)]
         frequencyDict[rightChar, default: 0] += 1
         // Record the character with the highest occurrences of repeats.
         maxRepeatLetterCount = max(maxRepeatLetterCount, frequencyDict[rightChar]!)
         
         // current window size is from windowStart to windowEnd, overall we have a letter which is repeating 'maxRepeatLetterCount' times, this means we can have a window which has one letter repeating 'maxRepeatLetterCount' times and the remaining letters we should replace. If the remaining letters are more than 'k', it is the time to shrink the window as we are not allowed to replace more than 'k' letters.
         if ((windowEndIndex - windowStartIndex + 1) - maxRepeatLetterCount) > k {
-            let leftChar = chars[windowStartIndex]
+            let leftChar = str[str.index(str.startIndex, offsetBy: windowStartIndex)]
             frequencyDict[leftChar]! -= 1
             windowStartIndex += 1
         }
@@ -187,6 +186,8 @@ func findLongestReplacementSubstring(in str: String, replacements k: Int) -> Int
 /*
  Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s, find the length of the longest contiguous subarray having all 1s.
  */
+// Uses a dynamic sliding window like the previous problem. Keep track of the number of times 1 appears. We only shrink the window if there are more tha k letters in the window because we cannot replace more than k 0s.
+// Time O(N), Space O(1)
 func findLongestReplacementSubarray(in nums: [Int], replacements k: Int) -> Int {
     var windowStartIndex = 0
     var maxLength = 0
