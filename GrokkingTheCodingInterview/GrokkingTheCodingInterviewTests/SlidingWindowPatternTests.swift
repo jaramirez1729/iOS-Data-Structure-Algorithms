@@ -121,3 +121,18 @@ class FindLongestReplacementSubstringTests: XCTestCase {
         XCTAssertEqual(findLongestReplacementSubstring(in: input, replacements: k), 3)
     }
 }
+
+// MARK: - Longest Subarray with Ones after Replacement (Hard)
+class FindLongestReplacementSubarrayTests: XCTestCase {
+    func test1() {
+        let nums = [0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1]
+        let k = 2
+        XCTAssertEqual(findLongestReplacementSubarray(in: nums, replacements: k), 6)
+    }
+    
+    func test2() {
+        let nums = [0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1]
+        let k = 3
+        XCTAssertEqual(findLongestReplacementSubarray(in: nums, replacements: k), 9)
+    }
+}

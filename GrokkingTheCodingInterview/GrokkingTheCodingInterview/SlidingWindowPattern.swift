@@ -68,26 +68,26 @@ func findMinSumSubArray(in list: [Int], target s: Int) -> Int {
  */
 // Time O(N), Space O(N)
 func FindLongestSubstring(in str: String, withDistinct k: Int) -> Int {
-    var windowStart = 0
+    var windowStartIndex = 0
     var maxLength = 0
     var charFrequency = [String: Int]()
     let chars = str.map { String($0) }
 
-    for windowEnd in 0..<chars.endIndex {
-        let rightChar = chars[windowEnd]
+    for windowEndIndex in 0..<chars.endIndex {
+        let rightChar = chars[windowEndIndex]
         charFrequency[rightChar, default: 0] += 1 // Add a counter for the next character.
         
         // Shrink the sliding window until we have k distinct characters.
         while charFrequency.count > k {
-            let leftChar = chars[windowStart] // Get the first character in the window.
+            let leftChar = chars[windowStartIndex] // Get the first character in the window.
             charFrequency[leftChar]? -= 1 // Remove a counter for that character.
             if charFrequency[leftChar] == 0 {
                 charFrequency.removeValue(forKey: leftChar)
             }
-            windowStart += 1 // Shrink the window from the left.
+            windowStartIndex += 1 // Shrink the window from the left.
         }
         // After shrinking, update the maximum length so far.
-        maxLength = max(maxLength, windowEnd - windowStart + 1)
+        maxLength = max(maxLength, windowEndIndex - windowStartIndex + 1)
     }
     return maxLength
 }
@@ -104,26 +104,26 @@ func FindLongestSubstring(in str: String, withDistinct k: Int) -> Int {
 // This is the same algorithm as the parent question, just worded differently. 
 // Time O(N), Space O(1)
 func fruitsIntoBaskets(_ fruits: [String]) -> Int {
-    var windowStart = 0
+    var windowStartIndex = 0
     var maxLength = 0
     var charFrequency = [String: Int]()
     let chars = fruits.map { String($0) }
 
-    for windowEnd in 0..<chars.endIndex {
-        let rightChar = chars[windowEnd]
+    for windowEndIndex in 0..<chars.endIndex {
+        let rightChar = chars[windowEndIndex]
         charFrequency[rightChar, default: 0] += 1 // Add a counter for the next character.
         
         // Shrink the sliding window until we have 2 distinct characters.
         while charFrequency.count > 2 { // THE ONLY DIFFERENCE
-            let leftChar = chars[windowStart] // Get the first character in the window.
+            let leftChar = chars[windowStartIndex] // Get the first character in the window.
             charFrequency[leftChar]? -= 1 // Remove a counter for that character.
             if charFrequency[leftChar] == 0 {
                 charFrequency.removeValue(forKey: leftChar)
             }
-            windowStart += 1 // Shrink the window from the left.
+            windowStartIndex += 1 // Shrink the window from the left.
         }
         // After shrinking, update the maximum length so far.
-        maxLength = max(maxLength, windowEnd - windowStart + 1)
+        maxLength = max(maxLength, windowEndIndex - windowStartIndex + 1)
     }
     return maxLength
 }
@@ -135,20 +135,20 @@ func fruitsIntoBaskets(_ fruits: [String]) -> Int {
 // Uses a dynamic sliding window. The indexes of the character is stored in a dictionary. If a duplicate is found, it will shrink the window to the next index after the duplicate character to start a new unique string.
 // Time O(N), Space O(K)
 func FindLongestDistinctSubstring(in str: String) -> Int {
-    var windowStart = 0
+    var windowStartIndex = 0
     var maxLength = 0
     var charIndexes = [String: Int]()
     let chars = str.map { String($0) }
     
-    for windowEnd in 0..<chars.endIndex {
-        let rightChar = chars[windowEnd]
+    for windowEndIndex in 0..<chars.endIndex {
+        let rightChar = chars[windowEndIndex]
         // If the dictionary already contains the character, shrink the window so that we have only one occurrence.
         if let index = charIndexes[rightChar] {
             // Since a duplicate was found, we know the current substring is invalid, so we will start the window at the next character from the stored index of the duplicate.
-            windowStart = max(windowStart, index + 1)
+            windowStartIndex = max(windowStartIndex, index + 1)
         }
-        charIndexes[rightChar] = windowEnd // Mark the index position of the current character.
-        maxLength = max(maxLength, windowEnd - windowStart + 1)
+        charIndexes[rightChar] = windowEndIndex // Mark the index position of the current character.
+        maxLength = max(maxLength, windowEndIndex - windowStartIndex + 1)
     }
     
     return maxLength
@@ -161,25 +161,49 @@ func FindLongestDistinctSubstring(in str: String) -> Int {
 // Uses a dynamic sliding window. Keep track of the number of times characters appear. We will also record the character that repeats the most as we traverse the string. We only shrink the window if there are more tha k letters in the window because we cannot replace more than k characters.
 // Space O(N), Time O(1)
 func findLongestReplacementSubstring(in str: String, replacements k: Int) -> Int {
-    var windowStart = 0
-    var maxLenght = 0
+    var windowStartIndex = 0
+    var maxLength = 0
     var maxRepeatLetterCount = 0
     var frequencyDict = [String: Int]()
     let chars = str.map { String($0) }
     
-    for windowEnd in 0..<chars.endIndex {
-        let rightChar = chars[windowEnd]
+    for windowEndIndex in 0..<chars.endIndex {
+        let rightChar = chars[windowEndIndex]
         frequencyDict[rightChar, default: 0] += 1
         // Record the character with the highest occurrences of repeats.
         maxRepeatLetterCount = max(maxRepeatLetterCount, frequencyDict[rightChar]!)
         
         // current window size is from windowStart to windowEnd, overall we have a letter which is repeating 'maxRepeatLetterCount' times, this means we can have a window which has one letter repeating 'maxRepeatLetterCount' times and the remaining letters we should replace. If the remaining letters are more than 'k', it is the time to shrink the window as we are not allowed to replace more than 'k' letters.
-        if ((windowEnd - windowStart + 1) - maxRepeatLetterCount) > k {
-            let leftChar = chars[windowStart]
+        if ((windowEndIndex - windowStartIndex + 1) - maxRepeatLetterCount) > k {
+            let leftChar = chars[windowStartIndex]
             frequencyDict[leftChar]! -= 1
-            windowStart += 1
+            windowStartIndex += 1
         }
-        maxLenght = max(maxLenght, windowEnd - windowStart + 1)
+        maxLength = max(maxLength, windowEndIndex - windowStartIndex + 1)
     }
-    return maxLenght
+    return maxLength
+}
+// MARK: - Longest Subarray with Ones after Replacement (Hard)
+/*
+ Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s, find the length of the longest contiguous subarray having all 1s.
+ */
+func findLongestReplacementSubarray(in nums: [Int], replacements k: Int) -> Int {
+    var windowStartIndex = 0
+    var maxLength = 0
+    var maxOnesCount = 0
+    
+    for windowEndIndex in 0..<nums.endIndex {
+        let rightNum = nums[windowEndIndex]
+        maxOnesCount += (rightNum == 1) ? 1 : 0
+        
+        // current window size is from windowStart to windowEnd, overall we have a maximum of 1s repeating a maximum of 'maxOnesCount' times, this means that we can have a window with 'maxOnesCount' 1s and the remaining are 0s which should replace with 1s. Now, if the remaining 0s are more than 'k', it is the time to shrink the window as we are not allowed to replace more than 'k' Os.
+        if ((windowEndIndex - windowStartIndex + 1) - maxOnesCount) > k {
+            let leftNum = nums[windowStartIndex]
+            maxOnesCount -= (leftNum == 1) ? 1 : 0
+            windowStartIndex += 1
+        }
+        maxLength = max(maxLength, windowEndIndex - windowStartIndex + 1)
+    }
+    
+    return maxLength
 }
