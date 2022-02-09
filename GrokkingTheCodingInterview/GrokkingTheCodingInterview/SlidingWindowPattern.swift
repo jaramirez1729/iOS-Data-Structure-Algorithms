@@ -114,7 +114,7 @@ func fruitsIntoBaskets(_ fruits: [String]) -> Int {
         charFrequency[rightChar, default: 0] += 1 // Add a counter for the next character.
         
         // Shrink the sliding window until we have 2 distinct characters.
-        while charFrequency.count > 2 {
+        while charFrequency.count > 2 { // THE ONLY DIFFERENCE
             let leftChar = chars[windowStart] // Get the first character in the window.
             charFrequency[leftChar]? -= 1 // Remove a counter for that character.
             if charFrequency[leftChar] == 0 {
@@ -132,6 +132,7 @@ func fruitsIntoBaskets(_ fruits: [String]) -> Int {
 /*
  Given a string, find the length of the longest substring, which has all distinct characters.
  */
+// Uses a dynamic sliding window. The indexes of the character is stored in a dictionary. If a duplicate is found, it will shrink the window to the next index after the duplicate character to start a new unique string.
 // Time O(N), Space O(K)
 func FindLongestDistinctSubstring(in str: String) -> Int {
     var windowStart = 0
@@ -151,4 +152,34 @@ func FindLongestDistinctSubstring(in str: String) -> Int {
     }
     
     return maxLength
+}
+
+// MARK: - Longest Substring with Same Letters after Replacement (Hard)
+/*
+ Given a string with lowercase letters only, if you are allowed to replace no more than ‘k’ letters with any letter, find the length of the longest substring having the same letters after replacement.
+ */
+// Uses a dynamic sliding window. Keep track of the number of times characters appear. We will also record the character that repeats the most as we traverse the string. We only shrink the window if there are more tha k letters in the window because we cannot replace more than k characters.
+// Space O(N), Time O(1)
+func findLongestReplacementSubstring(in str: String, replacements k: Int) -> Int {
+    var windowStart = 0
+    var maxLenght = 0
+    var maxRepeatLetterCount = 0
+    var frequencyDict = [String: Int]()
+    let chars = str.map { String($0) }
+    
+    for windowEnd in 0..<chars.endIndex {
+        let rightChar = chars[windowEnd]
+        frequencyDict[rightChar, default: 0] += 1
+        // Record the character with the highest occurrences of repeats.
+        maxRepeatLetterCount = max(maxRepeatLetterCount, frequencyDict[rightChar]!)
+        
+        // current window size is from windowStart to windowEnd, overall we have a letter which is repeating 'maxRepeatLetterCount' times, this means we can have a window which has one letter repeating 'maxRepeatLetterCount' times and the remaining letters we should replace. If the remaining letters are more than 'k', it is the time to shrink the window as we are not allowed to replace more than 'k' letters.
+        if ((windowEnd - windowStart + 1) - maxRepeatLetterCount) > k {
+            let leftChar = chars[windowStart]
+            frequencyDict[leftChar]! -= 1
+            windowStart += 1
+        }
+        maxLenght = max(maxLenght, windowEnd - windowStart + 1)
+    }
+    return maxLenght
 }

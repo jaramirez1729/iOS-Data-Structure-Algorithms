@@ -100,3 +100,24 @@ class FindLongestDistinctSubstringTests: XCTestCase {
         XCTAssertEqual(FindLongestDistinctSubstring(in: input), 9)
     }
 }
+
+// MARK: - Longest Substring with Same Letters after Replacement (Hard)
+class FindLongestReplacementSubstringTests: XCTestCase {
+    func test1() {
+        let input = "aabccbb"
+        let k = 2
+        XCTAssertEqual(findLongestReplacementSubstring(in: input, replacements: k), 5)
+    }
+    
+    func test2() {
+        let input = "abbcb"
+        let k = 1
+        XCTAssertEqual(findLongestReplacementSubstring(in: input, replacements: k), 4)
+    }
+    
+    func test3() {
+        let input = "abccde"
+        let k = 1
+        XCTAssertEqual(findLongestReplacementSubstring(in: input, replacements: k), 3)
+    }
+}
