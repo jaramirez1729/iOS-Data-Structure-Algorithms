@@ -136,3 +136,102 @@ class FindLongestReplacementSubarrayTests: XCTestCase {
         XCTAssertEqual(findLongestReplacementSubarray(in: nums, replacements: k), 9)
     }
 }
+
+// MARK: - Problem Challenge #1: Permutation in a String (Hard)
+class FindPatternTests: XCTestCase {
+    func test1() {
+        let input = "oidbcaf"
+        let pattern = "abc"
+        XCTAssertTrue(findPattern(in: input, pattern: pattern))
+    }
+    
+    func test2() {
+        let input = "oidbcaf"
+        let pattern = "dio"
+        XCTAssertTrue(findPattern(in: input, pattern: pattern))
+    }
+    
+    func test3() {
+        let input = "odicf"
+        let pattern = "dc"
+        XCTAssertFalse(findPattern(in: input, pattern: pattern))
+    }
+    
+    func test4() {
+        let input = "bcdxabcdy"
+        let pattern = "bcdyabcdx"
+        XCTAssertTrue(findPattern(in: input, pattern: pattern))
+    }
+    
+    func test5() {
+        let input = "aaacb"
+        let pattern = "abc"
+        XCTAssertTrue(findPattern(in: input, pattern: pattern))
+    }
+    
+    func test6() {
+        let input = "aaacb"
+        let pattern = "aabe"
+        XCTAssertFalse(findPattern(in: input, pattern: pattern))
+    }
+    
+    func test7() {
+        let input = "a"
+        let pattern = "a"
+        XCTAssertTrue(findPattern(in: input, pattern: pattern))
+    }
+}
+
+// MARK: - Problem Challenge #2: String Anagrams (Hard)
+class FindAnagramsTests: XCTestCase {
+    func test1() {
+        let input = "ppqp"
+        let pattern = "pq"
+        XCTAssertEqual(findAnagrams(in: input, pattern: pattern), [1, 2])
+    }
+    
+    func test2() {
+        let input = "abbcabc"
+        let pattern = "abc"
+        XCTAssertEqual(findAnagrams(in: input, pattern: pattern), [2, 3, 4])
+    }
+    
+    func test3() {
+        let input = "acbbbcabbbca"
+        let pattern = "ac"
+        XCTAssertEqual(findAnagrams(in: input, pattern: pattern), [0, 5, 10])
+    }
+    
+    func test4() {
+        let input = "bbbbb"
+        let pattern = "a"
+        XCTAssertEqual(findAnagrams(in: input, pattern: pattern), [])
+    }
+    
+    func test5() {
+        let input = "d"
+        let pattern = "aaa"
+        XCTAssertEqual(findAnagrams(in: input, pattern: pattern), [])
+    }
+}
+
+// MARK: - Problem Challenge 3: Smallest Window containing Substring (Hard)
+//class FindSmallestSubstring: XCTestCase {
+//    func test1() {
+//        let input = "aabdec"
+//        let pattern = "abc"
+//        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "abdec")
+//    }
+//    
+//    func test2() {
+//        let input = "abdbca"
+//        let pattern = "abc"
+//        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "bca")
+//    }
+//    
+//    func test3() {
+//        let input = "adcad"
+//        let pattern = "abc"
+//        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "")
+//    }
+//}

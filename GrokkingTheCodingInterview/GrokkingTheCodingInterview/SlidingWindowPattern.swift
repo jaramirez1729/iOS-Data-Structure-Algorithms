@@ -208,3 +208,140 @@ func findLongestReplacementSubarray(in nums: [Int], replacements k: Int) -> Int 
     
     return maxLength
 }
+
+// MARK: - Problem Challenge #1: Permutation in a String (Hard)
+/*
+ Given a string and a pattern, find out if the string contains any permutation of the pattern.
+
+ Permutation is defined as the re-arranging of the characters of the string. For example, “abc” has the following six permutations:
+ abc
+ acb
+ bac
+ bca
+ cab
+ cba
+ If a string has ‘n’ distinct characters, it will have n! permutations.
+ */
+// Uses 2 dictionaries to store the number of times characters appear in the pattern and in the window and compares them each time. The book solution is slightly more efficient in that it does not keep a count for the window characters. Instead, it removes characters found from the pattern dictionary and keeps a counter for characters that have been matched yet.
+// Time O(N + M), Space O(N + M)
+func findPattern(in str: String, pattern: String) -> Bool {
+    var windowStartIndex = 0
+    let chars = str.map { String($0) }
+    // Keep a count of how many times each character appears in the pattern.
+    var patternFrequency = [String: Int]()
+    pattern.map { String($0) }.forEach { patternFrequency[$0, default: 0] += 1 }
+    // Keep a count of the characters in the current window.
+    var windowFrequency = [String: Int]()
+    
+    for windowEndIndex in 0..<chars.endIndex {
+        let endChar = chars[windowEndIndex]
+        windowFrequency[endChar, default: 0] += 1
+        
+        // If the window is the same size as the pattern, then check if the dictionaries are the same.
+        if windowEndIndex - windowStartIndex + 1 == pattern.count {
+            // If they are the same, that means it's a valid permutation.
+            if patternFrequency == windowFrequency {
+                return true
+            } else {
+                // Shrink the window and remove a count for the letter going out of the window.
+                let startChar = chars[windowStartIndex]
+                if let count = windowFrequency[startChar] {
+                    windowFrequency[startChar] = (count - 1 == 0) ? nil : count - 1
+                }
+                windowStartIndex += 1
+            }
+        }
+    }
+    return false
+}
+
+// MARK: - Problem Challenge #2: String Anagrams (Hard)
+/*
+ Given a string and a pattern, find all anagrams of the pattern in the given string.
+
+ Every anagram is a permutation of a string. As we know, when we are not allowed to repeat characters while finding permutations of a string, we get N! permutations (or anagrams) of a string having N characters. For example, here are the six anagrams of the string “abc”:
+ abc
+ acb
+ bac
+ bca
+ cab
+ cba
+ Write a function to return a list of starting indices of the anagrams of the pattern in the given string.
+ */
+// This is the same as the previous question, except we are keeping a count of the starting indexes and then shrinking the window as we go.
+// Time O(N + M), Space O(N + M)
+func findAnagrams(in str: String, pattern: String) -> [Int] {
+    var windowStartIndex = 0
+    let chars = str.map { String($0) }
+    // Keep a count of how many times each character appears in the pattern.
+    var patternFrequency = [String: Int]()
+    pattern.map { String($0) }.forEach { patternFrequency[$0, default: 0] += 1 }
+    // Keep a count of the characters in the current window.
+    var windowFrequency = [String: Int]()
+    var indices = [Int]()
+    
+    for windowEndIndex in 0..<chars.endIndex {
+        let endChar = chars[windowEndIndex]
+        windowFrequency[endChar, default: 0] += 1
+        
+        // If the window is the same size as the pattern, check if we found an anagram and then shrink the window.
+        if windowEndIndex - windowStartIndex + 1 == pattern.count {
+            // If they are the same, that means it's a valid anagram.
+            if patternFrequency == windowFrequency {
+                indices.append(windowStartIndex)
+            }
+            // Shrink the window and remove a count for the letter going out of the window.
+            let startChar = chars[windowStartIndex]
+            if let count = windowFrequency[startChar] {
+                windowFrequency[startChar] = (count - 1 == 0) ? nil : count - 1
+            }
+            windowStartIndex += 1
+        }
+    }
+    return indices
+}
+
+// MARK: - Problem Challenge #3: Smallest Window containing Substring (Hard)
+/*
+ Given a string and a pattern, find the smallest substring in the given string which has all the characters of the given pattern.
+ */
+// Time O(N + M), Space O(N + M)
+func findSmallestSubstring(in str: String, pattern: String) -> String {
+    fatalError("This algorithm has a bug.")
+    
+    var windowStartIndex = 0
+    var matched = 0
+    var substringStart = 0
+    var minLength = str.count + 1
+    let chars = str.map { String($0) }
+    var patternFrequency = [String: Int]()
+    chars.forEach { patternFrequency[$0, default: 0] += 1 }
+    
+    for windowEndIndex in 0..<chars.endIndex {
+        let endChar = chars[windowEndIndex]
+        if let count = patternFrequency[endChar] {
+            patternFrequency[endChar] = count - 1
+            if count - 1 >= 0 { matched += 1 } // Count every matching of a character.
+        }
+        
+        // Shrink the window if we can, finish as soon as we remove a matched character.
+        while matched == pattern.count {
+            if minLength > (windowEndIndex - windowStartIndex + 1) {
+                minLength = windowEndIndex - windowStartIndex + 1
+                substringStart = windowStartIndex
+            }
+            
+            let startChar = chars[windowStartIndex]
+            windowStartIndex += 1
+            if let count = patternFrequency[startChar] {
+                // Note that we could have redundant matching characters, therefore we'll decrement the matched count only when a useful occurrence of a matched character is going out of the window.
+                if count == 0 { matched -= 1 }
+                patternFrequency[startChar] = count + 1
+            }
+        }
+    }
+    
+    if minLength > pattern.count { return "" }
+    
+    return chars[substringStart...(substringStart + minLength)].joined()
+}
