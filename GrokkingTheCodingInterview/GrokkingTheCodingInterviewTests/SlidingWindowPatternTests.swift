@@ -216,22 +216,22 @@ class FindAnagramsTests: XCTestCase {
 }
 
 // MARK: - Problem Challenge 3: Smallest Window containing Substring (Hard)
-//class FindSmallestSubstring: XCTestCase {
-//    func test1() {
-//        let input = "aabdec"
-//        let pattern = "abc"
-//        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "abdec")
-//    }
-//    
-//    func test2() {
-//        let input = "abdbca"
-//        let pattern = "abc"
-//        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "bca")
-//    }
-//    
-//    func test3() {
-//        let input = "adcad"
-//        let pattern = "abc"
-//        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "")
-//    }
-//}
+class FindSmallestSubstring: XCTestCase {
+    func test1() {
+        let input = "aabdec"
+        let pattern = "abc"
+        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "abdec")
+    }
+    
+    func test2() {
+        let input = "abdbca"
+        let pattern = "abc"
+        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "bca")
+    }
+    
+    func test3() {
+        let input = "adcad"
+        let pattern = "abc"
+        XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "")
+    }
+}

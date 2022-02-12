@@ -307,41 +307,39 @@ func findAnagrams(in str: String, pattern: String) -> [Int] {
  */
 // Time O(N + M), Space O(N + M)
 func findSmallestSubstring(in str: String, pattern: String) -> String {
-    fatalError("This algorithm has a bug.")
-    
-    var windowStartIndex = 0
+    var windowStart = 0
     var matched = 0
     var substringStart = 0
     var minLength = str.count + 1
     let chars = str.map { String($0) }
-    var patternFrequency = [String: Int]()
-    chars.forEach { patternFrequency[$0, default: 0] += 1 }
+    var charFreq = [String: Int]()
+    pattern.map { String($0) }.forEach { charFreq[$0, default: 0] += 1 }
     
-    for windowEndIndex in 0..<chars.endIndex {
-        let endChar = chars[windowEndIndex]
-        if let count = patternFrequency[endChar] {
-            patternFrequency[endChar] = count - 1
+    for windowEnd in 0..<chars.endIndex {
+        let rightChar = chars[windowEnd]
+        if let count = charFreq[rightChar] {
+            charFreq[rightChar] = count - 1
             if count - 1 >= 0 { matched += 1 } // Count every matching of a character.
         }
         
         // Shrink the window if we can, finish as soon as we remove a matched character.
         while matched == pattern.count {
-            if minLength > (windowEndIndex - windowStartIndex + 1) {
-                minLength = windowEndIndex - windowStartIndex + 1
-                substringStart = windowStartIndex
+            if minLength > (windowEnd - windowStart + 1) {
+                minLength = windowEnd - windowStart + 1
+                substringStart = windowStart
             }
             
-            let startChar = chars[windowStartIndex]
-            windowStartIndex += 1
-            if let count = patternFrequency[startChar] {
+            let leftChar = chars[windowStart]
+            windowStart += 1
+            if let count = charFreq[leftChar] {
                 // Note that we could have redundant matching characters, therefore we'll decrement the matched count only when a useful occurrence of a matched character is going out of the window.
                 if count == 0 { matched -= 1 }
-                patternFrequency[startChar] = count + 1
+                charFreq[leftChar] = count + 1
             }
         }
     }
     
-    if minLength > pattern.count { return "" }
+    if minLength > str.count { return "" }
     
-    return chars[substringStart...(substringStart + minLength)].joined()
+    return chars[substringStart..<(substringStart + minLength)].joined()
 }
