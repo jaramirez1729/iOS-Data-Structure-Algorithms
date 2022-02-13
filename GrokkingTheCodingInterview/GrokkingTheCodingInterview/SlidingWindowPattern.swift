@@ -365,9 +365,10 @@ func findSmallestSubstring(in str: String, pattern: String) -> String {
         for j in 0..<2:
             0: nextWordIndex = 1; 
  */
+// Time O(N * M * Len), Space O(M + N)
 func findSubstringIndices(in str: String, with words: [String]) -> [Int] {
     guard !str.isEmpty && !words.isEmpty else { return [] }
-    // 
+
     var wordFreq = [String: Int]()
     words.forEach { wordFreq[$0, default: 0] += 1 }
     let chars = str.map {String($0)}
