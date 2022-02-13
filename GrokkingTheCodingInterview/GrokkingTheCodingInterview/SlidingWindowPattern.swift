@@ -305,41 +305,48 @@ func findAnagrams(in str: String, pattern: String) -> [Int] {
 /*
  Given a string and a pattern, find the smallest substring in the given string which has all the characters of the given pattern.
  */
+// Whenever the number of matched characters has been reached, it shrinks the window. It also keeps track of the smallest substring that contains all characters.
 // Time O(N + M), Space O(N + M)
 func findSmallestSubstring(in str: String, pattern: String) -> String {
-    var windowStart = 0
+    var windowStartIndex = 0
     var matched = 0
+    // Controls the start and end of the substring. The window is only used for traversal, not to contain the substring.
     var substringStart = 0
     var minLength = str.count + 1
     let chars = str.map { String($0) }
-    var charFreq = [String: Int]()
-    pattern.map { String($0) }.forEach { charFreq[$0, default: 0] += 1 }
+    var charFrequency = [String: Int]()
+    pattern.map { String($0) }.forEach { charFrequency[$0, default: 0] += 1 }
     
-    for windowEnd in 0..<chars.endIndex {
-        let rightChar = chars[windowEnd]
-        if let count = charFreq[rightChar] {
-            charFreq[rightChar] = count - 1
-            if count - 1 >= 0 { matched += 1 } // Count every matching of a character.
+    for windowEndIndex in 0..<chars.endIndex {
+        let rightChar = chars[windowEndIndex]
+        if let count = charFrequency[rightChar] {
+            charFrequency[rightChar] = count - 1
+            // Count every matching of a character. If it is a duplicate, it will just go negative which is fine since we will increase it as we shrink the window and move matched characters out.
+            if count - 1 >= 0 { matched += 1 }
         }
         
         // Shrink the window if we can, finish as soon as we remove a matched character.
         while matched == pattern.count {
-            if minLength > (windowEnd - windowStart + 1) {
-                minLength = windowEnd - windowStart + 1
-                substringStart = windowStart
+            if minLength > (windowEndIndex - windowStartIndex + 1) {
+                minLength = windowEndIndex - windowStartIndex + 1
+                substringStart = windowStartIndex
             }
             
-            let leftChar = chars[windowStart]
-            windowStart += 1
-            if let count = charFreq[leftChar] {
-                // Note that we could have redundant matching characters, therefore we'll decrement the matched count only when a useful occurrence of a matched character is going out of the window.
+            let leftChar = chars[windowStartIndex]
+            windowStartIndex += 1
+            if let count = charFrequency[leftChar] {
+                // Note that we could have redundant matching characters, therefore we'll decrement the matched count only when a useful occurrence of a matched character is going out of the window. This also increments the count if it was negative, so it keeps shrinking it with duplicates.
                 if count == 0 { matched -= 1 }
-                charFreq[leftChar] = count + 1
+                charFrequency[leftChar] = count + 1
             }
         }
     }
-    
     if minLength > str.count { return "" }
     
     return chars[substringStart..<(substringStart + minLength)].joined()
 }
+
+// MARK: - Problem Challenge #4: Words Concatenation (Hard)
+/*
+ Given a string and a list of words, find all the starting indices of substrings in the given string that are a concatenation of all the given words exactly once without any overlapping of words. It is given that all words are of the same length.
+ */

@@ -235,3 +235,5 @@ class FindSmallestSubstring: XCTestCase {
         XCTAssertEqual(findSmallestSubstring(in: input, pattern: pattern), "")
     }
 }
+
+// MARK: - Problem Challenge #4: Words Concatenation (Hard)
