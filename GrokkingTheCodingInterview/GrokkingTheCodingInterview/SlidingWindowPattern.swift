@@ -20,7 +20,7 @@ import Foundation
 func findMaxSumSubArray(in list: [Int], size k: Int) -> Int {
     var maxSum = 0
     var windowSum = 0
-    var windowStartIndex = 0 // The last window's value to remove after sliding the window forward.
+    var windowStartIndex = 0 // The first window's value to remove after sliding the window forward.
     
     for windowEndIndex in 0..<list.endIndex {
         windowSum += list[windowEndIndex] // Add the next element to the window running sum.
@@ -350,3 +350,56 @@ func findSmallestSubstring(in str: String, pattern: String) -> String {
 /*
  Given a string and a list of words, find all the starting indices of substrings in the given string that are a concatenation of all the given words exactly once without any overlapping of words. It is given that all words are of the same length.
  */
+/* 
+ let str = "catfoxcat"
+ let words = ["cat", "fox"]
+ wordFreq = ["cat": 1, "fox": 1]
+ indices = [0, ]
+ 
+ for i in 0..<4:
+    0: wordsSeen = ["cat": 1, "fox": 1]
+        for j in 0..<2:
+            0: nextWordIndex = 0; word = "cat"
+            1: nextWordIndex = 3; word = "fox"; append i.
+    1: wordsSeen = []
+        for j in 0..<2:
+            0: nextWordIndex = 1; 
+ */
+func findSubstringIndices(in str: String, with words: [String]) -> [Int] {
+    guard !str.isEmpty && !words.isEmpty else { return [] }
+    // 
+    var wordFreq = [String: Int]()
+    words.forEach { wordFreq[$0, default: 0] += 1 }
+    let chars = str.map {String($0)}
+    var resultIndices = [Int]()
+    let wordsCount = words.count
+    let wordLenght = words[0].count
+    // If we were to partition str into wordLenght sections, then the i represents the index for the start of the next sequence of wordLenght substrings to check. Each word loop is accounted for with j.
+    // For "catfoxcatfox", if i = 0, it loops through [cat|fox|cat|fox]
+    // If i = 1, it loops through c[atf|oxc|atf]ox
+    // If i = 2, it loops through ca[tfo|xca|tfo]x
+    // If i = 3, it loops through cat[fox|cat|fox]
+    // Finally i = 4, it loops through catf[oxc|atf]ox
+    // Notice the sliding window moves in wordLength width.
+    let upperBound = (str.count - wordsCount * wordLenght) + 1
+    guard upperBound >= 0 else { return [] }
+    for i in 0..<upperBound {
+        var wordsSeen = [String: Int]()
+        for j in 0..<wordsCount { // Loop the list of words.
+            let nextWordIndex = i + j * wordLenght // Every wordLenght substring offset by i.
+            let word = chars[nextWordIndex..<(nextWordIndex + wordLenght)].joined()
+            print(word)
+            if wordFreq[word] == nil { break } // If we find a word not in the list, then go to next word.
+            wordsSeen[word, default: 0] += 1 // Add the word to the ones seen.
+            // No need to process further if the current word has a higher frequency than required. Essentially means that a duplicate was found of a word we already accounted for completely.
+            if let seenCount = wordsSeen[word], let freqCount = wordFreq[word], seenCount > freqCount {
+                break
+            }
+            // If we found all the words, then store the index. The (j + 1) means we're at the last word.
+            if j + 1 == wordsCount {
+                resultIndices.append(i)
+            }
+        } 
+    }
+    return resultIndices
+}

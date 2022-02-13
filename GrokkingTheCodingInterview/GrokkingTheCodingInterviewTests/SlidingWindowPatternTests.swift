@@ -237,3 +237,40 @@ class FindSmallestSubstring: XCTestCase {
 }
 
 // MARK: - Problem Challenge #4: Words Concatenation (Hard)
+class FindSubstringIndicesTests: XCTestCase {
+    func test1() {
+        let str = "catfoxcat"
+        let words = ["cat", "fox"]
+        XCTAssertEqual(findSubstringIndices(in: str, with: words), [0, 3])
+    }
+    
+    func test2() {
+        let str = "catcatfoxfox"
+        let words = ["cat", "fox"]
+        XCTAssertEqual(findSubstringIndices(in: str, with: words), [3])
+    }
+    
+    func test3() {
+        let str = "oohelloworldwarz"
+        let words = ["ell", "owo", "ooh"]
+        XCTAssertEqual(findSubstringIndices(in: str, with: words), [0])
+    }
+    
+    func test4() {
+        let str = "hello"
+        let words = ["oka"]
+        XCTAssertEqual(findSubstringIndices(in: str, with: words), [])
+    }
+    
+    func test5() {
+        let str = "hello"
+        let words = ["l"]
+        XCTAssertEqual(findSubstringIndices(in: str, with: words), [2, 3])
+    }
+    
+    func test6() {
+        let str = "catfoxcat"
+        let words = ["atf", "oxc"]
+        XCTAssertEqual(findSubstringIndices(in: str, with: words), [1])
+    }
+}
