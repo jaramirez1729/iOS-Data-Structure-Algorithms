@@ -11,6 +11,9 @@ These are coding challenges from LeetCode that are grouped by data structure. Th
 ## Cracking the Coding Interview Folder 👩🏼‍💻
 These questions are based off the popular book, Cracking the Coding Interview. It contains several projects based on chapters for coding questions.
 
+## Grokking the Coding Interview 👩‍🎨
+This entire project is based off of the Grokking the Coding Interview course from Design Gurus.
+
 ## iOS Interview Folder 📲
 This project contains iOS specific interview questions such as:
 
