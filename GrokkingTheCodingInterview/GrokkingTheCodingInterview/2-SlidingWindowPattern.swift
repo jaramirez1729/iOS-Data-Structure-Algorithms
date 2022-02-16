@@ -7,7 +7,7 @@
 
 import Foundation
 /*
- Imagine a window that moves down a collection. The window can be used to improve efficiency by knowing the item removed and the next item added, and thus being able to use the values in the window more efficiently.
+ Imagine a window that moves down a collection. The window can be used to improve efficiency by knowing the item removed and the next item added, and thus being able to use the values in the window more efficiently. The window is managed by a starting and ending index that determines when the window should grow or shrink or move forward.
  */
 
 // MARK: - Maximum Sum Subarray of Size K (Easy)

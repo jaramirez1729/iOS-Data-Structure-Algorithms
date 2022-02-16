@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E056B03027BB493300E8231F /* 3-TwoPointersPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E056B02F27BB493300E8231F /* 3-TwoPointersPattern.swift */; };
+		E056B03227BB497500E8231F /* 3-TwoPointersPatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E056B03127BB497500E8231F /* 3-TwoPointersPatternTests.swift */; };
 		E0B0661227AF344700D2542E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0661127AF344700D2542E /* AppDelegate.swift */; };
 		E0B0661427AF344700D2542E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0661327AF344700D2542E /* SceneDelegate.swift */; };
 		E0B0661627AF344700D2542E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0661527AF344700D2542E /* ViewController.swift */; };
 		E0B0661927AF344700D2542E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0B0661727AF344700D2542E /* Main.storyboard */; };
 		E0B0661B27AF344900D2542E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0B0661A27AF344900D2542E /* Assets.xcassets */; };
 		E0B0661E27AF344900D2542E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0B0661C27AF344900D2542E /* LaunchScreen.storyboard */; };
-		E0B0662927AF344900D2542E /* SlidingWindowPatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0662827AF344900D2542E /* SlidingWindowPatternTests.swift */; };
-		E0B0664327AF347800D2542E /* SlidingWindowPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0664227AF347800D2542E /* SlidingWindowPattern.swift */; };
+		E0B0662927AF344900D2542E /* 2-SlidingWindowPatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0662827AF344900D2542E /* 2-SlidingWindowPatternTests.swift */; };
+		E0B0664327AF347800D2542E /* 2-SlidingWindowPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0664227AF347800D2542E /* 2-SlidingWindowPattern.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E056B02F27BB493300E8231F /* 3-TwoPointersPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "3-TwoPointersPattern.swift"; sourceTree = "<group>"; };
+		E056B03127BB497500E8231F /* 3-TwoPointersPatternTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "3-TwoPointersPatternTests.swift"; sourceTree = "<group>"; };
 		E0B0660E27AF344700D2542E /* GrokkingTheCodingInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrokkingTheCodingInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B0661127AF344700D2542E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0B0661327AF344700D2542E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,8 +41,8 @@
 		E0B0661D27AF344900D2542E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0B0661F27AF344900D2542E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0B0662427AF344900D2542E /* GrokkingTheCodingInterviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrokkingTheCodingInterviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0B0662827AF344900D2542E /* SlidingWindowPatternTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWindowPatternTests.swift; sourceTree = "<group>"; };
-		E0B0664227AF347800D2542E /* SlidingWindowPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWindowPattern.swift; sourceTree = "<group>"; };
+		E0B0662827AF344900D2542E /* 2-SlidingWindowPatternTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "2-SlidingWindowPatternTests.swift"; sourceTree = "<group>"; };
+		E0B0664227AF347800D2542E /* 2-SlidingWindowPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "2-SlidingWindowPattern.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +84,8 @@
 		E0B0661027AF344700D2542E /* GrokkingTheCodingInterview */ = {
 			isa = PBXGroup;
 			children = (
-				E0B0664227AF347800D2542E /* SlidingWindowPattern.swift */,
+				E0B0664227AF347800D2542E /* 2-SlidingWindowPattern.swift */,
+				E056B02F27BB493300E8231F /* 3-TwoPointersPattern.swift */,
 				E0B0664127AF346000D2542E /* Supporting */,
 				E0B0661F27AF344900D2542E /* Info.plist */,
 			);
@@ -90,7 +95,8 @@
 		E0B0662727AF344900D2542E /* GrokkingTheCodingInterviewTests */ = {
 			isa = PBXGroup;
 			children = (
-				E0B0662827AF344900D2542E /* SlidingWindowPatternTests.swift */,
+				E0B0662827AF344900D2542E /* 2-SlidingWindowPatternTests.swift */,
+				E056B03127BB497500E8231F /* 3-TwoPointersPatternTests.swift */,
 			);
 			path = GrokkingTheCodingInterviewTests;
 			sourceTree = "<group>";
@@ -210,7 +216,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0B0661627AF344700D2542E /* ViewController.swift in Sources */,
-				E0B0664327AF347800D2542E /* SlidingWindowPattern.swift in Sources */,
+				E0B0664327AF347800D2542E /* 2-SlidingWindowPattern.swift in Sources */,
+				E056B03027BB493300E8231F /* 3-TwoPointersPattern.swift in Sources */,
 				E0B0661227AF344700D2542E /* AppDelegate.swift in Sources */,
 				E0B0661427AF344700D2542E /* SceneDelegate.swift in Sources */,
 			);
@@ -220,7 +227,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0B0662927AF344900D2542E /* SlidingWindowPatternTests.swift in Sources */,
+				E0B0662927AF344900D2542E /* 2-SlidingWindowPatternTests.swift in Sources */,
+				E056B03227BB497500E8231F /* 3-TwoPointersPatternTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
