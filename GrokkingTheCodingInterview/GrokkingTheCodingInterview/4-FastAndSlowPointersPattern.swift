@@ -156,7 +156,8 @@ func isPalindrome<T>(_ head: LinkedList<T>?) -> Bool {
         headSecondHalf = headSecondHalf?.next
     }
 
-    _ = reverseLinkedList(&copyHeadSecondHalf) // Reverse the reversed list back to normal.
+    // Reverse the reversed list back to normal. Even though copyHeadSecondHalf only contains the 2nd half, the last node of the first half is still pointing to the last node of this list. This is why the full list is still present when it's reversed again. Basically: (1 -> 2 -> [6) <- 4 <- 2]
+    _ = reverseLinkedList(&copyHeadSecondHalf)
     if mHead == nil || headSecondHalf == nil { // If both halves reached the end, then they match.
         return true
     }

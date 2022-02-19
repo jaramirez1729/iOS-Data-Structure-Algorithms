@@ -26,6 +26,6 @@ extension LinkedList: CustomStringConvertible {
             values.append(pointer!.value)
             pointer = pointer?.next
         }
-        return values.map{"\($0)"}.joined(separator: " -> ")
+        return values.map{"\($0)"}.joined(separator: " -> ") + " -> nil"
     }
 }
