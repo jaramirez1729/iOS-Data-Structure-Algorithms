@@ -175,3 +175,90 @@ private func reverseLinkedList<T>(_ head: inout LinkedList<T>?) -> LinkedList<T>
     }
     return prev
 }
+
+// MARK: - Problem Challenge 2: Rearrange a LinkedList (Medium)
+/*
+ Given the head of a Singly LinkedList, write a method to modify the LinkedList such that the nodes from the second half of the LinkedList are inserted alternately to the nodes from the first half in reverse order. So if the LinkedList has nodes 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null, your method should return 1 -> 6 -> 2 -> 5 -> 3 -> 4 -> null.
+
+ Your algorithm should not use any extra space and the input LinkedList should be modified in-place.
+ */
+// Time O(N), Space O(1)
+func reorder<T>(_ head: inout LinkedList<T>?) {
+    if head == nil || head?.next == nil { return }
+    
+    var middleNode = getMiddleNode(in: head)
+    var headSecondHalf = reverseLinkedList(&middleNode)
+    var headFirstHalf = head
+    // Rearrange in alternate order. First we update the point from the first half to point to an item in the second half, then we update the second half to point to an item in the first half and continue.
+    while headFirstHalf != nil && headSecondHalf != nil {
+        var temp = headFirstHalf?.next
+        headFirstHalf?.next = headSecondHalf
+        headFirstHalf = temp
+        
+        temp = headSecondHalf?.next
+        headSecondHalf?.next = headFirstHalf
+        headSecondHalf = temp
+    }
+    
+    // Set the next of the last node to nil in case the previous loop stopped because headSecondHalf.
+    if headFirstHalf != nil {
+        headFirstHalf?.next = nil
+    }
+}
+
+// Problem Challenge 3: Cycle in a Circular Array (Hard)
+/*
+ We are given an array containing positive and negative numbers. Suppose the array contains a number ‘M’ at a particular index. Now, if ‘M’ is positive we will move forward ‘M’ indices and if ‘M’ is negative move backwards ‘M’ indices. You should assume that the array is circular which means two things:
+
+ 1) If, while moving forward, we reach the end of the array, we will jump to the first element to continue the movement. 
+ 2) If, while moving backward, we reach the beginning of the array, we will jump to the last element to continue the movement.
+ 
+ Write a method to determine if the array has a cycle. The cycle should have more than one element and should follow one direction which means the cycle should not contain both forward and backward movements.
+ */
+// Uses 2 pointers on the indexes. For every number, we will check if there is a loop by running a loop and looking if there are any. If not, then continue to the next number. 
+// Time O(N^2), Space O(1)
+func doesArrayHaveCycle(_ nums: [Int]) -> Bool {
+    
+    for i in 0..<nums.endIndex {
+        let isForward = nums[i] >= 0
+        var slowIndex = i
+        var fastIndex = i
+        // if either become -1, this means we can't find a cycle for this number; continue with the other numbers.
+        while true {
+            // Move on step for the slow one.
+            slowIndex = findNextIndex(in: nums, isForward: isForward, currentIndex: slowIndex)
+            fastIndex = findNextIndex(in: nums, isForward: isForward, currentIndex: fastIndex)
+            // Move an additional step for the fast index.
+            if fastIndex != -1 {
+                fastIndex = findNextIndex(in: nums, isForward: isForward, currentIndex: fastIndex)
+            }
+            // -1 if no cycles or a single cycle found.
+            if slowIndex == -1 || fastIndex == -1 || slowIndex == fastIndex {
+                break
+            }
+        }
+        
+        // They eventually met up when both were not -1, which means there's a cycle.
+        if slowIndex != -1 && slowIndex == fastIndex {
+            return true
+        }
+    }
+    
+    return false
+}
+
+private func findNextIndex(in nums: [Int], isForward: Bool, currentIndex: Int) -> Int {
+    let direction = nums[currentIndex] >= 0
+    if isForward != direction {
+        return -1 // Direction has changed, so stop. Only a single direction is allowed.
+    }
+    // Jump by the current number. We use mod to ensure that the index is only within the bounds of the array. This is the same as if it wrapped around after passing the end.
+    var nextIndex = (currentIndex + nums[currentIndex]) % nums.count
+    if nextIndex < 0 {
+        nextIndex += nums.count // Wrap around for negative numbers.
+    }
+    if nextIndex == currentIndex {
+        nextIndex = -1 // One element cycle, return -1 since it passed around to the same index it was just in.
+    }
+    return nextIndex
+}
