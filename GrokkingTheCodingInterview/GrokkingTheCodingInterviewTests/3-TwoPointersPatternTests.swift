@@ -118,3 +118,63 @@ class MakeSortedSquaresTests: XCTestCase {
         XCTAssertEqual(makeSortedSquares(from: list), result)
     }
 }
+
+// MARK: - // MARK: - Triplet Sum Close to Target (Medium)
+class TripletsWithZeroSumTests: XCTestCase {
+    func test1() {
+        let input = [-3, 0, 1, 2, -1, 1, -2]
+        let output = [[-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]]
+        XCTAssertEqual(tripletsWithZeroSum(in: input), output)
+    }
+    
+    func test2() {
+        let input = [-5, 2, -1, -2, 3]
+        let output = [[-5, 2, 3], [-2, -1, 3]]
+        XCTAssertEqual(tripletsWithZeroSum(in: input), output)
+    }
+}
+
+// MARK: - Triplet Sum Close to Target (Medium)
+class TripletSumCloseToTargetTests: XCTestCase {
+    func test1() {
+        let input = [-2, 0, 1, 2]
+        let targetSum = 2
+        let output = 1
+        XCTAssertEqual(tripletSumCloseToTarget(in: input, targetSum: targetSum), output)
+    }
+    
+    func test2() {
+        let input = [-3, -1, 1, 2]
+        let targetSum = 1
+        let output = 0
+        XCTAssertEqual(tripletSumCloseToTarget(in: input, targetSum: targetSum), output)
+    }
+    
+    func test3() {
+        let input = [1, 0, 1, 1]
+        let targetSum = 100
+        let output = 3
+        XCTAssertEqual(tripletSumCloseToTarget(in: input, targetSum: targetSum), output)
+    }
+    
+    func test4() {
+        let input = [Int]()
+        let targetSum = 1
+        let output = Int.max
+        XCTAssertEqual(tripletSumCloseToTarget(in: input, targetSum: targetSum), output)
+    }
+    
+    func test5() {
+        let input = [20, 10]
+        let targetSum = 50
+        let output = Int.max
+        XCTAssertEqual(tripletSumCloseToTarget(in: input, targetSum: targetSum), output)
+    }
+    
+    func test6() {
+        let input = [20, 10, 5]
+        let targetSum = 50
+        let output = 35
+        XCTAssertEqual(tripletSumCloseToTarget(in: input, targetSum: targetSum), output)
+    }
+}
