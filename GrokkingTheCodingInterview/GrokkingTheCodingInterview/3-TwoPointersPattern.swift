@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import DequeModule
+
 /*
  The two pointer approach uses 2 pointers in a list and determines whether to move one up or move one down. One way is to have a pointer at the start and end. Another way is to have a pointer loop through the list and have 1 pointer slowly change position.
  */
@@ -181,6 +183,7 @@ func tripletSumCloseToTarget(in list: [Int], targetSum: Int) -> Int {
 /*
  Given an array arr of unsorted numbers and a target sum, count all triplets in it such that arr[i] + arr[j] + arr[k] < target where i, j, and k are three different indices. Write a function to return the count of such triplets.
  */
+// Sorts the list first, and loops through the array with the first index. Then, do another loop using that index as the starting point to search for the other 2 indices that adds up to less than the targetSum. The targetSum is the target minus the current value at index i. This is because it makes searching easier instead of having to search for 3 values, the while loop only needs to search for 2 values.
 // Time O(N * log N + n^2), Space O(N)
 func tripletWithSmallerSum(in list: [Int], targetSum: Int) -> Int {
     guard list.count > 2 else { return 0 }
@@ -243,4 +246,33 @@ private func searchPair(in list: [Int], targetSum: Int, currentIndex: Int, tripl
             rightIndex -= 1 // We need a pair with a smaller sum.
         }
     }
+}
+
+// MARK: - Subarrays with Product Less than a Target (Medium)
+/*
+ Given an array with positive numbers and a positive target number, find all of its contiguous subarrays whose product is less than the target number.
+ */
+// Utilizies the sliding window and two pointers approach. The sliding window is used because we cannot sort the list, and it will be used to loop through each value in the list. The start of the window is used to shrink it if the product becomes too high. 
+// Time O(N^3), Space O(N^3)
+func findSubarraysLessThanTarget(target: Int, in list: [Int]) -> [[Int]] {
+    var result = [[Int]]()
+    var product = 1
+    var leftIndex = 0
+    
+    for rightIndex in 0..<list.endIndex {
+        product *= list[rightIndex]
+        // If the product is too high, keep dividing it by the next number from the start of the window until we get a valid product.
+        while product >= target && leftIndex < list.count {
+            product /= list[leftIndex]
+            leftIndex += 1
+        }
+        
+        // Since the product of all numbers from left to right is less than the target, then all subarrays from left to right will have a product less than the target too. To avoid duplicates, we will start with a subarray containing only the list[rightIndex] and extend it.
+        var tempList = Deque<Int>()
+        for i in stride(from: rightIndex, to: leftIndex - 1, by: -1) {
+            tempList.prepend(list[i])
+            result.append(Array(tempList))
+        }
+    }
+    return result
 }

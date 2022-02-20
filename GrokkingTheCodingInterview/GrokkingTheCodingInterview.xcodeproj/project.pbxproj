@@ -12,6 +12,7 @@
 		E043545E27BD34BF00CAC1BA /* LinkedListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E043545D27BD34BF00CAC1BA /* LinkedListNode.swift */; };
 		E056B03027BB493300E8231F /* 3-TwoPointersPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E056B02F27BB493300E8231F /* 3-TwoPointersPattern.swift */; };
 		E056B03227BB497500E8231F /* 3-TwoPointersPatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E056B03127BB497500E8231F /* 3-TwoPointersPatternTests.swift */; };
+		E088CA4A27C29A000086831E /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = E088CA4927C29A000086831E /* DequeModule */; };
 		E0B0661227AF344700D2542E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0661127AF344700D2542E /* AppDelegate.swift */; };
 		E0B0661427AF344700D2542E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0661327AF344700D2542E /* SceneDelegate.swift */; };
 		E0B0661627AF344700D2542E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0661527AF344700D2542E /* ViewController.swift */; };
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E088CA4A27C29A000086831E /* DequeModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +149,9 @@
 			dependencies = (
 			);
 			name = GrokkingTheCodingInterview;
+			packageProductDependencies = (
+				E088CA4927C29A000086831E /* DequeModule */,
+			);
 			productName = GrokkingTheCodingInterview;
 			productReference = E0B0660E27AF344700D2542E /* GrokkingTheCodingInterview.app */;
 			productType = "com.apple.product-type.application";
@@ -197,6 +202,9 @@
 				Base,
 			);
 			mainGroup = E0B0660527AF344700D2542E;
+			packageReferences = (
+				E088CA4827C29A000086831E /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = E0B0660F27AF344700D2542E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -531,6 +539,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E088CA4827C29A000086831E /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E088CA4927C29A000086831E /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E088CA4827C29A000086831E /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E0B0660627AF344700D2542E /* Project object */;
 }

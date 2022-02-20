@@ -209,3 +209,34 @@ class TripletWithSmallerSumTests: XCTestCase {
         XCTAssertEqual(tripletsWithSmallerSum(in: input, targetSum: target), output)
     }
 }
+
+// MARK: - Subarrays with Product Less than a Target (Medium)
+class FindSubarraysLessThanTargetTests: XCTestCase {
+    func test1() {
+        let input = [2, 5, 3, 10]
+        let target = 30
+        let output = [[2], [5], [2, 5], [3], [5, 3], [10]]
+        XCTAssertEqual(findSubarraysLessThanTarget(target: target, in: input), output)
+    }
+    
+    func test2() {
+        let input = [8, 2, 6, 5]
+        let target = 50
+        let output = [[8], [2], [8, 2], [6], [2, 6], [5], [6, 5]]
+        XCTAssertEqual(findSubarraysLessThanTarget(target: target, in: input), output)
+    }
+    
+    func test3() {
+        let input = [2, 3, 4]
+        let target = 10
+        let output = [[2], [3], [2, 3], [4]]
+        XCTAssertEqual(findSubarraysLessThanTarget(target: target, in: input), output)
+    }
+    
+    func test4() {
+        let input = [5]
+        let target = 2
+        let output = [[Int]]()
+        XCTAssertEqual(findSubarraysLessThanTarget(target: target, in: input), output)
+    }
+}
