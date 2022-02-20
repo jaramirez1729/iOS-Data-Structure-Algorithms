@@ -163,11 +163,9 @@ func tripletSumCloseToTarget(in list: [Int], targetSum: Int) -> Int {
             // We have a new smallest difference.
             let isNewDiff = abs(targetDiff) < abs(smallestDiff)
             // Handles the smallest sum when we have more than one solution.
-            let ifNoAbsoluteDiff = abs(targetDiff) == abs(smallestDiff)
-            let isBigDiff = targetDiff > smallestDiff 
-            if isNewDiff || ifNoAbsoluteDiff && isBigDiff {
-                smallestDiff = targetDiff
-            }
+            let ifNoAbsoluteDiff = (abs(targetDiff) == abs(smallestDiff) && targetDiff > smallestDiff)
+            // Update the smallest differerence with the new lowest target difference.
+            if isNewDiff || ifNoAbsoluteDiff { smallestDiff = targetDiff }
             
             if targetDiff > 0 {
                 leftIndex += 1 // We need a triplet with a bigger sum.
