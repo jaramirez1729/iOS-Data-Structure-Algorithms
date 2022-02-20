@@ -276,3 +276,31 @@ func findSubarraysLessThanTarget(target: Int, in list: [Int]) -> [[Int]] {
     }
     return result
 }
+
+// MARK: - Dutch National Flag Problem (Medium)
+/*
+ Given an array containing 0s, 1s and 2s, sort the array in-place. You should treat numbers of the array as objects, hence, we can’t count 0s, 1s, and 2s to recreate the array.
+
+ The flag of the Netherlands consists of three colors: red, white and blue; and since our input array also consists of three different numbers that is why it is called Dutch National Flag problem.
+ */
+// Moves all 0s to the left, and all 2s to the right. The 1s will just end up in the middle unchanged.
+// O(N), Space O(1)
+func dutchFlagSort(_ list: inout [Int]) {
+    // All elements less than lowPointer are 0, and all elements over highPointer are 2.
+    var lowPointer = 0
+    var highPointer = list.endIndex - 1
+    
+    var i = 0
+    while i <= highPointer {
+        if list[i] == 0 { // Swap at i with the lowPointer position.
+            list.swapAt(i, lowPointer)
+            i += 1
+            lowPointer += 1
+        } else if list[i] == 1 { // Do nothing, keep going.
+            i += 1
+        } else { // Swap at i with the highPointer position.
+            list.swapAt(i, highPointer)
+            highPointer -= 1
+        }
+    }
+}

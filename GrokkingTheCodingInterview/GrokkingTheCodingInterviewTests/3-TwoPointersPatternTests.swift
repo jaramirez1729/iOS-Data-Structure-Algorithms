@@ -240,3 +240,20 @@ class FindSubarraysLessThanTargetTests: XCTestCase {
         XCTAssertEqual(findSubarraysLessThanTarget(target: target, in: input), output)
     }
 }
+
+// MARK: - Dutch National Flag Problem (Medium)
+class DutchFlagSortTests: XCTestCase {
+    func test1() {
+        var input = [1, 0, 2, 1, 0]
+        let output = [0, 0, 1, 1, 2]
+        dutchFlagSort(&input)
+        XCTAssertEqual(input, output)
+    }
+    
+    func test2() {
+        var input = [2, 2, 0, 1, 2, 0]
+        let output = [0, 0, 1, 2, 2, 2]
+        dutchFlagSort(&input)
+        XCTAssertEqual(input, output)
+    }
+}
