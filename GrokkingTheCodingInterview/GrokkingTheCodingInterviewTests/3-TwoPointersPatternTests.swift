@@ -49,39 +49,40 @@ class PairWithTargetSumTests: XCTestCase {
 // MARK: - Remove Duplicates (Easy)
 class RemoveDuplicatesTests: XCTestCase {
     func test1() {
-        let list = [2, 3, 3, 3, 6, 9, 9]
+        var list = [2, 3, 3, 3, 6, 9, 9]
         let result = 4
-        XCTAssertEqual(removeDuplicates(in: list), result)
+        XCTAssertEqual(removeDuplicates(in: &list), result)
     }
     
     func test2() {
-        let list = [2, 2, 2, 11]
+        var list = [2, 2, 2, 11]
         let result = 2
-        XCTAssertEqual(removeDuplicates(in: list), result)
+        XCTAssertEqual(removeDuplicates(in: &list), result)
     }
     
     func test3() {
-        let list = [11]
+        var list = [11]
         let result = 1
-        XCTAssertEqual(removeDuplicates(in: list), result)
+        XCTAssertEqual(removeDuplicates(in: &list), result)
     }
     
     func test4() {
-        let list = [Int]()
+        var list = [Int]()
         let result = 0
-        XCTAssertEqual(removeDuplicates(in: list), result)
+        XCTAssertEqual(removeDuplicates(in: &list), result)
     }
     
+    // MARK: Remove Key Duplicates (Easy)
     func testA() {
-        let list = [3, 2, 3, 6, 3, 10, 9, 3]
+        var list = [3, 2, 3, 6, 3, 10, 9, 3]
         let key = 3
-        XCTAssertEqual(removeDuplicates(in: list, of: key), 4)
+        XCTAssertEqual(removeDuplicates(in: &list, of: key), 4)
     }
     
     func testB() {
-        let list = [2, 11, 2, 2, 1]
+        var list = [2, 11, 2, 2, 1]
         let key = 2
-        XCTAssertEqual(removeDuplicates(in: list, of: key), 2)
+        XCTAssertEqual(removeDuplicates(in: &list, of: key), 2)
     }
 }
 

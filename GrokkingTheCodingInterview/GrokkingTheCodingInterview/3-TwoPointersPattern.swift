@@ -35,17 +35,16 @@ func pairWithTargetSum(_ sum: Int, in list: [Int]) -> [Int] {
  Given an array of sorted numbers, remove all duplicates from it. You should not use any extra space; after removing the duplicates in-place return the length of the subarray that has no duplicate in it.
  */
 // Uses a pointer to go down the list, and another pointer to keep the position of the location to replace the duplicate.
-// Time O(N), Space O(N). Space would be O(1) if we used inout for the argument to make it mutable.
-func removeDuplicates(in list: [Int]) -> Int {
+// Time O(N), Space O(1)
+func removeDuplicates(in list: inout [Int]) -> Int {
     guard !list.isEmpty else { return 0 }
     // Keeps track of where the list with no duplicates ends. It also keeps track of where to put the next number found that isn't in the list yet.
     var nextNonDuplicatePointer = 1
-    var mList = list
-    for i in 1..<mList.endIndex {
+    for i in 1..<list.endIndex {
         // Checks if the next number in the list matches the last one already in the list.
-        if mList[nextNonDuplicatePointer - 1] != mList[i] {
+        if list[nextNonDuplicatePointer - 1] != list[i] {
             // We are not actually swapping, just copying the unrepeated number to the list.
-            mList[nextNonDuplicatePointer] = list[i]
+            list[nextNonDuplicatePointer] = list[i]
             nextNonDuplicatePointer += 1
         }
     }
@@ -54,16 +53,15 @@ func removeDuplicates(in list: [Int]) -> Int {
 
 /* A similar question is: Given an unsorted array of numbers and a target ‘key’, remove all instances of ‘key’ in-place and return the new length of the array.
  */
-// Time O(N), Space O(N) (Space O(1) using inout).
-func removeDuplicates(in list: [Int], of key: Int) -> Int {
+// Time O(N), Space O(1)
+func removeDuplicates(in list: inout [Int], of key: Int) -> Int {
     guard !list.isEmpty else { return 0 }
     
     var nextElementIndex = 0
-    var mList = list
-    for i in 0..<mList.endIndex {
+    for i in 0..<list.endIndex {
         // If the current number does not match the one we want to remove, we will insert it at the last location where the key was found, and thus override the number. The nextElementIndex ending value will contain the size of the list without the key values.
-        if key != mList[i] {
-            mList[nextElementIndex] = list[i]
+        if key != list[i] {
+            list[nextElementIndex] = list[i]
             nextElementIndex += 1
         }
     }
@@ -80,7 +78,7 @@ func makeSortedSquares(from list: [Int]) -> [Int] {
     guard !list.isEmpty else { return [] }
     
     let listSize = list.count
-    // Prefill the array with zeroes so we can insert large numbers first going to smallest.
+    // Prefill the array with zeroes so we can insert large numbers first going to smallest; also to avoid any invalid index errors.
     var squares = Array(repeating: 0, count: listSize)
     // The pointer that goes down from the top of the squares list. Used to determine the current position of where to put the next smallest square number.
     var highestSquareIndex = listSize - 1
@@ -101,3 +99,13 @@ func makeSortedSquares(from list: [Int]) -> [Int] {
     }
     return squares
 }
+
+// MARK: - // MARK: - Triplet Sum Close to Target (Medium)
+/*
+ Given an array of unsorted numbers, find all unique triplets in it that add up to zero.
+ */
+
+// MARK: - Triplet Sum Close to Target (Medium)
+/*
+ Given an array of unsorted numbers and a target number, find a triplet in the array whose sum is as close to the target number as possible, return the sum of the triplet. If there are more than one such triplet, return the sum of the triplet with the smallest sum.
+ */
