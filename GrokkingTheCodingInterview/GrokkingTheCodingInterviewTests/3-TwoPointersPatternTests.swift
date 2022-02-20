@@ -178,3 +178,34 @@ class TripletSumCloseToTargetTests: XCTestCase {
         XCTAssertEqual(tripletSumCloseToTarget(in: input, targetSum: targetSum), output)
     }
 }
+
+// MARK: - Triplets with Smaller Sum (Medium)
+class TripletWithSmallerSumTests: XCTestCase {
+    func test1() {
+        let input = [-1, 0, 2, 3]
+        let target = 3
+        let output = 2
+        XCTAssertEqual(tripletWithSmallerSum(in: input, targetSum: target), output)
+    }
+    
+    func test2() {
+        let input = [-1, 4, 2, 1, 3]
+        let target = 5
+        let output = 4
+        XCTAssertEqual(tripletWithSmallerSum(in: input, targetSum: target), output)
+    }
+    
+    func testA() {
+        let input = [-1, 0, 2, 3]
+        let target = 3
+        let output = [[-1, 0, 3], [-1, 0, 2]]
+        XCTAssertEqual(tripletsWithSmallerSum(in: input, targetSum: target), output)
+    }
+    
+    func testB() {
+        let input = [-1, 4, 2, 1, 3]
+        let target = 5
+        let output = [[-1, 1, 4], [-1, 1, 3], [-1, 1, 2], [-1, 2, 3]]
+        XCTAssertEqual(tripletsWithSmallerSum(in: input, targetSum: target), output)
+    }
+}

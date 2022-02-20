@@ -176,3 +176,71 @@ func tripletSumCloseToTarget(in list: [Int], targetSum: Int) -> Int {
     }
     return targetSum - smallestDiff
 }
+
+// MARK: - Triplets with Smaller Sum (Medium)
+/*
+ Given an array arr of unsorted numbers and a target sum, count all triplets in it such that arr[i] + arr[j] + arr[k] < target where i, j, and k are three different indices. Write a function to return the count of such triplets.
+ */
+// Time O(N * log N + n^2), Space O(N)
+func tripletWithSmallerSum(in list: [Int], targetSum: Int) -> Int {
+    guard list.count > 2 else { return 0 }
+    
+    let sortedList = list.sorted()
+    var count = 0
+    
+    for i in 0..<sortedList.endIndex {
+        // targetSum - sortedList[i] gives us a difference. So we only need to find 2 other indices
+        // instead of 3 in the searchPair method since one of them is index i.
+        count += searchPair(in: sortedList, targetSum: targetSum - sortedList[i], currentIndex: i)
+    }
+    return count
+}
+
+private func searchPair(in list: [Int], targetSum: Int, currentIndex: Int) -> Int {
+    var count = 0
+    var leftIndex = currentIndex + 1 // Since currentIndex is already our first index for the triplet, if valid.
+    var rightIndex = list.endIndex - 1
+    
+    while leftIndex < rightIndex {
+        if list[leftIndex] + list[rightIndex] < targetSum { // Found the triplet.
+            // It's already gauranteed that list[leftIndex] + list[rightIndex] is less than the target sum, that means that any values between them will also be smaller than the target sum.
+            count += rightIndex - leftIndex
+            leftIndex += 1 // Try the next index.
+        } else {
+            rightIndex -= 1 // We need a pair with a smaller sum.
+        }
+    }
+    
+    return count
+}
+
+/* A similar question is: Write a function to return the list of all such triplets instead of the count. How will the time complexity change in this case?
+ */
+// Time O(N * log N + N^3), Space O(N)
+func tripletsWithSmallerSum(in list: [Int], targetSum: Int) -> [[Int]] {
+    guard list.count > 2 else { return [] }
+    
+    let sortedList = list.sorted()
+    var triplets = [[Int]]()
+
+    for i in 0..<sortedList.endIndex {
+        searchPair(in: sortedList, targetSum: targetSum - sortedList[i], currentIndex: i, triplets: &triplets)
+    }
+    return triplets
+}
+
+private func searchPair(in list: [Int], targetSum: Int, currentIndex: Int, triplets: inout [[Int]]) {
+    var leftIndex = currentIndex + 1 // Since currentIndex is already our first index for the triplet, if valid.
+    var rightIndex = list.endIndex - 1
+    
+    while leftIndex < rightIndex {
+        if list[leftIndex] + list[rightIndex] < targetSum { // Found the triplet.
+            for i in stride(from: rightIndex, to: leftIndex, by: -1) {
+                triplets.append([list[currentIndex], list[leftIndex], list[i]])
+            }
+            leftIndex += 1 // Try the next index.
+        } else {
+            rightIndex -= 1 // We need a pair with a smaller sum.
+        }
+    }
+}
