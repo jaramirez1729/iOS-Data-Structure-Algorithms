@@ -257,3 +257,95 @@ class DutchFlagSortTests: XCTestCase {
         XCTAssertEqual(input, output)
     }
 }
+
+// MARK: - Problem Challenge 1: Quadruple Sum to Target (Medium)
+class QuadrupletsEqualToSumTests: XCTestCase {
+    func test1() {
+        let input = [4, 1, 2, -1, 1, -3]
+        let target = 1
+        let output = [[-3, -1, 1, 4], [-3, 1, 1, 2]]
+        XCTAssertEqual(quadrupletsEqualToSum(sum: target, in: input), output)
+    }
+    
+    func test2() {
+        let input = [2, 0, -1, 1, -2, 2]
+        let target = 2
+        let output = [[-2, 0, 2, 2], [-1, 0, 1, 2]]
+        XCTAssertEqual(quadrupletsEqualToSum(sum: target, in: input), output)
+    }
+    
+    func test3() {
+        let input = [2, 0, -1]
+        let target = 2
+        let output = [[Int]]()
+        XCTAssertEqual(quadrupletsEqualToSum(sum: target, in: input), output)
+    }
+    
+    func test4() {
+        let input = [1, 2, 3, 4]
+        let target = 11
+        let output = [[Int]]()
+        XCTAssertEqual(quadrupletsEqualToSum(sum: target, in: input), output)
+    }
+    
+    func test5() {
+        let input = [1, 4]
+        let target = 5
+        let output = [[Int]]()
+        XCTAssertEqual(quadrupletsEqualToSum(sum: target, in: input), output)
+    }
+}
+
+// MARK: - Problem Challenge 2: Comparing Strings containing Backspaces (Medium)
+class BackspaceCompareTests: XCTestCase {
+    func test1() {
+        let str1 = "xy#z"
+        let str2 = "xzz#"
+        XCTAssertTrue(backspaceCompare(firstStr: str1, with: str2))
+    }
+    
+    func test2() {
+        let str1 = "xy#z"
+        let str2 = "xyz#"
+        XCTAssertFalse(backspaceCompare(firstStr: str1, with: str2))
+    }
+    
+    func test3() {
+        let str1 = "xp#"
+        let str2 = "xyz##"
+        XCTAssertTrue(backspaceCompare(firstStr: str1, with: str2))
+    }
+    
+    func test4() {
+        let str1 = "xywrrmp"
+        let str2 = "xywrrmu#p"
+        XCTAssertTrue(backspaceCompare(firstStr: str1, with: str2))
+    }
+}
+
+// MARK: - Problem Challenge 3: Minimum Window Sort (Medium)
+class ShortestWindowSortTests: XCTestCase {
+    func test1() {
+        let input = [1, 2, 5, 3, 7, 10, 9, 12]
+        let output = 5
+        XCTAssertEqual(ShortestWindowSort(for: input), output)
+    }
+    
+    func test2() {
+        let input = [1, 3, 2, 0, -1, 7, 10]
+        let output = 5
+        XCTAssertEqual(ShortestWindowSort(for: input), output)
+    }
+    
+    func test3() {
+        let input = [1, 2, 3]
+        let output = 0
+        XCTAssertEqual(ShortestWindowSort(for: input), output)
+    }
+    
+    func test4() {
+        let input = [3, 2, 1]
+        let output = 3
+        XCTAssertEqual(ShortestWindowSort(for: input), output)
+    }
+}

@@ -7,9 +7,10 @@
 
 import Foundation
 import DequeModule
+import XCTest
 
 /*
- The two pointer approach uses 2 pointers in a list. There are various ways to use them. One case is to have one at the end and one at the start. Another case is to have 1 traverse the list and another keep a reference of a certain position to do something with it.
+ The two pointer approach uses 2 pointers in a list. There are various ways to use them. One case is to have one at the end and one at the start. Another case is to have 1 traverse the list and another keep a reference of a certain position to do something with it. Another case is to use a pointer in 2 different collection and compare each collection.
  */
 
 // MARK: - Pair with Target Sum (Easy)
@@ -308,4 +309,112 @@ func dutchFlagSort(_ list: inout [Int]) {
         }
         print(list)
     }
+}
+
+// MARK: - Problem Challenge 1: Quadruple Sum to Target (Medium)
+/*
+ Given an array of unsorted numbers and a target number, find all unique quadruplets in it, whose sum is equal to the target number.
+ */
+// Instead of having 4 nested loops, it has a nested loop that uses the 2 pointer approach to find 2 other numbers that add up to the given sum. This reduces the time from O^4 to O^3.
+// Time O(N * log N + N^3), Space O(N)
+func quadrupletsEqualToSum(sum: Int, in list: [Int]) -> [[Int]] {
+    guard list.count > 3 else { return [] }
+    
+    let sortedList = list.sorted()
+    var quadruplets = [[Int]]()
+    
+    for i in 0..<sortedList.endIndex - 3 {
+        // Skip if it's the same number as before to avoid duplicate quadruplets.
+        if i > 0 && sortedList[i] == sortedList[i - 1] { continue }
+        
+        for j in (i + 1)..<sortedList.endIndex - 2 {
+            // Skip if it's the same number as before to avoid duplicate quadruplets.
+            if j > i + 1 && sortedList[j] == sortedList[j - 1] { continue }
+            
+            // Now that we have an i and j, we only need to look for 2 other values that add up.
+            searchPair(in: sortedList, targetSum: sum, firstIndex: i, secondIndex: j, quadruplets: &quadruplets)
+        }
+    }
+    return quadruplets
+}
+
+private func searchPair(in list: [Int], targetSum: Int, firstIndex: Int, secondIndex: Int, quadruplets: inout [[Int]]) {
+    var leftIndex = secondIndex + 1
+    var rightIndex = list.endIndex - 1
+    
+    while leftIndex < rightIndex {
+        let sum = list[firstIndex] + list[secondIndex] + list[leftIndex] + list[rightIndex]
+        if sum == targetSum { // Found a quadruplet.
+            quadruplets.append([list[firstIndex], list[secondIndex], list[leftIndex], list[rightIndex]])
+            leftIndex += 1
+            rightIndex -= 1
+            
+            while leftIndex < rightIndex && list[leftIndex] == list[leftIndex - 1] {
+                leftIndex += 1 // Skip same elements from the left to avoid duplicatea.
+            }
+            while leftIndex < rightIndex && list[rightIndex] == list[rightIndex + 1] {
+                rightIndex -= 1 // Skip same elements from the right to avoid duplicatea.
+            }
+        } else if sum < targetSum {
+            leftIndex += 1 // We need a pair with a bigger sum.
+        } else {
+            rightIndex -= 1 // We need a pair with a smaller sum.
+        }
+    }
+}
+
+// MARK: - Problem Challenge 2: Comparing Strings containing Backspaces (Medium) 
+/*
+ Given two strings containing backspaces (identified by the character ‘#’), check if the two strings are equal.
+ */
+// Uses a 2-pointer approach for each string. 
+// Time O(M + N), Space O(1)
+func backspaceCompare(firstStr: String, with secondStr: String) -> Bool {
+    // Looping both strings from the end because of the backspaces.
+    var firstIndex = firstStr.count - 1
+    var secondIndex = secondStr.count - 1
+    
+    while firstIndex >= 0 || secondIndex >= 0 {
+        // Get the next valid index that is a character after the backspaces have been applied.
+        let firstNextCharIndex = getNextValidCharIndex(in: firstStr, index: firstIndex)
+        let secondNextCharIndex = getNextValidCharIndex(in: secondStr, index: secondIndex)
+        
+        // Reached the end of both strings.
+        if firstNextCharIndex < 0 && secondNextCharIndex < 0 { return true }
+        // Reached the end of one of the strings so we already know both strings aren't the same.
+        if firstNextCharIndex < 0 || secondNextCharIndex < 0 { return false }
+        // Check if both characters are the same.
+        if firstStr[firstStr.index(firstStr.startIndex, offsetBy: firstNextCharIndex)] != secondStr[secondStr.index(secondStr.startIndex, offsetBy: secondNextCharIndex)] {
+            return false
+        }
+        // Put the pointers at the next position after the valid character. 
+        firstIndex = firstNextCharIndex - 1
+        secondIndex = secondNextCharIndex - 1
+    }
+    return true
+}
+
+private func getNextValidCharIndex(in str: String, index: Int) -> Int {
+    var backspaceCount = 0
+    var nextIndex = index
+    
+    while nextIndex >= 0 {
+        if str[str.index(str.startIndex, offsetBy: nextIndex)] == "#" {
+            backspaceCount += 1 // Found a backspace character.
+        } else if backspaceCount > 0 {
+            backspaceCount -= 1 // A non-backspace character.
+        } else {
+            break
+        }
+        nextIndex -= 1 // Skip a backspace or a valid character.
+    }
+    return nextIndex
+}
+
+// MARK: - Problem Challenge 3: Minimum Window Sort (Medium)
+/*
+ Given an array, find the length of the smallest subarray in it which when sorted will sort the whole array.
+ */
+func ShortestWindowSort(for list: [Int]) -> Int {
+    return 0
 }
