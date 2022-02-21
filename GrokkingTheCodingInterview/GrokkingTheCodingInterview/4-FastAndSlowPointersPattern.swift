@@ -32,7 +32,7 @@ func hasCycle<T>(_ head: LinkedList<T>?) -> Bool {
 /* Similar Problem #1:
  Given the head of a LinkedList with a cycle, find the length of the cycle.
  */
-// Use Clyde's Cycle Finding algorithm. When the fast pointer has reached the slow pointer, start a new pointer from the position they met and start counting until it finds the slow pointer again.
+// Use Clyde's Cycle Finding Algorithm first. After both pointers have met, then start a new traversal from that point while couting the nodes. Stop when it has reached the slowPointer again and that is the length.
 // Time O(N), Space O(1)
 func getCycleLenght<T>(_ head: LinkedList<T>?) -> Int {
     var slowPointer = head
@@ -47,6 +47,7 @@ func getCycleLenght<T>(_ head: LinkedList<T>?) -> Int {
     return 0
 }
 
+// Simply starts counting after the current node until it reaches it again.
 private func calculateCycleLenght<T>(_ node: LinkedList<T>?) -> Int {
     var current = node
     var lenght = 0
@@ -63,6 +64,7 @@ private func calculateCycleLenght<T>(_ node: LinkedList<T>?) -> Int {
 
  If the total number of nodes in the LinkedList is even, return the second middle node.
  */
+// Since the fast pointer moves twice as fast, when it reaches the end of the list, the slow pointer will be left in the middle of the list.
 // Time O(N), Space O(1)
 func getMiddleNode<T>(in head: LinkedList<T>?) -> LinkedList<T>? {
     var slowPointer = head
@@ -78,7 +80,7 @@ func getMiddleNode<T>(in head: LinkedList<T>?) -> LinkedList<T>? {
 /*
  Given the head of a Singly LinkedList that contains a cycle, write a function to find the starting node of the cycle.
  */
-// Move a second pointer N number of times forward where N is the length of the cycle. Then, move the first and second pointers by 1 and eventually they'll meet up at the starting cycle node.
+// First, get the length of the cycle. Move a second pointer N number of times forward where N is the length of the cycle. Then, move the first and second pointers by 1 and eventually they'll meet up at the starting cycle node.
 // Time O(N), Space O(1)
 func getCycleStartNode<T>(_ head: LinkedList<T>?) -> LinkedList<T>? {
     var length = getCycleLenght(head)
@@ -89,7 +91,7 @@ func getCycleStartNode<T>(_ head: LinkedList<T>?) -> LinkedList<T>? {
         secondPointer = secondPointer?.next
         length -= 1
     }
-    // Then move both pointers by 1 each time. Eventually, they will meet up at the start of the cycle node.
+    // Then move both pointers by 1 each time. Eventually, they will meet up at the start of the cycle node. This is because pointer2 will have completed a cycle.
     while firstPointer !== secondPointer {
         firstPointer = firstPointer?.next
         secondPointer = secondPointer?.next
@@ -103,7 +105,7 @@ func getCycleStartNode<T>(_ head: LinkedList<T>?) -> LinkedList<T>? {
  
  Write a function that determines if a number is happy or not.
  */
-// Uses 2 number "pointers" to calculate the square sum. One will move faster than the other one. They will eventually meet up at the same calculation, which means the faster one has completed the entire cycle of calculation already. When we leave the loop, we want to know if the slow pointer is stuck on 1 since it will remain there forever. If it did, then it's a happy number.
+// When realizing there is a cycle to observe, consider uses a slow and fast pointer approach. Uses 2 number "pointers" to calculate the square sum. One will move faster than the other one. They will eventually meet up at the same calculation, which means the faster one has completed the entire cycle of calculation already. When we leave the loop, we want to know if the slow pointer is stuck on 1 since it will remain there forever. If it did, then it's a happy number.
 // Time O(log N), Space O(1)
 func isHappyNumber(_ num: Int) -> Bool {
     var slowCalculation = num
@@ -138,7 +140,7 @@ private func findSquareSum(_ num: Int) -> Int {
 
  Your algorithm should use constant space and the input LinkedList should be in the original form once the algorithm is finished. The algorithm should have O(N) time complexity where ‘N’ is the number of nodes in the LinkedList.
  */
-// The algorithm reverses the 2nd half of the linked list, and then compares both halves value by value. After the comparisons, the 2nd half is reversed again to revert the original list back to how it was.
+// First, get the middle node. The algorithm reverses the 2nd half of the linked list, and then compares both halves value by value. After the comparisons, the 2nd half is reversed again to revert the original list back to how it was.
 // Time O(N), Space (1)
 func isPalindrome<T>(_ head: LinkedList<T>?) -> Bool {
     if head == nil || head?.next == nil { return true }

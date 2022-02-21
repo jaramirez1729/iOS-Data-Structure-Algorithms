@@ -9,7 +9,7 @@ import Foundation
 import DequeModule
 
 /*
- The two pointer approach uses 2 pointers in a list and determines whether to move one up or move one down. One way is to have a pointer at the start and end. Another way is to have a pointer loop through the list and have 1 pointer slowly change position.
+ The two pointer approach uses 2 pointers in a list. There are various ways to use them. One case is to have one at the end and one at the start. Another case is to have 1 traverse the list and another keep a reference of a certain position to do something with it.
  */
 
 // MARK: - Pair with Target Sum (Easy)
@@ -42,6 +42,7 @@ func removeDuplicates(in list: inout [Int]) -> Int {
     guard !list.isEmpty else { return 0 }
     // Keeps track of where the list with no duplicates ends. It also keeps track of where to put the next number found that isn't in the list yet.
     var nextNonDuplicatePointer = 1
+    
     for i in 1..<list.endIndex {
         // Checks if the next number in the list matches the last one already in the list.
         if list[nextNonDuplicatePointer - 1] != list[i] {
@@ -79,21 +80,23 @@ func removeDuplicates(in list: inout [Int], of key: Int) -> Int {
 func makeSortedSquares(from list: [Int]) -> [Int] {
     guard !list.isEmpty else { return [] }
     
-    let listSize = list.count
     // Prefill the array with zeroes so we can insert large numbers first going to smallest; also to avoid any invalid index errors.
+    let listSize = list.count
     var squares = Array(repeating: 0, count: listSize)
     // The pointer that goes down from the top of the squares list. Used to determine the current position of where to put the next smallest square number.
     var highestSquareIndex = listSize - 1
     var leftPointer = 0 // Start from the beginning of the list.
     var rightPointer = listSize - 1 // Start from the end of the list.
     
+    // Calculates square from both ends and determines which one to add next to the list. Since the list is already sorted, we know that the end result will be sorted already.
     while leftPointer <= rightPointer {
         let leftSquare = list[leftPointer] * list[leftPointer]
         let rightSquare = list[rightPointer] * list[rightPointer]
+        // If the square of the smaller number is larger, then put it at the right-most side of the list first.
         if leftSquare > rightSquare {
             squares[highestSquareIndex] = leftSquare
             leftPointer += 1
-        } else {
+        } else { // Same but if the square of the higher number is higher, put it at the right-most side of the list.
             squares[highestSquareIndex] = rightSquare
             rightPointer -= 1
         }
@@ -114,7 +117,7 @@ func tripletsWithZeroSum(in list: [Int]) -> [[Int]] {
     for i in 0..<sortedList.endIndex {
         // Skip and proceed if the next sum -X to check is the same as the previous answer.
         if i > 0 && sortedList[i] == sortedList[i - 1] { continue }
-        // The current number is the -X target, so we need to start looking for Y + Z an index after the current position.
+        // The current number is the "-X" target from the equation, so we need to start looking for Y + Z an index after the current position.
         searchPair(in: sortedList, targetSum: -sortedList[i], nextIndex: i + 1, triplets: &triplets)
     }
     return triplets
@@ -128,7 +131,7 @@ private func searchPair(in list: [Int], targetSum: Int, nextIndex: Int, triplets
     while leftIndex < rightIndex {
         let currentSum = list[leftIndex] + list[rightIndex]
         if currentSum == targetSum { // Found a triplet.
-            triplets.append([-targetSum, list[leftIndex], list[rightIndex]])
+            triplets.append([-targetSum, list[leftIndex], list[rightIndex]]) // -targetSum undoes the negative value we passed in.
             leftIndex += 1
             rightIndex -= 1
             // Skip same elements to avoid duplicates from both ends of the sorted list.
@@ -146,6 +149,7 @@ private func searchPair(in list: [Int], targetSum: Int, nextIndex: Int, triplets
 /*
  Given an array of unsorted numbers and a target number, find a triplet in the array whose sum is as close to the target number as possible, return the sum of the triplet. If there are more than one such triplet, return the sum of the triplet with the smallest sum.
  */
+// Similar to the previous problem: sort the list first. 
 // Time O(N * log N + N^2), Space O(N)
 func tripletSumCloseToTarget(in list: [Int], targetSum: Int) -> Int {
     guard list.count > 2 else { return Int.max }
@@ -153,7 +157,7 @@ func tripletSumCloseToTarget(in list: [Int], targetSum: Int) -> Int {
     let sortedList = list.sorted()
     var smallestDiff = Int.max
     
-    for i in 0..<sortedList.endIndex - 2 {
+    for i in 0..<sortedList.endIndex {
         var leftIndex = i + 1
         var rightIndex = sortedList.endIndex - 1
         while leftIndex < rightIndex {
@@ -302,5 +306,6 @@ func dutchFlagSort(_ list: inout [Int]) {
             list.swapAt(i, highPointer)
             highPointer -= 1
         }
+        print(list)
     }
 }

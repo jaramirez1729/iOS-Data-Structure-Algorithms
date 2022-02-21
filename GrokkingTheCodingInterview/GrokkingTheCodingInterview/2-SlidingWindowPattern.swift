@@ -14,7 +14,6 @@ import Foundation
 /*
  Given an array of positive numbers and a positive number k, find the maximum sum of any contiguous subarray of size k.
  */
-
 // Uses a sliding window of fixed size k. The window will have a total, and when it's time to move the window ahead, the last value is removed and the next value is added. This calculates the sum without having to do duplicate work.
 // O(N), O(1)
 func findMaxSumSubArray(in list: [Int], size k: Int) -> Int {
@@ -66,6 +65,7 @@ func findMinSumSubArray(in list: [Int], target s: Int) -> Int {
 /*
  Given a string, find the length of the longest substring in it with no more than K distinct characters.
  */
+// Uses a dictionary to keep a reference to the number of intances per character that has been encountered so far. Shirnk the window until there are only k unique characters and move a counter for every character that is removed from the window.
 // Time O(N), Space O(N)
 func FindLongestSubstring(in str: String, withDistinct k: Int) -> Int {
     var windowStartIndex = 0
@@ -158,8 +158,8 @@ func FindLongestDistinctSubstring(in str: String) -> Int {
 /*
  Given a string with lowercase letters only, if you are allowed to replace no more than ‘k’ letters with any letter, find the length of the longest substring having the same letters after replacement.
  */
-// Uses a dynamic sliding window. Keep track of the number of times characters appear. We will also record the character that repeats the most as we traverse the string. We only shrink the window if there are more tha k letters in the window because we cannot replace more than k characters.
-// Time O(N), Space O(1) assumming  26 character set, which means at most it would be O(26) ~= O(1).
+// Uses a dynamic sliding window. Keep track of the number of times characters appear. We will also record the character that repeats the most as we traverse the string. We only shrink the window if there are more than k letters in the window because we cannot replace more than k characters.
+// Time O(N), Space O(N)
 func findLongestReplacementSubstring(in str: String, replacements k: Int) -> Int {
     var windowStartIndex = 0
     var maxLength = 0
