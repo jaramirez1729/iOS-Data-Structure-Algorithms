@@ -425,6 +425,8 @@ func ShortestWindowSort(for list: [Int]) -> Int {
     // Find the first number out of sorting order from the end.
     while highIndex > 0 && list[highIndex] >= list[highIndex - 1] { highIndex -= 1 }
     
+    // Swift error if the range is not valid.
+    guard lowIndex <= highIndex else { return 0 }
     // The max and min of the subarray.
     let subarrayMax = list[lowIndex...highIndex].max()
     let subarrayMin = list[lowIndex...highIndex].min()
