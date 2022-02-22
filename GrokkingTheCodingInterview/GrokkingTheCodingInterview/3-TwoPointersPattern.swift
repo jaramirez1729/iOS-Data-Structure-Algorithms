@@ -7,7 +7,6 @@
 
 import Foundation
 import DequeModule
-import XCTest
 
 /*
  The two pointer approach uses 2 pointers in a list. There are various ways to use them. One case is to have one at the end and one at the start. Another case is to have 1 traverse the list and another keep a reference of a certain position to do something with it. Another case is to use a pointer in 2 different collection and compare each collection.
@@ -415,6 +414,27 @@ private func getNextValidCharIndex(in str: String, index: Int) -> Int {
 /*
  Given an array, find the length of the smallest subarray in it which when sorted will sort the whole array.
  */
+// Uses 2 pointers. One at the start and one at the end. It finds the first instances in which the numbers are not sorted from both ends. Then, it gets the maximum and minimum of the subarray in order to extend the pointers because there might 
+// Time O(N), Space O(1)
 func ShortestWindowSort(for list: [Int]) -> Int {
-    return 0
+    var lowIndex = 0
+    var highIndex = list.endIndex - 1
+    // Find the first number out of sorting order from the beginning.
+    while lowIndex < highIndex && list[lowIndex] <= list[lowIndex + 1] { lowIndex += 1 }
+    if lowIndex == highIndex { return 0 } // Then the array is already sorted.
+    // Find the first number out of sorting order from the end.
+    while highIndex > 0 && list[highIndex] >= list[highIndex - 1] { highIndex -= 1 }
+    
+    // The max and min of the subarray.
+    let subarrayMax = list[lowIndex...highIndex].max()
+    let subarrayMin = list[lowIndex...highIndex].min()
+    guard let max = subarrayMax, let min = subarrayMin else { return 0 }
+
+    // Because the entire array might still be out of order after ordering the subarray, we need to extend the pointers back out.
+    // Extend the subarray to include any number which is bigger than the minimum of the subarray.
+    while lowIndex > 0 && list[lowIndex - 1] > min { lowIndex -= 1 }
+    // Extend the subarray to include any number which is smaller than the maximum of the subarray.
+    while highIndex < list.endIndex - 1 && list[highIndex + 1] < max { highIndex += 1 }
+    
+    return highIndex - lowIndex + 1
 }

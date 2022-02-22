@@ -348,4 +348,22 @@ class ShortestWindowSortTests: XCTestCase {
         let output = 3
         XCTAssertEqual(ShortestWindowSort(for: input), output)
     }
+    
+    func test5() {
+        let input = [Int]()
+        let output = 0
+        XCTAssertEqual(ShortestWindowSort(for: input), output)
+    }
+    
+    func test6() {
+        let input = [1, 2, 3]
+        let output = 0
+        XCTAssertEqual(ShortestWindowSort(for: input), output)
+    }
+    
+    func test7() {
+        let input = [1, 3, 10, 2]
+        let output = 3
+        XCTAssertEqual(ShortestWindowSort(for: input), output)
+    }
 }
