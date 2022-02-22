@@ -40,3 +40,10 @@ class MergeIntervalsTests: XCTestCase {
         XCTAssertEqual(result.description, "[]")
     }
 }
+
+// MARK: - Merge Intervals (Medium)
+class InstertIntervalTests: XCTestCase {
+    func test1() {
+        
+    }
+}

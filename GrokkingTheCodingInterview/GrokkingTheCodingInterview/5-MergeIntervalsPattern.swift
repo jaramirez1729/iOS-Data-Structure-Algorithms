@@ -23,7 +23,8 @@ import Foundation
 /*
  Given a list of intervals, merge all the overlapping intervals to produce a list that has only mutually exclusive intervals.
  */
-// 
+// First, we sort the intervals based on their starting value. Store the first intervals values to start the comparisons with. Then, loop through the rest of the intervals and check if the values overlap by comparing the current start value with the interval's end value. If not, set the new start and end values to the next interval and loop.
+// Time O(N * log N), Space O(N)
 func mergeIntervals(_ intervals: [Interval]) -> [Interval] {
     guard intervals.count > 1 else { return [] }
     
@@ -44,6 +45,15 @@ func mergeIntervals(_ intervals: [Interval]) -> [Interval] {
             end = interval.end
         }
     }
+    // Add the last one.
     mergedIntervals.append(Interval(start, end))
     return mergedIntervals
 } 
+
+// MARK: - Merge Intervals (Medium)
+/*
+ Given a list of non-overlapping intervals sorted by their start time, insert a given interval at the correct position and merge all necessary intervals to produce a list that has only mutually exclusive intervals.
+ */
+func instertInterval(_ interval: Interval, into intervals: [Interval]) -> [Interval] {
+    return []
+}
