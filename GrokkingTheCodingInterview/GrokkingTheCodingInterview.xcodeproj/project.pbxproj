@@ -12,6 +12,9 @@
 		E043545E27BD34BF00CAC1BA /* LinkedListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E043545D27BD34BF00CAC1BA /* LinkedListNode.swift */; };
 		E056B03027BB493300E8231F /* 3-TwoPointersPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E056B02F27BB493300E8231F /* 3-TwoPointersPattern.swift */; };
 		E056B03227BB497500E8231F /* 3-TwoPointersPatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E056B03127BB497500E8231F /* 3-TwoPointersPatternTests.swift */; };
+		E06C7AE627C49DEB005028B2 /* 5-MergeIntervalsPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06C7AE527C49DEB005028B2 /* 5-MergeIntervalsPattern.swift */; };
+		E06C7AE827C49DFF005028B2 /* 5-MergeIntervalsPatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06C7AE727C49DFF005028B2 /* 5-MergeIntervalsPatternTests.swift */; };
+		E06C7AEA27C49F68005028B2 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06C7AE927C49F68005028B2 /* Interval.swift */; };
 		E088CA4A27C29A000086831E /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = E088CA4927C29A000086831E /* DequeModule */; };
 		E0B0661227AF344700D2542E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0661127AF344700D2542E /* AppDelegate.swift */; };
 		E0B0661427AF344700D2542E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0661327AF344700D2542E /* SceneDelegate.swift */; };
@@ -39,6 +42,9 @@
 		E043545D27BD34BF00CAC1BA /* LinkedListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListNode.swift; sourceTree = "<group>"; };
 		E056B02F27BB493300E8231F /* 3-TwoPointersPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "3-TwoPointersPattern.swift"; sourceTree = "<group>"; };
 		E056B03127BB497500E8231F /* 3-TwoPointersPatternTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "3-TwoPointersPatternTests.swift"; sourceTree = "<group>"; };
+		E06C7AE527C49DEB005028B2 /* 5-MergeIntervalsPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "5-MergeIntervalsPattern.swift"; sourceTree = "<group>"; };
+		E06C7AE727C49DFF005028B2 /* 5-MergeIntervalsPatternTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "5-MergeIntervalsPatternTests.swift"; sourceTree = "<group>"; };
+		E06C7AE927C49F68005028B2 /* Interval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		E0B0660E27AF344700D2542E /* GrokkingTheCodingInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrokkingTheCodingInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B0661127AF344700D2542E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0B0661327AF344700D2542E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				E043545D27BD34BF00CAC1BA /* LinkedListNode.swift */,
+				E06C7AE927C49F68005028B2 /* Interval.swift */,
 			);
 			path = "Data Structures";
 			sourceTree = "<group>";
@@ -104,6 +111,7 @@
 				E0B0664227AF347800D2542E /* 2-SlidingWindowPattern.swift */,
 				E056B02F27BB493300E8231F /* 3-TwoPointersPattern.swift */,
 				E043545827BD33D100CAC1BA /* 4-FastAndSlowPointersPattern.swift */,
+				E06C7AE527C49DEB005028B2 /* 5-MergeIntervalsPattern.swift */,
 				E0B0664127AF346000D2542E /* Supporting */,
 				E0B0661F27AF344900D2542E /* Info.plist */,
 			);
@@ -116,6 +124,7 @@
 				E0B0662827AF344900D2542E /* 2-SlidingWindowPatternTests.swift */,
 				E056B03127BB497500E8231F /* 3-TwoPointersPatternTests.swift */,
 				E043545A27BD33EE00CAC1BA /* 4-FastAndSlowPointersPatternTests.swift */,
+				E06C7AE727C49DFF005028B2 /* 5-MergeIntervalsPatternTests.swift */,
 			);
 			path = GrokkingTheCodingInterviewTests;
 			sourceTree = "<group>";
@@ -240,10 +249,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06C7AE627C49DEB005028B2 /* 5-MergeIntervalsPattern.swift in Sources */,
 				E043545E27BD34BF00CAC1BA /* LinkedListNode.swift in Sources */,
 				E043545927BD33D100CAC1BA /* 4-FastAndSlowPointersPattern.swift in Sources */,
 				E0B0661627AF344700D2542E /* ViewController.swift in Sources */,
 				E0B0664327AF347800D2542E /* 2-SlidingWindowPattern.swift in Sources */,
+				E06C7AEA27C49F68005028B2 /* Interval.swift in Sources */,
 				E056B03027BB493300E8231F /* 3-TwoPointersPattern.swift in Sources */,
 				E0B0661227AF344700D2542E /* AppDelegate.swift in Sources */,
 				E0B0661427AF344700D2542E /* SceneDelegate.swift in Sources */,
@@ -254,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06C7AE827C49DFF005028B2 /* 5-MergeIntervalsPatternTests.swift in Sources */,
 				E0B0662927AF344900D2542E /* 2-SlidingWindowPatternTests.swift in Sources */,
 				E043545B27BD33EE00CAC1BA /* 4-FastAndSlowPointersPatternTests.swift in Sources */,
 				E056B03227BB497500E8231F /* 3-TwoPointersPatternTests.swift in Sources */,
