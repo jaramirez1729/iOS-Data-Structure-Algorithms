@@ -17,6 +17,7 @@ import Foundation
 /*
  Given the head of a Singly LinkedList, reverse the LinkedList. Write a function to return the new head of the reversed LinkedList.
  */
+// Time O(N), Space O(1)
 func reverseLinkedList<T>(_ head: LinkedList<T>?) -> LinkedList<T>? {
     var currentNode = head
     var previousNode: LinkedList<T>?
@@ -27,4 +28,50 @@ func reverseLinkedList<T>(_ head: LinkedList<T>?) -> LinkedList<T>? {
         currentNode = next
     }
     return previousNode
+}
+
+// MARK: - Reverse a Sub-list (Medium)
+/*
+ Given the head of a LinkedList and two positions ‘p’ and ‘q’, reverse the LinkedList from position ‘p’ to ‘q’.
+ */
+// Time O(N), Space O(1)
+func reverseSubList<T>(_ head: inout LinkedList<T>?, from p: Int, to q: Int) -> LinkedList<T>? {
+    if p == q { return head }
+    
+    var currentNode = head
+    var previousNode: LinkedList<T>?
+    var i = 0
+    // After skipping p-1 nodes, current will point to pth node.
+    while currentNode != nil && (i < p - 1) {
+        previousNode = currentNode
+        currentNode = currentNode?.next
+        i += 1
+    } 
+
+    // we are interested in three parts of the LinkedList, the part before index 'p', the part between 'p' and 'q', and the part after index 'q'
+    let lastNodeOfFirstPart = previousNode
+    // After reversing the list, current will become the last node of the sub-list.
+    let lastNodeOfSubList = currentNode
+    var nextNode: LinkedList<T>? // Will be used to temporarily store the next node.
+    i = 0
+    while currentNode != nil && (i < q - p + 1) {
+        nextNode = currentNode?.next
+        currentNode?.next = previousNode
+        previousNode = currentNode
+        currentNode = nextNode
+        i += 1
+    }
+    
+    // Connect with the first part.
+    if lastNodeOfFirstPart != nil {
+        // Previous is now the first node of the sub-list.
+        lastNodeOfFirstPart?.next = previousNode
+    } else {
+        // This means p == 1, we are changing the first node of the list.
+        head = previousNode
+    }
+    // Coonnect with the last part.
+    lastNodeOfSubList?.next = currentNode
+    
+    return head
 }
