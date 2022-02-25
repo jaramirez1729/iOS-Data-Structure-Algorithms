@@ -34,6 +34,7 @@ func reverseLinkedList<T>(_ head: LinkedList<T>?) -> LinkedList<T>? {
 /*
  Given the head of a LinkedList and two positions ‘p’ and ‘q’, reverse the LinkedList from position ‘p’ to ‘q’.
  */
+// 
 // Time O(N), Space O(1)
 func reverseSubList<T>(_ head: inout LinkedList<T>?, from p: Int, to q: Int) -> LinkedList<T>? {
     if p == q { return head }
@@ -46,13 +47,16 @@ func reverseSubList<T>(_ head: inout LinkedList<T>?, from p: Int, to q: Int) -> 
         previousNode = currentNode
         currentNode = currentNode?.next
         i += 1
-    } 
+    }
 
-    // we are interested in three parts of the LinkedList, the part before index 'p', the part between 'p' and 'q', and the part after index 'q'
+    // we are interested in three parts of the LinkedList, the part before index 'p', the part between 'p' and 'q', and the part after index 'q'.
+    // The previousNode right now will end up as the last node when sub-list is reversed.
     let lastNodeOfFirstPart = previousNode
     // After reversing the list, current will become the last node of the sub-list.
     let lastNodeOfSubList = currentNode
-    var nextNode: LinkedList<T>? // Will be used to temporarily store the next node.
+    // Will be used to temporarily store the next node for traversal.
+    var nextNode: LinkedList<T>?
+    // Reverse the sub-list where i is the index for that portion.
     i = 0
     while currentNode != nil && (i < q - p + 1) {
         nextNode = currentNode?.next
