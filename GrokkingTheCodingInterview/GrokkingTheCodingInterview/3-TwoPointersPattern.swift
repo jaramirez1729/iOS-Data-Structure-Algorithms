@@ -9,6 +9,8 @@ import Foundation
 import DequeModule
 
 /*
+ COMPLETED
+ 
  The two pointer approach uses 2 pointers in a list. There are various ways to use them. One case is to have one at the end and one at the start. Another case is to have 1 traverse the list and another keep a reference of a certain position to do something with it. Another case is to use a pointer in 2 different collection and compare each collection.
  */
 

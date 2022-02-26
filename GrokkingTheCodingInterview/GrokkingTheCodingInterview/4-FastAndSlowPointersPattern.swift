@@ -7,6 +7,8 @@
 
 import Foundation
 /*
+ COMPLETED
+ 
  The Fast & Slow pointer approach, also known as the Hare & Tortoise algorithm, is a pointer algorithm that uses two pointers which move through the collection at different speeds. This approach is quite useful when dealing with cyclic collections.
  */
 
