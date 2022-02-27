@@ -13,7 +13,7 @@
 		E0EEFF6327CA72400069B932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0EEFF6127CA72400069B932 /* Main.storyboard */; };
 		E0EEFF6527CA72430069B932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EEFF6427CA72430069B932 /* Assets.xcassets */; };
 		E0EEFF6827CA72430069B932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0EEFF6627CA72430069B932 /* LaunchScreen.storyboard */; };
-		E0EEFF7327CA72430069B932 /* DesignPatternsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF7227CA72430069B932 /* DesignPatternsTests.swift */; };
+		E0EEFF7327CA72430069B932 /* SlidingWindowAlgorithmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF7227CA72430069B932 /* SlidingWindowAlgorithmsTests.swift */; };
 		E0EEFF8E27CA728C0069B932 /* SlidingWindowAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF8D27CA728C0069B932 /* SlidingWindowAlgorithms.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,7 @@
 		E0EEFF6727CA72430069B932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0EEFF6927CA72430069B932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0EEFF6E27CA72430069B932 /* DesignPatternsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DesignPatternsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0EEFF7227CA72430069B932 /* DesignPatternsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignPatternsTests.swift; sourceTree = "<group>"; };
+		E0EEFF7227CA72430069B932 /* SlidingWindowAlgorithmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWindowAlgorithmsTests.swift; sourceTree = "<group>"; };
 		E0EEFF8D27CA728C0069B932 /* SlidingWindowAlgorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWindowAlgorithms.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +90,7 @@
 		E0EEFF7127CA72430069B932 /* DesignPatternsTests */ = {
 			isa = PBXGroup;
 			children = (
-				E0EEFF7227CA72430069B932 /* DesignPatternsTests.swift */,
+				E0EEFF7227CA72430069B932 /* SlidingWindowAlgorithmsTests.swift */,
 			);
 			path = DesignPatternsTests;
 			sourceTree = "<group>";
@@ -220,7 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0EEFF7327CA72430069B932 /* DesignPatternsTests.swift in Sources */,
+				E0EEFF7327CA72430069B932 /* SlidingWindowAlgorithmsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
