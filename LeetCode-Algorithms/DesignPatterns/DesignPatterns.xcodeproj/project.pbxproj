@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0B3049727CBDA1100FE16F0 /* TwoPointersAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B3049627CBDA1100FE16F0 /* TwoPointersAlgorithms.swift */; };
+		E0B3049927CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B3049827CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift */; };
 		E0EEFF5C27CA72400069B932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF5B27CA72400069B932 /* AppDelegate.swift */; };
 		E0EEFF5E27CA72400069B932 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF5D27CA72400069B932 /* SceneDelegate.swift */; };
 		E0EEFF6027CA72400069B932 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF5F27CA72400069B932 /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E0B3049627CBDA1100FE16F0 /* TwoPointersAlgorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPointersAlgorithms.swift; sourceTree = "<group>"; };
+		E0B3049827CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPointersAlgorithmsTests.swift; sourceTree = "<group>"; };
 		E0EEFF5827CA72400069B932 /* DesignPatterns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignPatterns.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EEFF5B27CA72400069B932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0EEFF5D27CA72400069B932 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			children = (
 				E0EEFF8B27CA72520069B932 /* Supporting */,
 				E0EEFF8D27CA728C0069B932 /* SlidingWindowAlgorithms.swift */,
+				E0B3049627CBDA1100FE16F0 /* TwoPointersAlgorithms.swift */,
 				E0EEFF6927CA72430069B932 /* Info.plist */,
 			);
 			path = DesignPatterns;
@@ -91,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				E0EEFF7227CA72430069B932 /* SlidingWindowAlgorithmsTests.swift */,
+				E0B3049827CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift */,
 			);
 			path = DesignPatternsTests;
 			sourceTree = "<group>";
@@ -213,6 +219,7 @@
 				E0EEFF8E27CA728C0069B932 /* SlidingWindowAlgorithms.swift in Sources */,
 				E0EEFF5C27CA72400069B932 /* AppDelegate.swift in Sources */,
 				E0EEFF5E27CA72400069B932 /* SceneDelegate.swift in Sources */,
+				E0B3049727CBDA1100FE16F0 /* TwoPointersAlgorithms.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B3049927CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift in Sources */,
 				E0EEFF7327CA72430069B932 /* SlidingWindowAlgorithmsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

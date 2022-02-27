@@ -229,13 +229,13 @@ func countGoodSubstrings(_ s: String) -> Int {
  */
 // Input: [9,4,1,7]; Answer: 2
 // Sorting the list will make it easier to compare differences. After the sort, the k contiguous array will have scores as close to each other as possible. We can use a sliding window and to check only after the it's equal to a size of k, then just get the difference between the smallest and largest values in the window.
-// Time O(N), Space O(N)
+// Time O(N Log N + N), Space O(N)
 // <35 min due to not properly understanding what difference is supposed to be calculated.
 func minimumDifference(_ nums: [Int], _ k: Int) -> Int {
     var windowStart = 0
     var windowEnd = 0
     var minDiff = Int.max
-    let sortedNums = nums.sorted()
+    let sortedNums = nums.sorted() // Runs in (N log N)
     
     while windowEnd < sortedNums.count {
         // We only check the window if it's the size k.
