@@ -107,7 +107,7 @@ func makeSortedSquares(from list: [Int]) -> [Int] {
     return squares
 }
 
-// MARK: - // MARK: - Triplet Sum Close to Target (Medium)
+// MARK: - Triplet Sum Close to Target (Medium)
 /*
  Given an array of unsorted numbers, find all unique triplets in it that add up to zero.
  */
