@@ -130,3 +130,101 @@ func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
         }
     }
 }
+
+// MARK: - Two Sum III - Data structure design (Easy)
+/*
+ Design a data structure that accepts a stream of integers and checks if it has a pair of integers that sum up to a particular value.
+
+ Implement the TwoSum class:
+
+ TwoSum() Initializes the TwoSum object, with an empty array initially.
+ void add(int number) Adds number to the data structure.
+ boolean find(int value) Returns true if there exists any pair of numbers whose sum is equal to value, otherwise, it returns false.
+ */
+class TwoSum {
+    var nums: [Int]
+    
+    init() {
+        nums = []
+    }
+    
+    // Time O(N log N)
+    func add(_ number: Int) {
+        nums.append(number)
+        nums.sort()
+    }
+    
+    // Works by having a pointer at the start and one at the end. Adds up the current values and checks whether it's under or over the value. Move the specific pointer and then try again. This only works because the list is sorted, which is okay because it reduces the algorithm's complexity here.
+    // Time O(N), Space O(1)
+    func find(_ value: Int) -> Bool {
+        var lowPointer = 0
+        var highPointer = nums.count - 1
+        while lowPointer < highPointer {
+            let sum = nums[lowPointer] + nums[highPointer]
+            if sum == value {
+                return true
+            } else if sum < value {
+                // sum is too small, so we need to go higher from the start.
+                lowPointer += 1
+            } else {
+                // sum is too large, so we need to go smaller from the end.
+                highPointer -= 1
+            }
+        }
+        return false
+    }
+}
+
+// MARK: - Strobogrammatic Number (Easy)
+/*
+ Given a string num which represents an integer, return true if num is a strobogrammatic number.
+
+ A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
+ */
+// The only valid numbers upside down are: 0, 1, 6, 8, 9
+// 0, 1 and 8 will still be the same number. 6 and 9 will be different numbers.
+// A strobogrammatic number MUST be an even size EXCEPT when the center digit is 0, 1, or 8. That means that we can return false immediately if the center number is not one of those.
+// Uses a pointer at both ends of the list, and compares each value with each other. If the comparison does not fit the case, it will return false, otherwise, continue after moving the pointers.
+// Time O(N), Space O(1)
+func isStrobogrammatic(_ num: String) -> Bool {
+    // If it's an odd size, it's only valid if the center digit is 1, 0, or 8.
+    if num.count % 2 == 1 {
+        switch num[num.index(num.startIndex, offsetBy: num.count / 2)] {
+        case "1", "8", "0": break
+        default: return false
+        }
+    }
+    var leftIndex = num.startIndex // Pointer from the left side going up.
+    var rightIndex = num.index(num.startIndex, offsetBy: num.count - 1) // Pointer from the right side going down.
+    while leftIndex < rightIndex {
+        switch (num[leftIndex], num[rightIndex]) {
+        case ("6", "9"), ("9", "6"), ("8", "8"), ("0", "0"), ("1", "1"):
+            leftIndex = num.index(after: leftIndex)
+            rightIndex = num.index(before: rightIndex)
+        default: return false
+        }
+    }
+    return true
+}
+
+// MARK: - Is Subsequence (Easy)
+/*
+ Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+
+ A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+ */
+// s = [a,b,c], t = [a,h,b,g,d,c,g,f], true
+// s = [a,b,ci], t = [a,h,g,d,c,b], false
+// Use a pointer in s and a pointer in t. The pointer in s will ONLY move forward if the corresponding match is found in t. The pointer in t will traverse down only one time. If the pointer in s is not at the index after the last index, then it's a valid match. Only a valid match will mean that there are no more characters to check for in s.
+func isSubsequence(_ s: String, _ t: String) -> Bool {
+    if s.isEmpty { return true }
+    if s.count > t.count { return false }
+    
+    var sIndex = s.startIndex // First pointer.
+    for char in t { // Second "pointer".
+        if s.indices.contains(sIndex) && s[sIndex] == char {
+            sIndex = s.index(after: sIndex)
+        }
+    }
+    return sIndex == s.endIndex
+}

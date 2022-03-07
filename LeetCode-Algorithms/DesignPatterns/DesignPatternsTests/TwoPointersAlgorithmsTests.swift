@@ -117,3 +117,94 @@ class MergeTests: XCTestCase {
         XCTAssertEqual(nums1, [10, 100])
     }
 }
+
+// MARK: - Two Sum III - Data structure design (Easy)
+class TwoSumTests: XCTestCase {
+    func test1() {
+        let twoSum = TwoSum()
+        for i in [1, 3, 5, 4, 7] {
+            twoSum.add(i)
+        }
+        XCTAssertTrue(twoSum.find(4))
+        XCTAssertTrue(twoSum.find(8))
+        XCTAssertFalse(twoSum.find(20))
+        XCTAssertFalse(twoSum.find(2))
+    }
+}
+
+// MARK: - Strobogrammatic Number (Easy)
+class IsStrobogrammaticTests: XCTestCase {
+    func test1() {
+        let num = "679"
+        XCTAssertFalse(isStrobogrammatic(num))
+    }
+    
+    func test2() {
+        let num = "696969"
+        XCTAssertTrue(isStrobogrammatic(num))
+    }
+    
+    func test3() {
+        let num = "18869881"
+        XCTAssertTrue(isStrobogrammatic(num))
+    }
+    
+    func test4() {
+        let num = "18869881"
+        XCTAssertTrue(isStrobogrammatic(num))
+    }
+    
+    func test5() {
+        XCTAssertTrue(isStrobogrammatic("1880881"))
+    }
+    
+    func test6() {
+        let num = "37"
+        XCTAssertFalse(isStrobogrammatic(num))
+    }
+}
+
+// MARK: - Intersection of Two Arrays (Easy)
+class IsSubsequence: XCTestCase {
+    func test1() {
+        let s = "abc"
+        let t = "ahbgdcgf"
+        XCTAssertTrue(isSubsequence(s, t))
+    } 
+    
+    func test2() {
+        let s = "agf"
+        let t = "ahbgdcgf"
+        XCTAssertTrue(isSubsequence(s, t))
+    }
+    
+    func test3() {
+        let s = "acb"
+        let t = "ahbgdcgf"
+        XCTAssertFalse(isSubsequence(s, t))
+    }
+    
+    func test4() {
+        let s = "axc"
+        let t = "ahbgdc"
+        XCTAssertFalse(isSubsequence(s, t))
+    }
+    
+    func test5() {
+        let s = ""
+        let t = "ahbgdc"
+        XCTAssertTrue(isSubsequence(s, t))
+    }
+    
+    func test6() {
+        let s = "ahbgdc"
+        let t = "ahbgdc"
+        XCTAssertTrue(isSubsequence(s, t))
+    }
+    
+    func test7() {
+        let s = "abcabc"
+        let t = "abcab"
+        XCTAssertFalse(isSubsequence(s, t))
+    }
+}
