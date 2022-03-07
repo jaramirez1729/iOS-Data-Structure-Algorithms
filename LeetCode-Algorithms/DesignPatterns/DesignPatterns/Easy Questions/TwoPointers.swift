@@ -7,6 +7,11 @@
 
 import Foundation
 
+/*
+ These questions come from LeetCode that are filtered by the two pointers topic.
+ These are specifically questions that use two pointers but NOT questions that use the slow and fast pointer approach.
+ */
+
 // MARK: - Remove Duplicates from Sorted Array (Easy)
 /*
  Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.

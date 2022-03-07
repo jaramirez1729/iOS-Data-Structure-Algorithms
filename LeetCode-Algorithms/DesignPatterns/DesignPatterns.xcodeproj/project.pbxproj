@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E0B3049727CBDA1100FE16F0 /* TwoPointersAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B3049627CBDA1100FE16F0 /* TwoPointersAlgorithms.swift */; };
-		E0B3049927CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B3049827CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift */; };
+		E09C84FB27D5BECA00EE7845 /* FastSlowPointers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09C84FA27D5BECA00EE7845 /* FastSlowPointers.swift */; };
+		E09C84FF27D5BFBB00EE7845 /* FastSlowPointersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09C84FE27D5BFBB00EE7845 /* FastSlowPointersTests.swift */; };
+		E0B3049727CBDA1100FE16F0 /* TwoPointers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B3049627CBDA1100FE16F0 /* TwoPointers.swift */; };
+		E0B3049927CBDA1E00FE16F0 /* TwoPointersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B3049827CBDA1E00FE16F0 /* TwoPointersTests.swift */; };
 		E0BC89C727D48DEA00B86F34 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BC89C627D48DEA00B86F34 /* ListNode.swift */; };
 		E0EEFF5C27CA72400069B932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF5B27CA72400069B932 /* AppDelegate.swift */; };
 		E0EEFF5E27CA72400069B932 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF5D27CA72400069B932 /* SceneDelegate.swift */; };
@@ -16,8 +18,8 @@
 		E0EEFF6327CA72400069B932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0EEFF6127CA72400069B932 /* Main.storyboard */; };
 		E0EEFF6527CA72430069B932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EEFF6427CA72430069B932 /* Assets.xcassets */; };
 		E0EEFF6827CA72430069B932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0EEFF6627CA72430069B932 /* LaunchScreen.storyboard */; };
-		E0EEFF7327CA72430069B932 /* SlidingWindowAlgorithmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF7227CA72430069B932 /* SlidingWindowAlgorithmsTests.swift */; };
-		E0EEFF8E27CA728C0069B932 /* SlidingWindowAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF8D27CA728C0069B932 /* SlidingWindowAlgorithms.swift */; };
+		E0EEFF7327CA72430069B932 /* SlidingWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF7227CA72430069B932 /* SlidingWindowTests.swift */; };
+		E0EEFF8E27CA728C0069B932 /* SlidingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EEFF8D27CA728C0069B932 /* SlidingWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,8 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E0B3049627CBDA1100FE16F0 /* TwoPointersAlgorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPointersAlgorithms.swift; sourceTree = "<group>"; };
-		E0B3049827CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPointersAlgorithmsTests.swift; sourceTree = "<group>"; };
+		E09C84FA27D5BECA00EE7845 /* FastSlowPointers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastSlowPointers.swift; sourceTree = "<group>"; };
+		E09C84FE27D5BFBB00EE7845 /* FastSlowPointersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastSlowPointersTests.swift; sourceTree = "<group>"; };
+		E0B3049627CBDA1100FE16F0 /* TwoPointers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPointers.swift; sourceTree = "<group>"; };
+		E0B3049827CBDA1E00FE16F0 /* TwoPointersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPointersTests.swift; sourceTree = "<group>"; };
 		E0BC89C627D48DEA00B86F34 /* ListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNode.swift; sourceTree = "<group>"; };
 		E0EEFF5827CA72400069B932 /* DesignPatterns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignPatterns.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EEFF5B27CA72400069B932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,8 +47,8 @@
 		E0EEFF6727CA72430069B932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0EEFF6927CA72430069B932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0EEFF6E27CA72430069B932 /* DesignPatternsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DesignPatternsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0EEFF7227CA72430069B932 /* SlidingWindowAlgorithmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWindowAlgorithmsTests.swift; sourceTree = "<group>"; };
-		E0EEFF8D27CA728C0069B932 /* SlidingWindowAlgorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWindowAlgorithms.swift; sourceTree = "<group>"; };
+		E0EEFF7227CA72430069B932 /* SlidingWindowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWindowTests.swift; sourceTree = "<group>"; };
+		E0EEFF8D27CA728C0069B932 /* SlidingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E09C84FC27D5BF2100EE7845 /* Easy Questions */ = {
+			isa = PBXGroup;
+			children = (
+				E0EEFF8D27CA728C0069B932 /* SlidingWindow.swift */,
+				E0B3049627CBDA1100FE16F0 /* TwoPointers.swift */,
+				E09C84FA27D5BECA00EE7845 /* FastSlowPointers.swift */,
+			);
+			path = "Easy Questions";
+			sourceTree = "<group>";
+		};
+		E09C84FD27D5BF2D00EE7845 /* Easy Questions */ = {
+			isa = PBXGroup;
+			children = (
+				E0EEFF7227CA72430069B932 /* SlidingWindowTests.swift */,
+				E0B3049827CBDA1E00FE16F0 /* TwoPointersTests.swift */,
+				E09C84FE27D5BFBB00EE7845 /* FastSlowPointersTests.swift */,
+			);
+			path = "Easy Questions";
+			sourceTree = "<group>";
+		};
+		E09C850027D5BFDD00EE7845 /* Data Structures */ = {
+			isa = PBXGroup;
+			children = (
+				E0BC89C627D48DEA00B86F34 /* ListNode.swift */,
+			);
+			path = "Data Structures";
+			sourceTree = "<group>";
+		};
 		E0EEFF4F27CA72400069B932 = {
 			isa = PBXGroup;
 			children = (
@@ -86,10 +118,9 @@
 		E0EEFF5A27CA72400069B932 /* DesignPatterns */ = {
 			isa = PBXGroup;
 			children = (
-				E0BC89C627D48DEA00B86F34 /* ListNode.swift */,
+				E09C850027D5BFDD00EE7845 /* Data Structures */,
+				E09C84FC27D5BF2100EE7845 /* Easy Questions */,
 				E0EEFF8B27CA72520069B932 /* Supporting */,
-				E0EEFF8D27CA728C0069B932 /* SlidingWindowAlgorithms.swift */,
-				E0B3049627CBDA1100FE16F0 /* TwoPointersAlgorithms.swift */,
 				E0EEFF6927CA72430069B932 /* Info.plist */,
 			);
 			path = DesignPatterns;
@@ -98,8 +129,7 @@
 		E0EEFF7127CA72430069B932 /* DesignPatternsTests */ = {
 			isa = PBXGroup;
 			children = (
-				E0EEFF7227CA72430069B932 /* SlidingWindowAlgorithmsTests.swift */,
-				E0B3049827CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift */,
+				E09C84FD27D5BF2D00EE7845 /* Easy Questions */,
 			);
 			path = DesignPatternsTests;
 			sourceTree = "<group>";
@@ -219,10 +249,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0EEFF6027CA72400069B932 /* ViewController.swift in Sources */,
-				E0EEFF8E27CA728C0069B932 /* SlidingWindowAlgorithms.swift in Sources */,
+				E09C84FB27D5BECA00EE7845 /* FastSlowPointers.swift in Sources */,
+				E0EEFF8E27CA728C0069B932 /* SlidingWindow.swift in Sources */,
 				E0EEFF5C27CA72400069B932 /* AppDelegate.swift in Sources */,
 				E0EEFF5E27CA72400069B932 /* SceneDelegate.swift in Sources */,
-				E0B3049727CBDA1100FE16F0 /* TwoPointersAlgorithms.swift in Sources */,
+				E0B3049727CBDA1100FE16F0 /* TwoPointers.swift in Sources */,
 				E0BC89C727D48DEA00B86F34 /* ListNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,8 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0B3049927CBDA1E00FE16F0 /* TwoPointersAlgorithmsTests.swift in Sources */,
-				E0EEFF7327CA72430069B932 /* SlidingWindowAlgorithmsTests.swift in Sources */,
+				E0B3049927CBDA1E00FE16F0 /* TwoPointersTests.swift in Sources */,
+				E09C84FF27D5BFBB00EE7845 /* FastSlowPointersTests.swift in Sources */,
+				E0EEFF7327CA72430069B932 /* SlidingWindowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
