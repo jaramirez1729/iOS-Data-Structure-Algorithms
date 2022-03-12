@@ -73,7 +73,7 @@ func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
 
  For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
  */
-// Uses 2 pointers and the window pattern. The 2 pointers form a window that is the same size as the needle. We will check the substring from pointer 1 to pointer 2. if it's not a match, we will move the pointers ahead by 1.
+// Create a window of the same size as the needle. The window uses 2 pointers, but behaves more like a window here than a 2 pointer design pattern. Using a loop, we will check if the current window is equal to the needle. If it's not, we will move the window ahead  by 1. if it does, we will return the first index of where the needle appeared. 
 // Time O(N), Space O(1)
 // ~20 min
 func strStr(_ haystack: String, _ needle: String) -> Int {
@@ -104,7 +104,7 @@ func strStr(_ haystack: String, _ needle: String) -> Int {
 
  The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
  */
-// Uses 2 pointers in nums1, and another pointer to traverse nums2. It compares the values in each position from the end, and inserts the greatest value at the next available spot in nums1. Depending on which one was inserted, that pointer will go down.
+// Uses 2 pointers in nums1, and another pointer to traverse nums2. It compares the values in each position from the end, and inserts the greatest value at the next available spot in nums1. Depending on which one was inserted, that pointer will go down for that list.
 // Time O(N), Space O(1)
 // ~30 min
 func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
@@ -116,6 +116,7 @@ func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
     var insertIndex = nums1.endIndex - 1
     var i = m - 1 // First pointer for nums1 (use m since it has trailing zeros).
     var j = nums2.endIndex - 1 // Second pointer for nums2.
+    // It's inserting the largest number from the end of the list.
     while i >= 0 && j >= 0 {
         if nums1[i] <= nums2[j] {
             nums1[insertIndex] = nums2[j]
@@ -154,6 +155,7 @@ class TwoSum {
     }
     
     // Time O(N log N)
+    // It's not as inneficient as it seems since each time a new number is added, the list will already be mostly sorted.
     func add(_ number: Int) {
         nums.append(number)
         nums.sort()
@@ -200,7 +202,7 @@ func isStrobogrammatic(_ num: String) -> Bool {
         }
     }
     var leftIndex = num.startIndex // Pointer from the left side going up.
-    var rightIndex = num.index(num.startIndex, offsetBy: num.count - 1) // Pointer from the right side going down.
+    var rightIndex = num.index(num.startIndex, offsetBy: num.count - 1) // Pointer from the right side going down. We don't need to verify the middle number at this point because the previous condition already checked it (if needed).
     while leftIndex < rightIndex {
         switch (num[leftIndex], num[rightIndex]) {
         case ("6", "9"), ("9", "6"), ("8", "8"), ("0", "0"), ("1", "1"):
@@ -218,8 +220,6 @@ func isStrobogrammatic(_ num: String) -> Bool {
 
  A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
  */
-// s = [a,b,c], t = [a,h,b,g,d,c,g,f], true
-// s = [a,b,ci], t = [a,h,g,d,c,b], false
 // Use a pointer in s and a pointer in t. The pointer in s will ONLY move forward if the corresponding match is found in t. The pointer in t will traverse down only one time. If the pointer in s is not at the index after the last index, then it's a valid match. Only a valid match will mean that there are no more characters to check for in s.
 func isSubsequence(_ s: String, _ t: String) -> Bool {
     if s.isEmpty { return true }
@@ -231,5 +231,30 @@ func isSubsequence(_ s: String, _ t: String) -> Bool {
             sIndex = s.index(after: sIndex)
         }
     }
+    // Only a successful match will make the index for s be after the end.
     return sIndex == s.endIndex
+}
+
+// MARK: -  Intersection of Two Linked Lists (Easy)
+/*
+ Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
+ 
+ Note that the linked lists must retain their original structure after the function returns.
+ 
+ List A:         4 -> 1
+                        \
+                         8 -> 4 -> 5
+                        /
+ List B:    5 -> 6 -> 1
+ */
+// Uses a pointer for list A and a pointer for list B. Both pointers move forward by 1. When either reached the end, they will then start at the other list and keep going. At this point, both will have traversed the same number of times and eventually reached the same node, if any.
+// Time O(A + B), Space(1)
+func getIntersectionNode(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
+    var pointer1 = headA
+    var pointer2 = headB
+    while pointer1 !== pointer2 {
+        pointer1 = pointer1 == nil ? headB : pointer1?.next
+        pointer2 = pointer2 == nil ? headA : pointer2?.next
+    }
+    return pointer1
 }

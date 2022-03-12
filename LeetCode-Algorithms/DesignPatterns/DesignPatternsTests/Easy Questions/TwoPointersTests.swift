@@ -208,3 +208,41 @@ class IsSubsequence: XCTestCase {
         XCTAssertFalse(isSubsequence(s, t))
     }
 }
+
+// MARK: -  Intersection of Two Linked Lists (Easy)
+class GetIntersectionNode: XCTestCase {
+    func test1() {
+        let nodeA1: ListNode? = ListNode(4)
+        let nodeA2: ListNode? = ListNode(1)
+        let nodeC1: ListNode? = ListNode(8)
+        let nodeC2: ListNode? = ListNode(4)
+        let nodeC3: ListNode? = ListNode(5)
+        let nodeB1: ListNode? = ListNode(5)
+        let nodeB2: ListNode? = ListNode(6)
+        let nodeB3: ListNode? = ListNode(1)
+        
+        nodeA1?.next = nodeA2
+        nodeA2?.next = nodeC1
+        nodeC1?.next = nodeC2
+        nodeC2?.next = nodeC3
+        nodeB1?.next = nodeB2
+        nodeB2?.next = nodeB3
+        nodeB3?.next = nodeC1
+        
+        XCTAssertEqual(getIntersectionNode(nodeA1, nodeB1)?.val, 8)
+    }
+    
+    func test2() {
+        let nodeA1: ListNode? = ListNode(4)
+        let nodeA2: ListNode? = ListNode(1)
+        let nodeB1: ListNode? = ListNode(5)
+        let nodeB2: ListNode? = ListNode(6)
+        let nodeB3: ListNode? = ListNode(1)
+        
+        nodeA1?.next = nodeA2
+        nodeB1?.next = nodeB2
+        nodeB2?.next = nodeB3
+        
+        XCTAssertNil(getIntersectionNode(nodeA1, nodeB1)?.val)
+    }
+}

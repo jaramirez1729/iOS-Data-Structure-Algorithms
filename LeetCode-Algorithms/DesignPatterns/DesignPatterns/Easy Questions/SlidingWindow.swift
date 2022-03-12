@@ -53,12 +53,9 @@ func containsNearbyDuplicate(_ nums: [Int], _ k: Int) -> Bool {
 /*
  You are given an integer array nums consisting of n elements, and an integer k.
 
- Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+ Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10^-5 will be accepted.
  */
-// [1, 2, 3, 4], k = 3
-// End = 4, Start = 2
-// Total = 2 + 3 + 4
-// Average = 3
+// We will use a sliding window that will be of size k, calculate the average, save it if it's the largest, and continue until all contiguous arrays of size k have been traversed.
 // Time O(N), Space O(1)
 // <15 min
 func findMaxAverage(_ nums: [Int], _ k: Int) -> Double {
@@ -97,8 +94,7 @@ func findMaxAverage(_ nums: [Int], _ k: Int) -> Double {
 
  Note that the total points can be negative.
  */
-// We can use a sliding window that is the size of k and move it by k times forward to calculate the next consecutive days.
-// [1, 2, 3, 4, 5, 6]; k = 2
+// We can use a sliding window that is the size of k. Calculate the points and the move it forward.
 // Time O(N), Space (1)
 // <15 min
 func dietPlanPerformance(_ calories: [Int], _ k: Int, _ lower: Int, _ upper: Int) -> Int {
@@ -133,6 +129,7 @@ func dietPlanPerformance(_ calories: [Int], _ k: Int, _ lower: Int, _ upper: Int
 
  Given a string s, return the longest substring of s that is nice. If there are multiple, return the substring of the earliest occurrence. If there are none, return an empty string.
  */
+// Use a sliding window that iterates several times. For every string in the window, it checks if it's a nice string. If it's, we will record the lenght and indexes if it's bigger than the last one. When the end of the window has reached the end of the array, we will then move the start of the window forward to check the next substrings up until the end.
 // Time O(N), Space O(1)
 func longestNiceSubstring(_ s: String) -> String {
     var windowStart = 0
@@ -227,7 +224,6 @@ func countGoodSubstrings(_ s: String) -> Int {
 
  Return the minimum possible difference.
  */
-// Input: [9,4,1,7]; Answer: 2
 // Sorting the list will make it easier to compare differences. After the sort, the k contiguous array will have scores as close to each other as possible. We can use a sliding window and to check only after the it's equal to a size of k, then just get the difference between the smallest and largest values in the window.
 // Time O(N Log N + N), Space O(N)
 // <35 min due to not properly understanding what difference is supposed to be calculated.
