@@ -253,6 +253,7 @@ func getIntersectionNode(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
     var pointer1 = headA
     var pointer2 = headB
     while pointer1 !== pointer2 {
+        // If any reach the end, then start at the other list.
         pointer1 = pointer1 == nil ? headB : pointer1?.next
         pointer2 = pointer2 == nil ? headA : pointer2?.next
     }

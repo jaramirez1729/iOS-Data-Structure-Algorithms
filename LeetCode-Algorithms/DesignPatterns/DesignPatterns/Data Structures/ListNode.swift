@@ -17,3 +17,16 @@ public class ListNode {
         self.next = nil
     }
 }
+
+extension ListNode: CustomStringConvertible {
+    public var description: String {
+        var travNode: ListNode? = self
+        var values = [String]()
+        while travNode != nil {
+            values.append(String(travNode!.val))                
+            travNode = travNode!.next
+        }
+        values.append("nil")
+        return values.joined(separator: " -> ")
+    }
+}

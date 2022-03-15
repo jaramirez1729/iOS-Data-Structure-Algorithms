@@ -176,6 +176,14 @@ class IsPalindromeTests: XCTestCase {
         let head: LinkedList<Int>? = LinkedList<Int>(2, next: node2)
         XCTAssertFalse(isPalindrome(head))
     }
+    
+    func test3() {
+        let node4 = LinkedList<Int>(1)
+        let node3 = LinkedList<Int>(2, next: node4)
+        let node2 = LinkedList<Int>(2, next: node3)
+        let head: LinkedList<Int>? = LinkedList<Int>(1, next: node2)
+        XCTAssertTrue(isPalindrome(head))
+    }
 }
 
 // MARK: - Problem Challenge 2: Rearrange a LinkedList (Medium)
