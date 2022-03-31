@@ -33,9 +33,9 @@ func isHappy(_ n: Int) -> Bool {
     repeat {
         slowCalculation = sumDigitSquares(slowCalculation) // Slow "pointer"
         fastCalculation = sumDigitSquares(sumDigitSquares(fastCalculation)) // Fast "pointer"
-        // Eventually they will meet up with each other if there is a cycle (except 1).
+        // Eventually they will meet up with each other if there is a cycle, so this repeat will end.
     } while slowCalculation != fastCalculation
-    
+    // The only cycle allowed is if both reached 1.
     return slowCalculation == 1
 }
 

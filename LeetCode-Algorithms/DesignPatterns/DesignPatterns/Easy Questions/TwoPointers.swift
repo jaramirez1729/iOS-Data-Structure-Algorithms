@@ -48,19 +48,20 @@ func removeDuplicates(_ nums: inout [Int]) -> Int {
 
  Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
  */
+// Similiar to Remove Duplicates from Sorted Array, but the only difference is that it's replacing the value that we are looking for. The first pointer will keep a reference to the value we want to remove. The second pointer will traverse the list, and when we find a value that is not the value we want to remove, we will move it to the first pointer position and so forth.
 // Time O(N), Space O(1)
 // ~30 min
 func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
     guard !nums.isEmpty else { return 0 }
-    var duplicateIndex = 0 // The first pointer.
+    var removeIndex = 0 // The first pointer.
     for i in 0..<nums.endIndex { // The second pointer.
         // By checking it's not the value, the first pointer will remain at the value we want to remove. So when we encouter a value that is not the one we are removing, we will replace that first pointer value with the current value, and move the pointer ahead.
         if nums[i] != val {
-            nums[duplicateIndex] = nums[i]
-            duplicateIndex += 1
+            nums[removeIndex] = nums[i]
+            removeIndex += 1
         }
     }
-    return duplicateIndex
+    return removeIndex
 }
 
 // MARK: - Implement strStr() (Easy)
@@ -89,7 +90,7 @@ func strStr(_ haystack: String, _ needle: String) -> Int {
         if haystack[startIndex...endIndex] == needle {
             return startIndex.utf16Offset(in: haystack)
         }
-        // Advance both pointers ahead by 1.
+        // Advance both pointers ahead by 1. This moves the entire window ahead, instead of growing/shrinking as is typical with the window approach.
         startIndex = haystack.index(after: startIndex)
         endIndex = haystack.index(after: endIndex)
     }
@@ -114,24 +115,24 @@ func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
     }
     // We'll insert going from the end to the start.
     var insertIndex = nums1.endIndex - 1
-    var i = m - 1 // First pointer for nums1 (use m since it has trailing zeros).
-    var j = nums2.endIndex - 1 // Second pointer for nums2.
+    var nums1Pointer = m - 1 // First pointer for nums1 (use m since it has trailing zeros).
+    var nums2Pointer = nums2.endIndex - 1 // Second pointer for nums2.
     // It's inserting the largest number from the end of the list.
-    while i >= 0 && j >= 0 {
-        if nums1[i] <= nums2[j] {
-            nums1[insertIndex] = nums2[j]
-            j -= 1
+    while nums1Pointer >= 0 && nums2Pointer >= 0 {
+        if nums1[nums1Pointer] <= nums2[nums2Pointer] {
+            nums1[insertIndex] = nums2[nums2Pointer]
+            nums2Pointer -= 1
         } else {
-            nums1[insertIndex] = nums1[i]
-            i -= 1
+            nums1[insertIndex] = nums1[nums1Pointer]
+            nums1Pointer -= 1
         }
         insertIndex -= 1
     }
-    // That means we still have remaining values in list 2. It doesn't matter if i didn't reach 0, since if it didn't, that means j reached 0, and there is no more elements to add since nums1 already contains the remaining ones.
-    if j >= 0 {
+    // That means we still have remaining values in list 2. It doesn't matter if nums1Pointer didn't reach 0, since if it didn't, that means nums2Pointer reached 0, and there is no more elements to add since nums1 already contains the remaining ones.
+    if nums2Pointer >= 0 {
         while insertIndex >= 0 {
-            nums1[insertIndex] = nums2[j]
-            j -= 1
+            nums1[insertIndex] = nums2[nums2Pointer]
+            nums2Pointer -= 1
             insertIndex -= 1
         }
     }
@@ -202,7 +203,7 @@ func isStrobogrammatic(_ num: String) -> Bool {
         }
     }
     var leftIndex = num.startIndex // Pointer from the left side going up.
-    var rightIndex = num.index(num.startIndex, offsetBy: num.count - 1) // Pointer from the right side going down. We don't need to verify the middle number at this point because the previous condition already checked it (if needed).
+    var rightIndex = num.index(num.startIndex, offsetBy: num.count - 1) // Pointer from the right side going down.
     while leftIndex < rightIndex {
         switch (num[leftIndex], num[rightIndex]) {
         case ("6", "9"), ("9", "6"), ("8", "8"), ("0", "0"), ("1", "1"):

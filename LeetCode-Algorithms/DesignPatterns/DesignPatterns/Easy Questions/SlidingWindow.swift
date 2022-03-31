@@ -199,6 +199,7 @@ func countGoodSubstrings(_ s: String) -> Int {
     var substring = ""
     
     while windowEnd < s.count {
+        // Add the next character to the substring.
         substring += String(s[s.index(s.startIndex, offsetBy: windowEnd)])
         
         if substring.count == 3 {
@@ -207,6 +208,7 @@ func countGoodSubstrings(_ s: String) -> Int {
             } 
             // Shrink the window.
             windowStart += 1
+            // Remove the first character to shrink the substring.
             substring.removeFirst()
         }
         // Grow the window.
