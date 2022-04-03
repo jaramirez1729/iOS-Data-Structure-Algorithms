@@ -28,3 +28,15 @@ extension Interval: CustomStringConvertible {
         "[\(start), \(end)]"
     }
 }
+
+class Job {
+    var start: Int
+    var end: Int
+    var cpuLoad: Int
+    
+    init(_ start: Int, _ end: Int, _ cpuLoad: Int) {
+        self.start = start
+        self.end = end
+        self.cpuLoad = cpuLoad
+    }
+}

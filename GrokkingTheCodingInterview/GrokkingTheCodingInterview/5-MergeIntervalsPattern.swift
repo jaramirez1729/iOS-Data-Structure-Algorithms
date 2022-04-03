@@ -186,6 +186,36 @@ func minimumRoomsForMeetings(_ meetings: [Interval]) -> Int {
 /*
  We are given a list of Jobs. Each job has a Start time, an End time, and a CPU load when it is running. Our goal is to find the maximum CPU load at any time if all the jobs are running on the same machine.
  */
-func findMaxCPULoad(in jobs: [Interval]) -> Int {
-    return 0
+// The question is asking: At what interval will the highest CPU load time be. So when we find out what is overlapping, we can add their CPU load to get a total. We can use the same approach as the previous problem. Use a minimum heap arranged by the smallest end time to keep track of the current overlapping intervals.
+// Time O(N * log N), Space O(N)
+func findMaxCPULoad(in jobs: [Job]) -> Int {
+    let sortedJobs = jobs.sorted(by: { $0.start < $1.start })
+    var maxCPULoad = 0
+    var currentCPULoad = 0
+    // Sorted by the smallest end interval.
+    var minHeap = Heap<Job>(sort: { $0.end < $1.end })
+    
+    for j in 0..<sortedJobs.count {
+        let currentJob = sortedJobs[j]
+        // Remove all the jobs that have ended that are past the current job's start time and remove their CPU time.
+        while minHeap.count > 0 && currentJob.start >= minHeap.peek()!.end {
+            currentCPULoad -= minHeap.remove()!.cpuLoad
+        }
+        // Add the current job to the heap.
+        minHeap.insert(currentJob)
+        // Increase the current CPU load with the current job.
+        currentCPULoad += currentJob.cpuLoad
+        maxCPULoad = max(maxCPULoad, currentCPULoad)
+    }
+    
+    return maxCPULoad
+}
+
+// MARK: - Problem Challenge 3: Employee Free Time (Hard)
+/*
+ For ‘K’ employees, we are given a list of intervals representing each employee’s working hours. Our goal is to determine if there is a free interval which is common to all employees. You can assume that each list of employee working hours is sorted on the start time.
+ */
+func findCommonInterval(in employees: [Interval]) -> Interval {
+    
+    return Interval(0, 0)
 }

@@ -167,9 +167,26 @@ class MinimumRoomsForMeetingsTests: XCTestCase {
 // MARK: - Problem Challenge 2: Maximum CPU Load (hard)
 class findMaxCPULoadTests: XCTestCase {
     func test1() {
-        
+        let jobs = [Job(1, 4, 3), Job(2, 5, 4), Job(7, 9, 6)]
+        let result = findMaxCPULoad(in: jobs)
+        XCTAssertEqual(result, 7)
+    }
+    
+    func test2() {
+        let jobs = [Job(6, 7, 10), Job(2, 4, 11), Job(8, 12, 15)]
+        let result = findMaxCPULoad(in: jobs)
+        XCTAssertEqual(result, 15)
+    }
+    
+    func test3() {
+        let jobs = [Job(1, 4, 2), Job(2, 4, 1), Job(3, 6, 5)]
+        let result = findMaxCPULoad(in: jobs)
+        XCTAssertEqual(result, 8)
     }
 }
+
+// MARK: - Problem Challenge 3: Employee Free Time (Hard)
+
 
 // MARK: - Helpers
 func createIntervals(_ starts: [Int], _ ends: [Int]) -> [Interval] {
