@@ -68,7 +68,7 @@ class DoIntervalsOverlapTests: XCTestCase {
     }
 }
 
-// MARK: - Merge Intervals (Medium)
+// MARK: - Insert Intervals (Medium)
 class InsertIntervalTests: XCTestCase {
     func test1() {
         let intervals = [Interval(1, 3), Interval(5, 7), Interval(8, 12)]
@@ -90,4 +90,94 @@ class InsertIntervalTests: XCTestCase {
         let result = insertInterval(newInterval, into: intervals)
         XCTAssertEqual(result.description, "[[1, 4], [5, 7]]")
     }
+}
+
+// MARK: - Intervals Intersection (Medium)
+class FindIntersectionTests: XCTestCase {
+    func test1() {
+        let list1 = createIntervals([1, 5, 7], [3, 6, 9])
+        let list2 = createIntervals([2, 5], [3, 7])
+        let result = findIntersection(list1, list2)
+        let answer = createIntervals([2, 5, 7], [3, 6, 7])
+        XCTAssertEqual(result, answer)
+    }
+    
+    func test2() {
+        let list1 = createIntervals([1, 5, 9], [3, 7, 12])
+        let list2 = [Interval(5, 10)]
+        let result = findIntersection(list1, list2)
+        let answer = createIntervals([5, 9], [7, 10])
+        XCTAssertEqual(result, answer)
+    }
+}
+
+// MARK: - Conflicting Appointments (Medium)
+class CanAttendAppointmentsTests: XCTestCase {
+    func test1() {
+        let list = createIntervals([1, 2, 7], [4, 5, 9])
+        let result = canAttendAppointments(list)
+        XCTAssertFalse(result)
+    }
+    
+    func test2() {
+        let list = createIntervals([6, 2, 8], [7, 4, 12])
+        let result = canAttendAppointments(list)
+        XCTAssertTrue(result)
+    }
+    
+    func test3() {
+        let list = createIntervals([4, 2, 3], [5, 3, 6])
+        let result = canAttendAppointments(list)
+        XCTAssertFalse(result)
+    }
+}
+
+// MARK: - Problem Challenge 1: Minimum Meeting Rooms (Hard)
+class MinimumRoomsForMeetingsTests: XCTestCase {
+    
+    func test1() {
+        let meetings = createIntervals([4, 2, 2, 3], [5, 3, 4, 5])
+        let rooms = minimumRoomsForMeetings(meetings)
+        let result = 2
+        XCTAssertEqual(rooms, result)
+    }
+    
+    func test2() {
+        let meetings = createIntervals([6, 2, 8], [7, 4, 12])
+        let rooms = minimumRoomsForMeetings(meetings)
+        let result = 1
+        XCTAssertEqual(rooms, result)
+    }
+    
+    func test3() {
+        let meetings = createIntervals([1, 2, 3], [4, 3, 6])
+        let rooms = minimumRoomsForMeetings(meetings)
+        let result = 2
+        XCTAssertEqual(rooms, result)
+    }
+    
+    func test4() {
+        let meetings = createIntervals([4, 2, 2, 3], [5, 3, 4, 5])
+        let rooms = minimumRoomsForMeetings(meetings)
+        let result = 2
+        XCTAssertEqual(rooms, result)
+    }
+}
+
+// MARK: - Problem Challenge 2: Maximum CPU Load (hard)
+class findMaxCPULoadTests: XCTestCase {
+    func test1() {
+        
+    }
+}
+
+// MARK: - Helpers
+func createIntervals(_ starts: [Int], _ ends: [Int]) -> [Interval] {
+    guard starts.count == ends.count else { return [Interval]() }
+    
+    var intervals = [Interval]()
+    for i in 0..<starts.count {
+        intervals.append(Interval(starts[i], ends[i]))
+    }
+    return intervals
 }

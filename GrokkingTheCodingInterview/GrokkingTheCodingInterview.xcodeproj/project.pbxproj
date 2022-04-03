@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E020513E27F929B800157748 /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E020513D27F929B800157748 /* Heap.swift */; };
 		E043545927BD33D100CAC1BA /* 4-FastAndSlowPointersPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = E043545827BD33D100CAC1BA /* 4-FastAndSlowPointersPattern.swift */; };
 		E043545B27BD33EE00CAC1BA /* 4-FastAndSlowPointersPatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E043545A27BD33EE00CAC1BA /* 4-FastAndSlowPointersPatternTests.swift */; };
 		E043545E27BD34BF00CAC1BA /* LinkedListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E043545D27BD34BF00CAC1BA /* LinkedListNode.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E020513D27F929B800157748 /* Heap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
 		E043545827BD33D100CAC1BA /* 4-FastAndSlowPointersPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "4-FastAndSlowPointersPattern.swift"; sourceTree = "<group>"; };
 		E043545A27BD33EE00CAC1BA /* 4-FastAndSlowPointersPatternTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "4-FastAndSlowPointersPatternTests.swift"; sourceTree = "<group>"; };
 		E043545D27BD34BF00CAC1BA /* LinkedListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListNode.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				E043545D27BD34BF00CAC1BA /* LinkedListNode.swift */,
 				E06C7AE927C49F68005028B2 /* Interval.swift */,
+				E020513D27F929B800157748 /* Heap.swift */,
 			);
 			path = "Data Structures";
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				E06C7AE627C49DEB005028B2 /* 5-MergeIntervalsPattern.swift in Sources */,
 				E043545E27BD34BF00CAC1BA /* LinkedListNode.swift in Sources */,
 				E043545927BD33D100CAC1BA /* 4-FastAndSlowPointersPattern.swift in Sources */,
+				E020513E27F929B800157748 /* Heap.swift in Sources */,
 				E0B0661627AF344700D2542E /* ViewController.swift in Sources */,
 				E0B0664327AF347800D2542E /* 2-SlidingWindowPattern.swift in Sources */,
 				E08037A527C60DF70034DBD6 /* 7-ReversalLinkedListPattern.swift in Sources */,
