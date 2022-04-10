@@ -37,9 +37,10 @@ func mergeIntervals(_ intervals: [Interval]) -> [Interval] {
     var end = sortedIntervals[0].end
     for i in 1..<sortedIntervals.endIndex {
         let interval = sortedIntervals[i]
-        if interval.start <= end { // Overlapping intervals, adjust the end.
+        // Overlapping intervals, adjust the end. This will eventually create a big interval until the condition is not met.
+        if interval.start <= end {
             end = max(interval.end, end)
-        } else { // non-overlapping interval, add the previous interval that did overlap before we re-assign them.
+        } else { // non-overlapping interval, add the previous merged intervals that did overlap before we re-assign them.
             mergedIntervals.append(Interval(start, end))
             start = interval.start
             end = interval.end
@@ -149,6 +150,7 @@ func canAttendAppointments(_ appointments: [Interval]) -> Bool {
     let sortedIntervals = appointments.sorted(by: { $0.start < $1.start })
     for i in 1..<sortedIntervals.count {
         // We are not using <= since if an appointment starts when one ends, that is not a conflict. So it's a conflict if it's < only.
+        // All we need to do is check if the previous interval's end is greater than the next interval's start.
         if sortedIntervals[i].start < sortedIntervals[i - 1].end {
             return false
         }
@@ -165,7 +167,7 @@ func canAttendAppointments(_ appointments: [Interval]) -> Bool {
 func minimumRoomsForMeetings(_ meetings: [Interval]) -> Int {
     let sortedMeetings = meetings.sorted(by: { $0.start < $1.start })
     var minRooms = 0
-    // A minimum heap that sorts the meetings by the minimum end time. This is to keep track when checking the meetings to know if to remove any meetings that are past the meeting that has the smallest time (minimum).
+    // A minimum heap that sorts the meetings by the minimum end time. This is to keep track when checking the meetings to know if to remove any meetings that are past the meeting that has the smallest time (minimum). If a heap was not available, we could use a structure that contains an array that arranges each time a new element is added.
     var minHeap = Heap<Interval>(sort: { $0.end < $1.end })
     
     for i in 0..<sortedMeetings.count {
@@ -215,7 +217,42 @@ func findMaxCPULoad(in jobs: [Job]) -> Int {
 /*
  For ‘K’ employees, we are given a list of intervals representing each employee’s working hours. Our goal is to determine if there is a free interval which is common to all employees. You can assume that each list of employee working hours is sorted on the start time.
  */
-func findCommonInterval(in employees: [Interval]) -> Interval {
+// The schedule is an array or arrays where each inner array represents an employee's schedule. So array at [0] will be the first employee. etc.
+//
+// A simple solution is to put all the intervals into a list, and use 2 pointers to traverse and compare each one with each other one. When there are intervals that don't overlap, create a new interval. We can find a faster solution since each employee's schedule is already sorted. Instead, we can use a minimum heap. We can put the first interval of every employee into the heap and then compare with the next one in the heap. The we compare and create a new interval or not. 
+
+// Time O(N * log K), Space O(K)
+func findEmployeeFreeTime(in schedule: [[Interval]]) -> [Interval] {
+    if schedule.isEmpty { return [] }
     
-    return Interval(0, 0)
+    var result = [Interval]()
+    var minHeap = Heap<EmployeeInterval>(sort: { $0.interval.start < $1.interval.start })
+    // Insert the first schedule of each employee to the queue first (will add the rest later).
+    for i in 0..<schedule.count {
+        minHeap.insert(EmployeeInterval(schedule[i][0], employeeIndex: i, intervalIndex: 0))
+    }
+    
+    var previousInterval = minHeap.peek()!.interval
+    while minHeap.count > 0 {
+        let queueTop = minHeap.remove()!
+        // If the previous interval we took off the heap (which has the lowest start) is less than the next interval's start, that mean the schedules don't overlap and there is space to add a free interval, so make a new one.
+        if previousInterval.end < queueTop.interval.start {
+            result.append(Interval(previousInterval.end, queueTop.interval.start))
+            previousInterval = queueTop.interval
+        } else {
+            // Overlapping intervals, so reassign the previous interval to the current one. This step always ensures that the next minimum interval will eventually be after all overlapping intervals have been considered.
+            if previousInterval.end < queueTop.interval.end {
+                previousInterval = queueTop.interval
+            }
+        }
+        
+        // If there are more intervals available for the current employee, add their next interval.
+        let employeeSchedule = schedule[queueTop.employeeIndex]
+        if employeeSchedule.count > queueTop.intervalIndex + 1 {
+            minHeap.insert(EmployeeInterval(employeeSchedule[queueTop.intervalIndex + 1], 
+                                            employeeIndex: queueTop.employeeIndex, 
+                                            intervalIndex: queueTop.intervalIndex + 1))
+        }
+    }
+    return result
 }

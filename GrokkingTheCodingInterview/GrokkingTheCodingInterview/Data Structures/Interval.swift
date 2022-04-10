@@ -19,7 +19,7 @@ class Interval {
 
 extension Interval: Equatable {
     static func == (lhs: Interval, rhs: Interval) -> Bool {
-        return lhs.start == rhs.start && lhs.end == rhs.start
+        return lhs.start == rhs.start && lhs.end == rhs.end
     }
 }
 
@@ -38,5 +38,17 @@ class Job {
         self.start = start
         self.end = end
         self.cpuLoad = cpuLoad
+    }
+}
+
+class EmployeeInterval {
+    var interval: Interval
+    var intervalIndex: Int
+    var employeeIndex: Int
+    
+    init(_ interval: Interval, employeeIndex: Int, intervalIndex: Int) {
+        self.interval = interval
+        self.employeeIndex = employeeIndex
+        self.intervalIndex = intervalIndex
     }
 }

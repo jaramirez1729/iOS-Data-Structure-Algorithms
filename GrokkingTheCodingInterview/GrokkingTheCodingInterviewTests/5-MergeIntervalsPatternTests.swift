@@ -186,7 +186,25 @@ class findMaxCPULoadTests: XCTestCase {
 }
 
 // MARK: - Problem Challenge 3: Employee Free Time (Hard)
-
+class FindEmployeeFreeTimeTests: XCTestCase {
+    func test1() {
+        let schedule = [createIntervals([1, 5], [3, 6]), createIntervals([2, 6], [3, 8])]
+        let result = [Interval(3, 5)]
+        XCTAssertEqual(findEmployeeFreeTime(in: schedule), result)
+    }
+    
+    func test2() {
+        let schedule = [createIntervals([1, 9], [3, 12]), createIntervals([2, 6], [4, 8])]
+        let result = [Interval(4, 6), Interval(8, 9)]
+        XCTAssertEqual(findEmployeeFreeTime(in: schedule), result)
+    }
+    
+    func test3() {
+        let schedule = [createIntervals([1, 2], [3, 4]), createIntervals([3, 7], [5, 9])]
+        let result = [Interval(5, 7)]
+        XCTAssertEqual(findEmployeeFreeTime(in: schedule), result)
+    }
+}
 
 // MARK: - Helpers
 func createIntervals(_ starts: [Int], _ ends: [Int]) -> [Interval] {
