@@ -116,7 +116,7 @@ class FindDuplicateNumberTests: XCTestCase {
 class findAllDuplicateNumbersTests: XCTestCase {
     func test1() {
         let input = [3, 4, 4, 5, 5]
-        let output = [4, 5]
+        let output = [5, 4]
         XCTAssertEqual(findAllDuplicateNumbers(in: input), output)
     }
     
@@ -126,3 +126,47 @@ class findAllDuplicateNumbersTests: XCTestCase {
         XCTAssertEqual(findAllDuplicateNumbers(in: input), output)
     }
 }
+
+// MARK: - Problem Challenge 1: Find the Corrupt Pair (Easy)
+class FindCorruptPairTests: XCTestCase {
+    func test1() {
+        let input = [3, 1, 2, 5, 2]
+        let output = [2, 4]
+        XCTAssertEqual(findCorruptPair(in: input), output)
+    }
+    
+    func test2() {
+        let input = [3, 1, 2, 3, 6, 4]
+        let output = [3, 5]
+        XCTAssertEqual(findCorruptPair(in: input), output)
+    }
+}
+
+// MARK: - Problem Challenge 2: Find the Smallest Missing Positive Number (Medium)
+class FindMinMissingPositiveNumberTests: XCTestCase {
+    func test1() {
+        let input = [-3, 1, 5, 4, 2]
+        let output = 3
+        XCTAssertEqual(findMinMissingPositiveNumber(in: input), output)
+    }
+    
+    func test2() {
+        let input = [3, -2, 0, 1, 2]
+        let output = 4
+        XCTAssertEqual(findMinMissingPositiveNumber(in: input), output)
+    }
+    
+    func test3() {
+        let input = [3, 2, 5, 1]
+        let output = 4
+        XCTAssertEqual(findMinMissingPositiveNumber(in: input), output)
+    }
+    
+    func test4() {
+        let input = [33, 37, 5]
+        let output = 1
+        XCTAssertEqual(findMinMissingPositiveNumber(in: input), output)
+    }
+}
+
+// MARK: - Problem Challenge 3: Find the First K Missing Positive Numbers (Hard)

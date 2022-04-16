@@ -176,7 +176,8 @@ func findDuplicateNumberCycle(in list: [Int]) -> Int {
  We are given an unsorted array containing n numbers taken from the range 1 to n. The array has some numbers appearing twice, find all these duplicate numbers using constant space.
  */
 // The number 1 will be at index 0, so list[0] = 1. That means that the expected index for a given n is at n - 1.
-// 
+// Sort the numbers into their final positions, then just check which ones don't meet the condition.
+// Time O(N), Space O(1)
 func findAllDuplicateNumbers(in list: [Int]) -> [Int] {
     var traverseIndex = 0
     var mList = list
@@ -200,4 +201,77 @@ func findAllDuplicateNumbers(in list: [Int]) -> [Int] {
     }
     
     return duplicateNumbers
+}
+
+// MARK: - Problem Challenge 1: Find the Corrupt Pair (Easy)
+/*
+ We are given an unsorted array containing ‘n’ numbers taken from the range 1 to ‘n’. The array originally contained all the numbers from 1 to ‘n’, but due to a data error, one of the numbers got duplicated which also resulted in one number going missing. Find both these numbers.
+ */
+// The number at index 0 will be 1, so list[index] = index + 1.
+// Sort the list as usual to put each number in their final position. Then, check the list for the value that is not in the final position. The number in that position will be the duplicate, and the index + 1 value will be the mising number.
+// Time O(N), Space O(N)
+func findCorruptPair(in list: [Int]) -> [Int] {
+    var traverseIndex = 0
+    var mList = list
+    
+    while traverseIndex < mList.count {
+        // The expected index for the number in traverseIndex.
+        let expectedIndex = mList[traverseIndex] - 1
+        // Check if the number in traverseIndex is already in its final position. If not, swap them.
+        if mList[traverseIndex] != mList[expectedIndex] {
+            mList.swapAt(traverseIndex, expectedIndex)
+        } else {
+            traverseIndex += 1
+        }
+    }
+    
+    for i in 0..<mList.count {
+        if mList[i] != i + 1 {
+            return [mList[i], i + 1]
+        }
+    }
+    
+    return [-1, -1]
+}
+
+// MARK: - Problem Challenge 2: Find the Smallest Missing Positive Number (Medium)
+/*
+ Given an unsorted array containing numbers, find the smallest missing positive number in it.
+ 
+ Note: Positive numbers starts from '1'.
+ */
+// We can use cyclic sort to sort the list, and put the positive values in their final position while ignoring all the other values. Since positive numbers start at 1, we can try to put it in index 0 (n - 1), etc. Since we have to find the missing number, after the sort, we just check the list for the value that is in the wrong position.
+// Time O(N), Space O(N)
+func findMinMissingPositiveNumber( in list: [Int]) -> Int {
+    var traverseIndex = 0
+    var mList = list
+    
+    while traverseIndex < mList.count {
+        // The number should be at the index that is 1 less than it.
+        let expectedIndex = mList[traverseIndex] - 1
+        // We only put it in its final position if it's a positive number within the array bounds. If the value is not in its final position, then we will swap the values. The array will eventually contain all positive numbers in their respective locations.
+        if mList[traverseIndex] > 0 
+            && mList[traverseIndex] <= mList.count 
+            && mList[expectedIndex] != mList[traverseIndex] {
+            mList.swapAt(expectedIndex, traverseIndex)
+        } else {
+            traverseIndex += 1
+        }
+    }
+    
+    for i in 0..<mList.count {
+        if mList[i] != i + 1 {
+            return i + 1
+        }
+    }
+    
+    return mList.count + 1
+}
+
+// MARK: - Problem Challenge 3: Find the First K Missing Positive Numbers (Hard)
+/*
+ Given an unsorted array containing numbers and a number ‘k’, find the first ‘k’ missing positive numbers in the array.
+ */
+func findMissingPositiveNumbers(in list: [Int], ofSize k: Int) -> [Int] {
+    
 }
