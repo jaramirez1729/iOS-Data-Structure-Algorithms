@@ -48,23 +48,156 @@ func cyclicSort(_ list: inout [Int]) {
 func findMissingNumber(in list: [Int]) -> Int {
     var traversalIndex = 0
     var mList = list
-    let n = mList.count
+    let listSize = mList.count
     
     // Sort the elements first into their respective indices.
-    while traversalIndex < n {
+    while traversalIndex < listSize {
         let expectedIndex = mList[traversalIndex]
-        // Less than n since the n value would be out of bounds for a valid array from 0..<n. If it's n, it will leave it alone to wherever it ends up after the rest of the list sorts itself.
-        if mList[traversalIndex] < n && mList[traversalIndex] != mList[expectedIndex] {
+        // Less than listSize since the listSize value would be out of bounds for a valid array from 0..<n. If it's n, it will leave it alone to wherever it ends up after the rest of the list sorts itself.
+        if expectedIndex < listSize && mList[traversalIndex] != mList[expectedIndex] {
             mList.swapAt(traversalIndex, expectedIndex)
         } else {
             traversalIndex += 1
         }
     }
     
-    // Find the first number missing from its index.
-    for i in 0..<n {
+    // Now that the list has been sorted, there is 1 number that was left in the wrong location because the array is not large enough to contain it.
+    for i in 0..<listSize {
         if mList[i] != i { return i }
     }
     
-    return n
+    return listSize
+}
+
+// MARK: - Find all Missing Numbers (Easy)
+/*
+ We are given an unsorted array containing numbers taken from the range 1 to ‘n’. The array can have duplicates, which means some numbers will be missing. Find all those missing numbers.
+ */
+// If there is a 1, then it will be in position 0. So index 0 => 1.
+// If 3 is in position 1, then the expected index for 3 is 2 since index 2 => 3
+// We use a pointer to go down the list. Check if the current number is not in the right position. If it's not, swap the values. If it is, then increase the pointer and keep going. Then, check the sorted list for any value that does not match [i]=i + 1.
+// Time O(N), Space O(N)
+func findAllMissingNumber(in list: [Int]) -> [Int] {
+    var traversalIndex = 0
+    var mList = list
+    var missingNumbers = [Int]()
+    
+    while traversalIndex < mList.count {
+        // Since each number is in the n - 1, the expected index for any of the values will be in the n - 1 position.
+        let expectedIndex = mList[traversalIndex] - 1
+        // If the value in the current position does not equal to the expected value, then sort it.
+        if mList[traversalIndex] != mList[expectedIndex] {
+            mList.swapAt(traversalIndex, expectedIndex)
+        } else {
+            traversalIndex += 1
+        }
+    }
+    
+    for i in 0..<mList.count {
+        if mList[i] != i + 1 {
+            missingNumbers.append(i + 1)
+        }
+    }
+    
+    return missingNumbers
+}
+
+// MARK: - Find the Duplicate Number (Easy)
+/*
+ We are given an unsorted array containing ‘n + 1’ numbers taken from the range 1 to ‘n’. The array has only one duplicate but it can be repeated multiple times. Find that duplicate number without using any extra space. You are, however, allowed to modify the input array.
+ */
+// Since the numbers are from 1 to N, that means list[0] = 1
+// 
+// Time O(N), Space O(N)
+func findDuplicateNumber(in list: [Int]) -> Int {
+    var traversalIndex = 0 // Pointer that goes down the list.
+    var mList = list
+    
+    while traversalIndex < mList.count {
+        // Check if the current number is not in the right position. [i] != i + 1
+        if mList[traversalIndex] != traversalIndex + 1 {
+            let expectedIndex = mList[traversalIndex] - 1 // The expected index of the number in the wrong spot.
+            // Swap and put the numbers in the right place if they are not. If this condition fails, it means that the current number is already in the expected position, and thus is a duplicate.
+            if mList[traversalIndex] != mList[expectedIndex] {
+                mList.swapAt(traversalIndex, expectedIndex)
+            } else {
+                return mList[traversalIndex]
+            }
+        } else {
+            traversalIndex += 1
+        }
+    }
+    
+    // Should never happen if there is valid input.
+    return -1
+}
+
+// MARK: Similar Problem 1: Can we solve the above problem in without modifying the input array?
+// We can use the Slow and Fast pointer approach to find the cycle.
+func findDuplicateNumberCycle(in list: [Int]) -> Int {
+    guard list.count > 0 else { return -1 }
+    
+    var slow = list[0]
+    var fast = list[list[0]]
+    // Don't need to increment in the loop since the values themselves are i + 1 from the ith position. They are essentially incrementing themselves.
+    while slow != fast {
+        slow = list[slow]
+        fast = list[list[fast]]
+    }
+    // Find the cycle lenght.
+    var current = list[list[slow]]
+    var cycleLength = 1
+    while current != list[slow] {
+        current = list[current]
+        cycleLength += 1
+    }
+    return slow
+    //return findCycleStart(in: list, lenght: cycleLength)
+}
+
+// Doesn't seem like this is needed.
+//func findCycleStart(in list: [Int], lenght: Int) -> Int {
+//    var mLenght = lenght
+//    var pointer1 = list[0]
+//    var pointer2 = list[0]
+//    while mLenght > 0 {
+//        pointer2 = list[pointer2]
+//        mLenght -= 1
+//    }
+//    while pointer1 != pointer2 {
+//        pointer1 = list[pointer1]
+//        pointer2 = list[pointer2]
+//    }
+//    return pointer1
+//}
+
+// MARK: - Find All Duplicate Numbers (Easy)
+/*
+ We are given an unsorted array containing n numbers taken from the range 1 to n. The array has some numbers appearing twice, find all these duplicate numbers using constant space.
+ */
+// The number 1 will be at index 0, so list[0] = 1. That means that the expected index for a given n is at n - 1.
+// 
+func findAllDuplicateNumbers(in list: [Int]) -> [Int] {
+    var traverseIndex = 0
+    var mList = list
+    while traverseIndex < mList.count {
+        // The expected index for the current number.
+        let expectedIndex = mList[traverseIndex] - 1
+        // Check if the number in mList[traverseIndex] is already in the final position. If not, swap them.
+        if mList[traverseIndex] != mList[expectedIndex] {
+            mList.swapAt(traverseIndex, expectedIndex)
+        } else {
+            traverseIndex += 1
+        }
+    }
+    
+    // Get all the numbers in the wrong position.
+    var duplicateNumbers = [Int]()
+    for i in 0..<mList.count {
+        if mList[i] != i + 1 {
+            duplicateNumbers.append(mList[i])
+        }
+    }
+    
+    return duplicateNumbers
 }

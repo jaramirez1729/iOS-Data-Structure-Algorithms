@@ -51,3 +51,78 @@ class FindMissingNumberTests: XCTestCase {
         XCTAssertEqual(findMissingNumber(in: input), 4)
     }
 }
+
+// MARK: - Find all Missing Numbers (Easy)
+class FindAllMissingNumberTests: XCTestCase {
+    func test1() {
+        let input = [2, 3, 1, 8, 2, 3, 5, 1]
+        let result = findAllMissingNumber(in: input)
+        XCTAssertEqual(result, [4, 6, 7])
+    }
+    
+    func test2() {
+        let input = [2, 4, 1, 2]
+        let result = findAllMissingNumber(in: input)
+        XCTAssertEqual(result, [3])
+    }
+}
+
+// MARK: - Find the Duplicate Number (Easy)
+class FindDuplicateNumberTests: XCTestCase {
+    func test1() {
+        let input = [1, 4, 4, 3, 2]
+        let result = findDuplicateNumber(in: input)
+        XCTAssertEqual(result, 4)
+    }
+    
+    func test2() {
+        let input = [2, 1, 3, 3, 5, 4]
+        let result = findDuplicateNumber(in: input)
+        XCTAssertEqual(result, 3)
+    }
+    
+    func test3() {
+        let input = [2, 4, 1, 4, 4]
+        let result = findDuplicateNumber(in: input)
+        XCTAssertEqual(result, 4)
+    }
+    
+    func test1a() {
+        let input = [1, 4, 4, 3, 2]
+        let result = findDuplicateNumberCycle(in: input)
+        XCTAssertEqual(result, 4)
+    }
+    
+    func test2a() {
+        let input = [2, 1, 3, 3, 5, 4]
+        let result = findDuplicateNumberCycle(in: input)
+        XCTAssertEqual(result, 3)
+    }
+    
+    func test3a() {
+        let input = [2, 4, 1, 4, 4]
+        let result = findDuplicateNumberCycle(in: input)
+        XCTAssertEqual(result, 4)
+    }
+    
+    func test4a() {
+        let input = [1, 4, 3, 2, 6, 5, 7, 11, 10, 8, 9, 7]
+        let result = findDuplicateNumberCycle(in: input)
+        XCTAssertEqual(result, 7)
+    }
+}
+
+// MARK: - Find All Duplicate Numbers (Easy)
+class findAllDuplicateNumbersTests: XCTestCase {
+    func test1() {
+        let input = [3, 4, 4, 5, 5]
+        let output = [4, 5]
+        XCTAssertEqual(findAllDuplicateNumbers(in: input), output)
+    }
+    
+    func test2() {
+        let input = [5, 4, 7, 2, 3, 5, 3]
+        let output = [3, 5]
+        XCTAssertEqual(findAllDuplicateNumbers(in: input), output)
+    }
+}
