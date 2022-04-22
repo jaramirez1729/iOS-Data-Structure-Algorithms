@@ -272,6 +272,49 @@ func findMinMissingPositiveNumber( in list: [Int]) -> Int {
 /*
  Given an unsorted array containing numbers and a number ‘k’, find the first ‘k’ missing positive numbers in the array.
  */
-func findMissingPositiveNumbers(in list: [Int], ofSize k: Int) -> [Int] {
+// Consider first that the expected numbers that fit the array must be from 1...n where n is the size of the array.
+// First, we need to sort the array and put the positive numbers into their given positions, and ignore all the other values. Then, we determine what numbers are missing from the list. Then, if k is still not reached, we need to find the rest of the numbers that are missing that go up to k. 
+// Time O(N), Space O(N)
+func findMissingPositiveNumbers(in nums: [Int], ofSize k: Int) -> [Int] {
+    let numsSize = nums.count
+    var traverseIndex = 0
+    var mNums = nums
     
+    while traverseIndex < numsSize {
+        // Since positive numbers start at 1, then nums[0] = 1, so value = index + 1.
+        // So to get the expected index of a number, we subtract 1 from it.
+        let expectedIndex = mNums[traverseIndex] - 1
+        // Since we only care about positive numbers, the ones we sort must be between 0...n.
+        if mNums[traverseIndex] > 0 && mNums[traverseIndex] <= numsSize 
+            && mNums[traverseIndex] != mNums[expectedIndex] {
+            mNums.swapAt(traverseIndex, expectedIndex)
+        } else {
+            traverseIndex += 1
+        }
+    }
+    
+    // Check the numbers to find which ones are not in their positions, or missing. We only need to find up to k.
+    var missingNums = [Int]()
+    var extraNumbers = Set<Int>()
+    for i in 0..<numsSize {
+        if missingNums.count < k {
+            if mNums[i] != i + 1 {
+                missingNums.append(i + 1)
+                extraNumbers.insert(mNums[i])
+            }
+        }
+    }
+    
+    // missingNums has the numbers that are missing, but we then need to find the rest if the limit of k was not reached.
+    var index = 1
+    while missingNums.count < k {
+        let candidateNumber = index + numsSize
+        // Ignore if the array contains the candidate number.
+        if !extraNumbers.contains(candidateNumber) {
+            missingNums.append(candidateNumber)
+        }
+        index += 1
+    }
+    
+    return missingNums
 }

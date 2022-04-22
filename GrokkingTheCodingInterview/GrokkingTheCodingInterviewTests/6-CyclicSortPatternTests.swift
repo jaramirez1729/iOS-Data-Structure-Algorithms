@@ -170,3 +170,26 @@ class FindMinMissingPositiveNumberTests: XCTestCase {
 }
 
 // MARK: - Problem Challenge 3: Find the First K Missing Positive Numbers (Hard)
+class FindMissingPositiveNumbersTests: XCTestCase {
+    
+    func test1() {
+        let input = [3, -1, 4, 5, 5] 
+        let k = 3
+        let output = [1, 2, 6]
+        XCTAssertEqual(findMissingPositiveNumbers(in: input, ofSize: k), output)
+    }
+    
+    func test2() {
+        let input = [2, 3, 4] 
+        let k = 3
+        let output = [1, 5, 6]
+        XCTAssertEqual(findMissingPositiveNumbers(in: input, ofSize: k), output)
+    }
+    
+    func test3() {
+        let input = [-2, -3, 4] 
+        let k = 2
+        let output = [1, 2]
+        XCTAssertEqual(findMissingPositiveNumbers(in: input, ofSize: k), output)
+    }
+}
